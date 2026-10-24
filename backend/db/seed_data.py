@@ -160,19 +160,19 @@ def _alternate(base: MarketRow) -> MarketRow:
     )
 
 
-_PASS_YDS = _market("player_pass_yds", "pass_yds", "lognormal")
+_PASS_YDS = _market("player_pass_yds", "pass_yds", "gamma")
 _PASS_TDS = _market("player_pass_tds", "pass_tds", "poisson")
-_RUSH_YDS = _market("player_rush_yds", "rush_yds", "lognormal")
+_RUSH_YDS = _market("player_rush_yds", "rush_yds", "gamma")
 _RECEPTIONS = _market("player_receptions", "receptions", "poisson")
-_REC_YDS = _market("player_reception_yds", "rec_yds", "lognormal")
+_REC_YDS = _market("player_reception_yds", "rec_yds", "gamma")
 
 MARKETS: list[MarketRow] = [
     _PASS_YDS,
     _PASS_TDS,
-    _market("player_pass_completions", "pass_completions", "poisson"),
+    _market("player_pass_completions", "pass_completions", "negbin"),
     _market("player_pass_interceptions", "interceptions", "poisson"),
     _RUSH_YDS,
-    _market("player_rush_attempts", "rush_attempts", "poisson"),
+    _market("player_rush_attempts", "rush_attempts", "negbin"),
     _RECEPTIONS,
     _REC_YDS,
     _market("player_anytime_td", "anytime_td", "bernoulli"),

@@ -6,10 +6,12 @@ import pytest
 from sqlalchemy import func, select, update
 from sqlalchemy.orm import Session
 
+from app.distribution_params import DistributionParams, load_distribution_params
 from app.settings import Settings
-from db.models import Book, ConsensusSnapshot
+from db.models import Book, ConsensusSnapshot, Player
 from db.snapshots import SnapshotQuote, store_prop_snapshots
 from engine.consensus import STUB_LINE_CV, BookQuote, ConsensusConfig, consensus
+from engine.distributions import FittedLineModel
 from ingest import run_ingest
 from ingest.consensus_job import ConsensusJob, JobConfig
 from ingest.recompute import RecomputeRequest
@@ -20,6 +22,7 @@ from tests.db.backfill_support import GAME_A, GAME_B
 AS_OF = datetime(2025, 10, 19, 12, 0, tzinfo=UTC)  # five hours before GAME_A kicks off
 PACHECO, KELCE, LOVE, SWIFT = 1, 2, 3, 4
 RUSH, RUSH_ALT, TD = "player_rush_yds", "player_rush_yds_alternate", "player_anytime_td"
+RECEIVING = "player_reception_yds"
 
 
 @pytest.fixture
@@ -283,6 +286,108 @@ def test_dropping_one_sided_quotes_leaves_no_consensus_for_a_yes_only_market(db:
     config = JobConfig(replace(ConsensusConfig(), one_sided_overround=None))
     result = ConsensusJob(db, config).recompute(GAME_A, None, AS_OF)
     assert (result.written, result.no_consensus) == (0, 1)
+
+
+# Fitted shapes ---------------------------------------------------------------------------------
+
+SHIPPED = load_distribution_params()
+
+
+def fitted_job(db: Session) -> ConsensusJob:
+    return ConsensusJob(db, JobConfig(params=SHIPPED))
+
+
+def expected_with(model_stat: str, position: str | None, quotes: list[BookQuote]) -> float:
+    model = SHIPPED.model(model_stat, position)
+    assert model is not None
+    config = ConsensusConfig(line_model=FittedLineModel(model))
+    answer = consensus(quotes, config=config, as_of=AS_OF)
+    assert answer is not None
+    return answer.fair_p_over
+
+
+def test_the_fitted_shape_for_the_players_position_is_used(db: Session) -> None:
+    rush_quotes(db)
+    quotes = [
+        book_quote("draftkings", 64.5, -110, -110),
+        book_quote("fanduel", 65.5, -110, -110),
+        book_quote("betmgm", 64.5, -120, 100),
+    ]
+    fitted_job(db).recompute(GAME_A, None, AS_OF)
+    [row] = rows(db)[(RUSH, PACHECO)]
+
+    assert row.fair_p_over == pytest.approx(expected_with("rush_yds", "RB", quotes))
+    standin = consensus(
+        quotes, config=ConsensusConfig(line_cv=STUB_LINE_CV["rush_yds"]), as_of=AS_OF
+    )
+    assert standin is not None and row.fair_p_over != pytest.approx(standin.fair_p_over, abs=1e-6)
+
+
+def test_a_different_position_means_a_different_shape(db: Session) -> None:
+    rush_quotes(db)
+    db.execute(update(Player).where(Player.id == PACHECO).values(position="QB"))
+    db.commit()
+    fitted_job(db).recompute(GAME_A, None, AS_OF)
+    [row] = rows(db)[(RUSH, PACHECO)]
+
+    quotes = [
+        book_quote("draftkings", 64.5, -110, -110),
+        book_quote("fanduel", 65.5, -110, -110),
+        book_quote("betmgm", 64.5, -120, 100),
+    ]
+    quarterback = expected_with("rush_yds", "QB", quotes)
+    running_back = expected_with("rush_yds", "RB", quotes)
+    assert quarterback != pytest.approx(running_back, abs=1e-6)
+    assert row.fair_p_over == pytest.approx(quarterback)
+
+
+def test_receiving_yards_use_the_tight_end_shape_and_its_zero_share(db: Session) -> None:
+    put(db, "draftkings", RECEIVING, KELCE, 14.5, -110, -110)
+    put(db, "fanduel", RECEIVING, KELCE, 16.5, -110, -110)
+    fitted_job(db).recompute(GAME_A, None, AS_OF)
+    [row] = rows(db)[(RECEIVING, KELCE)]
+
+    quotes = [book_quote("draftkings", 14.5, -110, -110), book_quote("fanduel", 16.5, -110, -110)]
+    assert row.fair_line == 14.5
+    assert row.fair_p_over == pytest.approx(expected_with("rec_yds", "TE", quotes))
+    assert row.fair_p_over != pytest.approx(expected_with("rec_yds", "WR", quotes), abs=1e-6)
+
+
+def test_an_unknown_position_gets_the_stats_default_shape(db: Session) -> None:
+    rush_quotes(db)
+    db.execute(update(Player).where(Player.id == PACHECO).values(position="LS"))
+    db.commit()
+    fitted_job(db).recompute(GAME_A, None, AS_OF)
+    [row] = rows(db)[(RUSH, PACHECO)]
+    quotes = [
+        book_quote("draftkings", 64.5, -110, -110),
+        book_quote("fanduel", 65.5, -110, -110),
+        book_quote("betmgm", 64.5, -120, 100),
+    ]
+    assert row.fair_p_over == pytest.approx(expected_with("rush_yds", None, quotes))
+
+
+def test_a_stat_with_no_fitted_shape_falls_back_to_the_stand_in(db: Session) -> None:
+    rush_quotes(db)
+    ConsensusJob(db, JobConfig(params=DistributionParams({}))).recompute(GAME_A, None, AS_OF)
+    [row] = rows(db)[(RUSH, PACHECO)]
+    standin = consensus(
+        [
+            book_quote("draftkings", 64.5, -110, -110),
+            book_quote("fanduel", 65.5, -110, -110),
+            book_quote("betmgm", 64.5, -120, 100),
+        ],
+        config=ConsensusConfig(line_cv=STUB_LINE_CV["rush_yds"]),
+        as_of=AS_OF,
+    )
+    assert standin is not None
+    assert row.fair_p_over == pytest.approx(standin.fair_p_over)
+
+
+def test_settings_load_the_shipped_shapes() -> None:
+    config = JobConfig.from_settings(Settings(_env_file=None))
+    assert config.params is not None
+    assert config.params.model("pass_yds", "QB") == SHIPPED.model("pass_yds", "QB")
 
 
 # Wired into the capture ------------------------------------------------------------------------

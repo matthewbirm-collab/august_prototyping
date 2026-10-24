@@ -13,6 +13,7 @@ dependencies = [
     "pydantic-settings>=2.16.1",
     "rapidfuzz>=3.14.6",
     "redis>=8.1.0",
+    "scipy>=1.18.1",
     "sqlalchemy>=2.0",
     "uvicorn[standard]>=0.54.0",
 ]
@@ -21,6 +22,7 @@ dependencies = [
 ingest-nflverse = "ingest.nflverse.cli:main"
 run-ingest = "ingest.run_ingest:main"
 backfill-props = "ingest.backfill_cli:main"
+calibration-report = "analytics.calibration_cli:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -57,7 +59,9 @@ markers = ["live: calls real external services; skipped without API keys"]
 [dependency-groups]
 dev = [
     "hypothesis>=6.170.9",
+    "matplotlib>=3.11.2",
     "mypy>=2.4.0",
     "pytest>=9.1.1",
     "ruff>=0.17.2",
+    "scipy-stubs>=1.18.1.1",
 ]

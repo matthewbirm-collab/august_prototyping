@@ -4,6 +4,7 @@ Defaults mirror the parameter table in CLAUDE.md; change them there and here tog
 """
 
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, Field, SecretStr
@@ -59,6 +60,8 @@ class Settings(BaseSettings):
     # Margin assumed for markets where a book posts only one side (mostly anytime TD). A
     # placeholder to calibrate against results; "none" drops one-sided quotes instead.
     one_sided_overround: float | None = 0.10
+    # Fitted distribution shapes; None means the file shipped in backend/config.
+    distribution_params_path: Path | None = None
     fuzzy_match_threshold: int = 90
     steam_min_books: int = 3
     steam_window_min: int = 10

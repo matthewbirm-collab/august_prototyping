@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "source": "nflverse weekly player stats (CC-BY 4.0), regular seasons 2021-2025",
+  "generated": "2026-10-24",
+  "note": "Shapes are the spread of a player's own games within a season: an upper bound on the spread a closing line implies. Refit against real lines after the backfill.",
+  "stats": {
+    "pass_yds": {
+      "QB": {
+        "family": "gamma",
+        "shape": 10.84
+      },
+      "default": {
+        "family": "gamma",
+        "shape": 10.84
+      }
+    },
+    "rush_yds": {
+      "RB": {
+        "family": "gamma",
+        "shape": 3.117,
+        "zero_inflation": {
+          "lines": [
+            7.5,
+            18.0,
+            32.0,
+            50.0,
+            73.5
+          ],
+          "shares": [
+            0.0873,
+            0.0437,
+            0.0189,
+            0.0137,
+            0.0018
+          ]
+        }
+      },
+      "QB": {
+        "family": "gamma",
+        "shape": 2.106,
+        "zero_inflation": {
+          "lines": [
+            5.5,
+            17.0,
+            30.5,
+            46.0
+          ],
+          "shares": [
+            0.2236,
+            0.0911,
+            0.0338,
+            0.0124
+          ]
+        }
+      },
+      "default": {
+        "family": "gamma",
+        "shape": 3.117,
+        "zero_inflation": {
+          "lines": [
+            7.5,
+            18.0,
+            32.0,
+            50.0,
+            73.5
+          ],
+          "shares": [
+            0.0873,
+            0.0437,
+            0.0189,
+            0.0137,
+            0.0018
+          ]
+        }
+      }
+    },
+    "rec_yds": {
+      "WR": {
+        "family": "gamma",
+        "shape": 2.572,
+        "zero_inflation": {
+          "lines": [
+            7.5,
+            17.5,
+            31.5,
+            49.0,
+            73.0
+          ],
+          "shares": [
+            0.223,
+            0.1692,
+            0.0927,
+            0.046,
+            0.013
+          ]
+        }
+      },
+      "TE": {
+        "family": "gamma",
+        "shape": 2.794,
+        "zero_inflation": {
+          "lines": [
+            7.5,
+            17.0,
+            32.0,
+            46.0,
+            66.5
+          ],
+          "shares": [
+            0.1783,
+            0.1208,
+            0.0545,
+            0.0377,
+            0.0156
+          ]
+        }
+      },
+      "RB": {
+        "family": "gamma",
+        "shape": 1.796,
+        "zero_inflation": {
+          "lines": [
+            8.0,
+            16.5,
+            29.0
+          ],
+          "shares": [
+            0.1703,
+            0.1261,
+            0.0605
+          ]
+        }
+      },
+      "default": {
+        "family": "gamma",
+        "shape": 2.572,
+        "zero_inflation": {
+          "lines": [
+            7.5,
+            17.5,
+            31.5,
+            49.0,
+            73.0
+          ],
+          "shares": [
+            0.223,
+            0.1692,
+            0.0927,
+            0.046,
+            0.013
+          ]
+        }
+      }
+    },
+    "pass_tds": {
+      "QB": {
+        "family": "poisson"
+      },
+      "default": {
+        "family": "poisson"
+      }
+    },
+    "pass_completions": {
+      "QB": {
+        "family": "negbin",
+        "shape": 51.44
+      },
+      "default": {
+        "family": "negbin",
+        "shape": 51.44
+      }
+    },
+    "interceptions": {
+      "QB": {
+        "family": "poisson"
+      },
+      "default": {
+        "family": "poisson"
+      }
+    },
+    "rush_attempts": {
+      "RB": {
+        "family": "negbin",
+        "shape": 16.51
+      },
+      "QB": {
+        "family": "negbin",
+        "shape": 23.11
+      },
+      "default": {
+        "family": "negbin",
+        "shape": 16.51
+      }
+    },
+    "receptions": {
+      "WR": {
+        "family": "poisson"
+      },
+      "TE": {
+        "family": "poisson"
+      },
+      "RB": {
+        "family": "poisson"
+      },
+      "default": {
+        "family": "poisson"
+      }
+    },
+    "anytime_td": {
+      "default": {
+        "family": "bernoulli"
+      }
+    }
+  }
+}
