@@ -73,7 +73,7 @@ Keep `engine/` a pure library so the same code runs live and in backtests.
    - Counts (receptions, pass TDs, completions, INTs): Poisson or negative binomial. Completions and rush attempts are over-dispersed (negative binomial); receptions and pass TDs are not (Poisson).
    - Anytime TD: λ = −ln(1 − P(TD)). Do not also add separate rush/rec TD props.
 4. **Use means, not lines.** Lines sit near the median; yardage is right-skewed, so the mean is above the line.
-5. **Score.** Apply the league's scoring weights to stat means.
+5. **Score.** Apply the league's scoring weights to stat means. `engine/projection.py` does this: RB/WR/TE touchdowns come from anytime TD only; a QB's passing touchdowns come from the pass-TD prop and rushing scores from anytime TD; markets outside a position's stats (a receiver's rushing yards) are ignored. Confidence (0-1) is the product of four penalties, each weighted by the points a stat carries: missing markets, books disagreeing, fewer than three books, and old quotes. `ingest/projection_job.py` writes one `projections` row per player and scoring config whenever the result changes.
 6. **Fill gaps.** No prop for a stat → team implied total (spread + total) × trailing usage share; flag low confidence.
 7. **Range.** v1: per-stat p20/p80 assuming independence. v2: Monte Carlo with QB–pass-catcher correlation.
 
@@ -83,7 +83,7 @@ Standard scoring, r = 1 (PPR), 0.5 (half), 0 (standard):
 E[FP] = 0.04·PassYds + 4·PassTD − 2·INT + 0.1·(RushYds + RecYds) + 6·TD + r·Rec − 2·FumLost
 ```
 
-Fumbles lost have no market — use the player's historical rate. All weights come from `scoring_configs`.
+Fumbles lost have no market — use the player's historical rate. The rate is the player's last 17 games before `as_of`, blended with 6 games of the position's league rate (a starting value to replace with a measured one). All weights come from `scoring_configs`.
 
 **Movement signals**
 - Projection change since open and over 1h / 6h / 24h, attributed to the driving prop

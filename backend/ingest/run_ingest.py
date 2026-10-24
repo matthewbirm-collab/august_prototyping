@@ -39,7 +39,8 @@ from ingest.odds.factory import get_odds_provider
 from ingest.odds.markets import ALTERNATE_MARKETS, MAIN_MARKETS
 from ingest.odds.offline import OfflineProvider
 from ingest.odds.provider import OddsProvider
-from ingest.recompute import RecomputeHook, log_recompute
+from ingest.projection_job import ProjectionJob, ProjectionJobConfig
+from ingest.recompute import RecomputeHook, chain, log_recompute
 
 logger = logging.getLogger(__name__)
 
@@ -248,8 +249,11 @@ def _run_job(
                     settings, used_today=credits_used_today(db, clock())
                 )
                 try:
-                    consensus_job = ConsensusJob(db, JobConfig.from_settings(settings))
-                    summary = run_once(db, live, config, tier, clock, consensus_job)
+                    hook = chain(
+                        ConsensusJob(db, JobConfig.from_settings(settings)),
+                        ProjectionJob(db, ProjectionJobConfig.from_settings(settings)),
+                    )
+                    summary = run_once(db, live, config, tier, clock, hook)
                 finally:
                     if owns_provider:
                         close = getattr(live, "close", None)
