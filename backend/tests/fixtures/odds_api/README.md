@@ -13,4 +13,5 @@ key, which never appears in a response body) and rerun `make test`.
 | `event_markets.json` | `GET /v4/sports/americanfootball_nfl/events/{eventId}/markets` |
 | `event_odds.json` | `GET /v4/sports/americanfootball_nfl/events/{eventId}/odds` |
 | `historical_event_odds.json` | `GET /v4/historical/sports/americanfootball_nfl/events/{eventId}/odds` |
+| `historical_events.json` | `GET /v4/historical/sports/americanfootball_nfl/events` |
 | `documented_nfl_prop_markets.json` | NFL player-prop market keys listed on the provider's betting-markets page |

@@ -245,6 +245,18 @@ One row per `run-ingest` run that polled anything: `events` is games polled, `cr
 
 Status is `ok`, `partial` (some games failed or were deferred) or `failed` (none succeeded). Runs with nothing due, or with the budget already spent, create no row.
 
+### `backfill_progress` and historical runs (`kind = 'odds_historical'`)
+
+`backfill_progress` has one row per `(game_id, label)`, where the label is `open`, `t72h`, `t24h`, `t6h`, `t1h` or `close`. A row means that snapshot is finished, so reruns skip it:
+
+- `status`: `done`; `empty` (the provider had no props at that time: free, and not asked again); or `stale` (the closest snapshot was more than `STALE_QUOTE_MINUTES` before the target; the data is stored, but a backtest can skip it).
+- `target_at` is the time we asked for, and `snapshot_at` is when the provider says its snapshot was taken. They differ by up to five minutes, or more when a snapshot is stale or covers several targets.
+- `credits` is what the call cost. A call that satisfied several labels (the open search lands on a fixed target, or two targets share a snapshot) is billed once.
+
+Backfill runs are recorded in `ingestion_runs` as `odds_historical`, with `details` holding the seasons, labels, markets, call count, status counts and why it stopped, if it did (`credit cap` or `reserve`). Their credits are not counted against the daily live budget.
+
+Historical rows in `prop_snapshots` have `source = 'historical'` and `captured_at` equal to the provider's snapshot time. Each is compared with the row before it in time, so adding earlier snapshots after later ones still leaves "the latest quote at or before T" correct.
+
 ### How `available_at` is set by the nflverse loaders
 
 | Data | `available_at` |

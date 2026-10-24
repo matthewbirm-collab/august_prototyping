@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 from typing import Any
 
 import polars as pl
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
@@ -117,7 +117,17 @@ class NflverseLoader:
         )
         for row in rows:
             row["updated_at"] = datetime.now(UTC)
-        return upsert(self._session, Player, rows, ["gsis_id"])
+        # Loading an older season (a backfill) must not move a player back to an old team.
+        # Schedules load first, so the newest season in `games` is the newest one we know about.
+        newest = self._session.scalar(select(func.max(Game.season)))
+        stale = newest is not None and season < newest
+        return upsert(
+            self._session,
+            Player,
+            rows,
+            ["gsis_id"],
+            exclude=["team_abbr", "position", "updated_at"] if stale else (),
+        )
 
     def load_rosters(self, season: int, week: int | None) -> int:
         rosters = _week(self._source.rosters_weekly([season]), week)

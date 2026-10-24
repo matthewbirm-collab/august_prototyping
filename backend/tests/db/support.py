@@ -110,6 +110,9 @@ class FakeOdds:
     def get_historical_event_props(self, *args: Any, **kwargs: Any) -> PropsResponse:
         raise AssertionError("not used")
 
+    def list_historical_events(self, *args: Any, **kwargs: Any) -> list[OddsEvent]:
+        raise AssertionError("not used")
+
     def credit_usage(self) -> CreditUsage:
         return CreditUsage(
             used=None,

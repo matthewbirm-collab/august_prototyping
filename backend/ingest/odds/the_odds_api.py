@@ -85,15 +85,7 @@ class TheOddsApiProvider:
             {"commenceTimeFrom": _iso(commence_from), "commenceTimeTo": _iso(commence_to)},
             max_cost=0,
         )
-        return [
-            OddsEvent(
-                event_id=event["id"],
-                home_team=event["home_team"],
-                away_team=event["away_team"],
-                commence_time=_parse_time(event["commence_time"]),
-            )
-            for event in cast(list[dict[str, Any]], data)
-        ]
+        return _parse_events(cast(list[dict[str, Any]], data))
 
     def list_event_markets(self, event_id: str) -> list[EventMarkets]:
         data = self._get(
@@ -146,7 +138,26 @@ class TheOddsApiProvider:
         return PropsResponse(
             quotes=tuple(_parse_quotes(wrapper.get("data") or {}, snapshot_at)),
             snapshot_at=snapshot_at,
+            previous_snapshot_at=_optional_time(wrapper.get("previous_timestamp")),
+            next_snapshot_at=_optional_time(wrapper.get("next_timestamp")),
         )
+
+    def list_historical_events(
+        self, at: datetime, commence_from: datetime, commence_to: datetime
+    ) -> list[OddsEvent]:
+        wrapper = cast(
+            dict[str, Any],
+            self._get(
+                f"/v4/historical/sports/{SPORT}/events",
+                {
+                    "date": _iso(at),
+                    "commenceTimeFrom": _iso(commence_from),
+                    "commenceTimeTo": _iso(commence_to),
+                },
+                max_cost=1,
+            ),
+        )
+        return _parse_events(wrapper.get("data") or [])
 
     def credit_usage(self) -> CreditUsage:
         self._roll_day()
@@ -257,6 +268,18 @@ class TheOddsApiProvider:
         return cost
 
 
+def _parse_events(events: list[dict[str, Any]]) -> list[OddsEvent]:
+    return [
+        OddsEvent(
+            event_id=event["id"],
+            home_team=event["home_team"],
+            away_team=event["away_team"],
+            commence_time=_parse_time(event["commence_time"]),
+        )
+        for event in events
+    ]
+
+
 def _parse_quotes(event: dict[str, Any], captured_at: datetime) -> list[PropQuote]:
     quotes: list[PropQuote] = []
     event_id = event.get("id", "")
@@ -312,3 +335,7 @@ def _iso(moment: datetime) -> str:
 
 def _parse_time(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def _optional_time(value: str | None) -> datetime | None:
+    return _parse_time(value) if value else None

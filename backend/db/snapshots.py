@@ -55,8 +55,10 @@ def insert_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> 
     """Insert quotes whose payload differs from the latest stored row in their series.
 
     Quotes are processed in `captured_at` order, so a batch holding several captures of one
-    series is deduplicated against itself too. Returns the number of rows inserted; the caller
-    commits.
+    series is deduplicated against itself too. Each quote is compared with the latest row at or
+    before the batch's newest `captured_at`, so a historical snapshot stored after later ones
+    (an out-of-order backfill) isn't dropped for matching a row that comes after it. Returns the
+    number of rows inserted; the caller commits.
     """
     return len(store_prop_snapshots(session, quotes))
 
@@ -118,7 +120,10 @@ def _latest_hashes(
     groups = [(q.game_id, q.book_key, q.market_key, q.player_id) for q in quotes]
     stmt = (
         select(*group_columns, series_line.label("series_line"), PropSnapshot.payload_hash)
-        .where(tuple_(*group_columns).in_(set(groups)))
+        .where(
+            tuple_(*group_columns).in_(set(groups)),
+            PropSnapshot.captured_at <= max(q.captured_at for q in quotes),
+        )
         .ext(distinct_on(*group_columns, series_line))
         .order_by(*group_columns, series_line, PropSnapshot.captured_at.desc())
     )

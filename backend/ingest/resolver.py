@@ -250,3 +250,22 @@ def weekly_unmatched_rate(session: Session, season: int, week: int) -> Unmatched
         )
     )
     return UnmatchedRate(unmatched=unmatched or 0, matched_players=matched or 0)
+
+
+def season_unmatched_rate(session: Session, season: int) -> UnmatchedRate:
+    """Distinct open unmatched names / (distinct players with snapshots + those names) for a season.
+
+    Counted by name, not by game, so one unresolved player in many games counts once.
+    """
+    season_games = select(Game.id).where(Game.season == season)
+    unmatched = session.scalar(
+        select(func.count(func.distinct(UnmatchedName.raw_name))).where(
+            UnmatchedName.status == "open", UnmatchedName.game_id.in_(season_games)
+        )
+    )
+    matched = session.scalar(
+        select(func.count(func.distinct(PropSnapshot.player_id))).where(
+            PropSnapshot.game_id.in_(season_games)
+        )
+    )
+    return UnmatchedRate(unmatched=unmatched or 0, matched_players=matched or 0)

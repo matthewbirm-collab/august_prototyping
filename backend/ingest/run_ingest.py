@@ -34,13 +34,8 @@ from ingest.capture import (
 )
 from ingest.odds.factory import get_odds_provider
 from ingest.odds.markets import ALTERNATE_MARKETS, MAIN_MARKETS
-from ingest.odds.provider import (
-    CreditUsage,
-    EventMarkets,
-    OddsEvent,
-    OddsProvider,
-    PropsResponse,
-)
+from ingest.odds.offline import OfflineProvider
+from ingest.odds.provider import OddsProvider
 
 logger = logging.getLogger(__name__)
 
@@ -202,7 +197,7 @@ def main(
 
     if args.dry_run:
         with _session(session) as db:
-            capture = OddsCapture(db, provider or _NoProvider(), config, clock=clock)
+            capture = OddsCapture(db, provider or OfflineProvider(), config, clock=clock)
             print(dry_run_text(capture, config, settings, args.tier, clock()))
         return 0
 
@@ -211,7 +206,7 @@ def main(
 
     if args.serve:
         with _session(session) as db:
-            capture = OddsCapture(db, provider or _NoProvider(), config, clock=clock)
+            capture = OddsCapture(db, provider or OfflineProvider(), config, clock=clock)
             print(projection_text(capture, config, settings, clock()))
         print(f"Capturing every {args.serve_interval_minutes} minutes; Ctrl-C to stop.")
         scheduler = build_scheduler(job, args.serve_interval_minutes)
@@ -238,7 +233,7 @@ def _run_job(
                 return 0
             with _session(session) as db:
                 if not has_previous_runs(db):
-                    capture = OddsCapture(db, _NoProvider(), config, clock=clock)
+                    capture = OddsCapture(db, OfflineProvider(), config, clock=clock)
                     print(projection_text(capture, config, settings, clock()))
                     print()
                 owns_provider = provider is None
@@ -271,33 +266,6 @@ def _session(injected: Session | None) -> Iterator[Session]:
         return
     with Session(get_engine()) as db:
         yield db
-
-
-class _NoProvider:
-    """Stand-in for dry runs and projections: any API call is a bug."""
-
-    def list_events(self, commence_from: datetime, commence_to: datetime) -> list[OddsEvent]:
-        raise RuntimeError("this operation makes no API calls")
-
-    def list_event_markets(self, event_id: str) -> list[EventMarkets]:
-        raise RuntimeError("this operation makes no API calls")
-
-    def get_event_props(
-        self, event_id: str, markets: Sequence[str], bookmakers: Sequence[str] | None = None
-    ) -> PropsResponse:
-        raise RuntimeError("this operation makes no API calls")
-
-    def get_historical_event_props(
-        self,
-        event_id: str,
-        at: datetime,
-        markets: Sequence[str],
-        bookmakers: Sequence[str] | None = None,
-    ) -> PropsResponse:
-        raise RuntimeError("this operation makes no API calls")
-
-    def credit_usage(self) -> CreditUsage:
-        raise RuntimeError("this operation makes no API calls")
 
 
 if __name__ == "__main__":

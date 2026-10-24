@@ -340,3 +340,24 @@ class FfRanking(Base):
     sd: Mapped[float | None] = mapped_column(Float)
     best: Mapped[int | None] = mapped_column(Integer)
     worst: Mapped[int | None] = mapped_column(Integer)
+
+
+class BackfillProgress(Base):
+    """One historical snapshot of one game that the backfill has finished, so reruns skip it.
+
+    `empty` and `stale` results are recorded too, so they aren't bought again. `snapshot_at` is
+    when the provider says its snapshot was taken, which can differ from `target_at`.
+    """
+
+    __tablename__ = "backfill_progress"
+
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    label: Mapped[str] = mapped_column(Text, primary_key=True)
+    target_at: Mapped[datetime] = mapped_column(TIMESTAMPTZ)
+    snapshot_at: Mapped[datetime | None] = mapped_column(TIMESTAMPTZ)
+    status: Mapped[str] = mapped_column(Text)
+    quotes: Mapped[int] = mapped_column(Integer, server_default=text("0"))
+    new_snapshots: Mapped[int] = mapped_column(Integer, server_default=text("0"))
+    credits: Mapped[int] = mapped_column(Integer, server_default=text("0"))
+    ingestion_run_id: Mapped[int | None] = mapped_column(ForeignKey("ingestion_runs.id"))
+    completed_at: Mapped[datetime] = mapped_column(TIMESTAMPTZ, server_default=func.now())
