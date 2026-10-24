@@ -1,5 +1,25 @@
-node_modules/
-npm-debug.log
+# Secrets
 .env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Outputs
+reports/
 coverage/
+
+# OS
 .DS_Store

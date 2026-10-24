@@ -1,184 +1,77 @@
-# Express User API
+# propline-fantasy
 
-A basic CRUD (Create, Read, Update, Delete) User API built with Node.js and Express. Data is kept in an in-memory store, so no database setup is required to get running — swap in a real database later by editing `src/models/user.model.js` behind the same function signatures.
+Market-implied NFL fantasy projections built from sportsbook player-prop lines, with line movement as an early signal.
 
-## Project structure
+Projections only — not betting advice.
+
+- **Why and how:** [`docs/PLAN.md`](docs/PLAN.md)
+- **Build order and progress:** [`docs/ROADMAP.md`](docs/ROADMAP.md)
+- **Rules for working on the code:** [`CLAUDE.md`](CLAUDE.md)
+
+## Layout
 
 ```
-express-user-api/
-├── config/
-│   └── index.js          # Environment-based configuration (port, env, log level)
-├── src/
-│   ├── app.js             # Express app factory (middleware, routes, error handling)
-│   ├── routes/
-│   │   └── users.routes.js
-│   ├── controllers/
-│   │   └── users.controller.js
-│   └── models/
-│       └── user.model.js  # In-memory data store
-├── tests/
-│   └── users.test.js      # Jest + Supertest unit/integration tests
-├── index.js                # Entry point — starts the HTTP server
-├── package.json
-├── .env.example
-└── README.md
+backend/     Python 3.12 · FastAPI · SQLAlchemy 2.0 + Alembic (managed with uv)
+  app/         FastAPI app, routes, settings, logging
+  engine/      pure projection library (no DB, HTTP or I/O)
+  analytics/   movement, steam, context attribution
+  ingest/      odds adapter, nflverse loaders, resolver, scheduler
+  db/          models, sessions, migrations
+  tests/
+frontend/    Next.js (app router) · TypeScript · Tailwind
+scripts/     local setup
+docs/        plan and roadmap
 ```
-
-The app is split into an app factory (`src/app.js`) and a server entry point (`index.js`) so tests can exercise the Express app directly with Supertest, without binding to a real port.
 
 ## Requirements
 
-- Node.js >= 18
-- npm
+- macOS with [Homebrew](https://brew.sh). Postgres, TimescaleDB and Redis run as Homebrew services; Docker is not needed.
+- TimescaleDB comes from Timescale's own tap. Homebrew 6 won't load formulas from a third-party tap until you trust it, so run `brew trust timescale/tap` once before `make setup`.
+- [uv](https://docs.astral.sh/uv/), which installs Python 3.12 for you
+- Node.js 20.9 or newer
 
 ## Setup
 
-1. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-2. **Configure environment variables (optional)**
-
-   Copy the example env file and adjust as needed:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   | Variable   | Default       | Description                          |
-   |------------|---------------|---------------------------------------|
-   | `PORT`     | `3000`        | Port the server listens on            |
-   | `NODE_ENV` | `development` | `development`, `test`, or `production`|
-
-   Configuration is centralized in `config/index.js`, which selects settings per `NODE_ENV`.
-
-3. **Run the server**
-
-   ```bash
-   npm start
-   ```
-
-   For auto-restart on file changes during development:
-
-   ```bash
-   npm run dev
-   ```
-
-   The server starts on `http://localhost:3000` by default.
-
-4. **Run the tests**
-
-   ```bash
-   npm test
-   ```
-
-## API Reference
-
-Base path: `/api/users`
-
-### Health check
-
-```
-GET /health
+```bash
+make setup
 ```
 
-Returns `{ "status": "ok" }`.
+This runs `scripts/setup-local.sh`, which:
 
-### List all users
+1. Installs TimescaleDB (from the `timescale/tap` Homebrew tap) with the Postgres version it is built for, plus Redis.
+2. Configures Postgres to preload TimescaleDB and starts both services.
+3. Creates the `propline` and `propline_test` databases with the TimescaleDB extension.
+4. Copies `.env.example` to `.env` and `frontend/.env.example` to `frontend/.env.local` if they don't exist.
 
-```
-GET /api/users
-```
+It then installs backend and frontend dependencies. It's safe to rerun.
 
-**Response** `200 OK`
-```json
-[
-  { "id": 1, "name": "Ada Lovelace", "email": "ada@example.com" }
-]
-```
+Settings live in `.env`. The defaults match the parameter table in `CLAUDE.md`. `ODDS_API_KEY` can stay empty until the live ingestion steps.
 
-### Get a single user
-
-```
-GET /api/users/:id
-```
-
-**Response** `200 OK` — the user object
-**Response** `404 Not Found` — if no user with that id exists
-
-### Create a user
-
-```
-POST /api/users
-Content-Type: application/json
-
-{ "name": "Ada Lovelace", "email": "ada@example.com" }
-```
-
-**Response** `201 Created` — the created user, including its assigned `id`
-**Response** `400 Bad Request` — missing/invalid `name` or `email`
-**Response** `409 Conflict` — a user with that email already exists
-
-### Update a user
-
-```
-PUT /api/users/:id
-Content-Type: application/json
-
-{ "name": "Ada Byron" }
-```
-
-Partial updates are supported — omit fields you don't want to change.
-
-**Response** `200 OK` — the updated user
-**Response** `400 Bad Request` — invalid `name` or `email`
-**Response** `404 Not Found` — if no user with that id exists
-**Response** `409 Conflict` — if the new email is already used by another user
-
-### Delete a user
-
-```
-DELETE /api/users/:id
-```
-
-**Response** `204 No Content` — on success
-**Response** `404 Not Found` — if no user with that id exists
-
-## Example usage (curl)
+## Running
 
 ```bash
-# Create a user
-curl -X POST http://localhost:3000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Ada Lovelace", "email": "ada@example.com"}'
-
-# List users
-curl http://localhost:3000/api/users
-
-# Get a single user
-curl http://localhost:3000/api/users/1
-
-# Update a user
-curl -X PUT http://localhost:3000/api/users/1 \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Ada Byron"}'
-
-# Delete a user
-curl -X DELETE http://localhost:3000/api/users/1
+make up
 ```
 
-## Testing
+Starts Postgres and Redis, applies migrations, then runs:
 
-Tests use [Jest](https://jestjs.io/) and [Supertest](https://github.com/ladjs/supertest) to exercise the Express app in-process (no running server required). Each test resets the in-memory user store via `User.reset()` in a `beforeEach` hook to keep tests isolated from one another.
+- the backend at http://localhost:8000 (`/health` for liveness, `/health/ready` checks Postgres, TimescaleDB and Redis, `/docs` for the API docs)
+- the frontend at http://localhost:3000
 
-```bash
-npm test
-```
+Ctrl-C stops the two servers; `make down` stops Postgres and Redis.
 
-## Notes on extending this project
+## Other commands
 
-- **Persistence**: Replace the functions in `src/models/user.model.js` (`getAll`, `getById`, `create`, `update`, `remove`, `findByEmail`) with calls to a real database client (e.g. Postgres, MongoDB). Controllers and routes don't need to change since they only depend on that function signature.
-- **Validation**: Field validation currently lives in the controller. For more complex schemas, consider a library like `zod` or `joi`.
-- **Auth**: There is no authentication/authorization layer. Add middleware in `src/app.js` before mounting `usersRouter` if needed.
+| Command | What it does |
+| --- | --- |
+| `make test` | Backend tests (tests marked `live` are skipped) |
+| `make lint` | ruff, ruff format check, mypy strict, frontend ESLint and TypeScript |
+| `make format` | Auto-format backend code |
+| `make migrate` | Apply database migrations |
+| `make seed` | Load seed data (from Phase 1) |
+
+CI on GitHub Actions runs the same lint, typecheck and test steps, with TimescaleDB and Redis as service containers.
+
+## Data attribution
+
+NFL data from [nflverse](https://github.com/nflverse) (CC-BY 4.0; FTN charting data CC-BY-SA 4.0). Odds data from [The Odds API](https://the-odds-api.com), subject to its terms.
