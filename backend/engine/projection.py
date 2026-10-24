@@ -18,7 +18,7 @@ penalties: missing markets, books disagreeing, few books, and old quotes.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Final
+from typing import Final, Literal
 
 import numpy as np
 from numpy.typing import NDArray
@@ -26,7 +26,8 @@ from numpy.typing import NDArray
 from engine.distributions import FittedDistribution
 from engine.scoring import Position, ScoringWeights
 
-ENGINE_VERSION: Final = "1"
+ENGINE_VERSION: Final = "2"
+Source = Literal["market", "model"]
 SAMPLES: Final = 20_000
 SEED: Final = 20_260_101
 
@@ -71,6 +72,8 @@ TYPICAL_MEANS: Final[dict[Position, dict[str, float]]] = {
 DISPERSION_SCALE_LINE: Final = 0.10
 DISPERSION_SCALE_PROBABILITY: Final = 0.05
 FULL_BOOKS: Final = 3
+MODEL_CREDIT: Final = 0.4
+"""How much a gap-filled stat counts toward the missing-markets part of confidence."""
 STALE_FLOOR: Final = 0.5
 """Confidence multiplier for a quote as old as the stale limit."""
 
@@ -87,6 +90,8 @@ class StatInput:
     """The consensus line, to scale a line-unit dispersion; None for anytime TD."""
     age_minutes: float = 0.0
     """Age of the newest quote behind it, at `as_of`."""
+    source: Source = "market"
+    """"model" for a stat gap-filled from team volume and usage (`engine/gapfill.py`)."""
 
 
 @dataclass(frozen=True)
@@ -97,7 +102,8 @@ class StatBreakdown:
     weight: float
     points: float
     source: str
-    """"market" for a fitted prop, "history" for the fumble rate."""
+    """"market" for a fitted prop, "model" for a gap-filled stat, "history" for the fumble
+    rate."""
     books: int | None = None
 
 
@@ -110,6 +116,9 @@ class Confidence:
     freshness: float
     """Each part is a multiplier in (0, 1]; the score is their product."""
     missing: tuple[str, ...]
+    """Stats with neither a market nor a fill."""
+    modelled: tuple[str, ...] = ()
+    """Stats filled by the model, counted at `MODEL_CREDIT` of a market."""
 
 
 @dataclass(frozen=True)
@@ -156,8 +165,8 @@ def project(
             p80=dist.quantile(0.8),
             weight=weight,
             points=weight * mean,
-            source="market",
-            books=given.books,
+            source=given.source,
+            books=given.books if given.source == "market" else None,
         )
         total_mean += weight * mean
         total_draws += weight * draws
@@ -194,26 +203,33 @@ def confidence(
 
     A stat's importance is its scoring weight times a typical game total, so a missing yardage
     market costs more than a missing interception market, and a scoring config that pays nothing
-    for a stat ignores its data quality.
+    for a stat ignores its data quality. A gap-filled stat covers `MODEL_CREDIT` of its
+    importance; disagreement, book count and freshness are judged on the market stats only.
     """
     importance = {
         stat: abs(pay[WEIGHT_KEY[stat]]) * TYPICAL_MEANS[position][stat]
         for stat in POSITION_STATS[position]
     }
     total = sum(importance.values())
-    present = {stat: stats[stat] for stat in importance if stat in stats}
+    present = {
+        stat: stats[stat] for stat in importance if stat in stats and stats[stat].source == "market"
+    }
+    modelled = tuple(sorted(s for s in importance if s in stats and stats[s].source == "model"))
     missing = tuple(sorted(stat for stat in importance if stat not in stats))
     if total == 0:
-        return Confidence(1.0, 1.0, 1.0, 1.0, 1.0, missing)
+        return Confidence(1.0, 1.0, 1.0, 1.0, 1.0, missing, modelled)
 
     covered = sum(importance[s] for s in present)
-    if covered == 0:
-        return Confidence(0.0, 0.0, 1.0, 1.0, 1.0, missing)
+    credited = covered + MODEL_CREDIT * sum(importance[s] for s in modelled)
+    if credited == 0:
+        return Confidence(0.0, 0.0, 1.0, 1.0, 1.0, missing, modelled)
 
     def average(part: dict[str, float]) -> float:
+        if covered == 0:
+            return 1.0
         return sum(importance[s] * part[s] for s in present) / covered
 
-    missing_factor = covered / total
+    missing_factor = credited / total
     dispersion_factor = average({s: _dispersion_factor(i) for s, i in present.items()})
     books_factor = average({s: _books_factor(i.books) for s, i in present.items()})
     fresh_factor = average({s: _freshness_factor(i, stale_minutes) for s, i in present.items()})
@@ -224,6 +240,7 @@ def confidence(
         books=books_factor,
         freshness=fresh_factor,
         missing=missing,
+        modelled=modelled,
     )
 
 
