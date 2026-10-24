@@ -27,3 +27,13 @@ def log_recompute(request: RecomputeRequest) -> None:
         "recompute requested",
         extra={"game": request.game_id, "players": len(request.player_ids)},
     )
+
+
+def chain(*hooks: RecomputeHook) -> RecomputeHook:
+    """Run the hooks in order on each request: consensus first, then what is built from it."""
+
+    def run(request: RecomputeRequest) -> None:
+        for hook in hooks:
+            hook(request)
+
+    return run

@@ -43,7 +43,7 @@ and the production engine remain pending.
 - [x] `/p3-odds-math` — odds conversion and de-vig (2026-10-24; `engine/odds.py`. Open for `/p3-consensus`: one-sided markets, a Yes price with no No price, need an assumed hold. Open for calibration: which de-vig method, especially for anytime TD)
 - [x] `/p3-consensus` — multi-book consensus (2026-10-24; `engine/consensus.py`, `ingest/consensus_job.py`. Placeholder to calibrate once backfill data exists: `ONE_SIDED_OVERROUND`. The stand-in line spreads are now only the fallback; `/p3-distributions` replaced them with fitted curves. All books still weigh 1.0 until the sharp-books decision below)
 - [x] `/p3-distributions` — stat distribution fitting (2026-10-24; `engine/distributions.py`, shapes in `backend/config/distribution_params.json`, evidence in `docs/DISTRIBUTION_SHAPES.md`. The consensus now uses the fitted curves. **The calibration check is built and tested on synthetic data but has not been run on real closing lines: it needs the historical backfill.** Then `calibration-report --recompute` shows whether to tighten the shapes and what `ONE_SIDED_OVERROUND` should be)
-- [ ] `/p3-projection` — fantasy projection assembly
+- [x] `/p3-projection` — fantasy projection assembly (2026-10-24; `engine/projection.py`, `ingest/projection_job.py`, run after the consensus job on every capture. Stats with no market contribute 0 and lower confidence until `/p3-gapfill`. Open: the fumble league rates and the confidence scales are starting values to tune in `/p3-backtest`)
 - [ ] `/p3-gapfill` — fill stats with no market
 - [ ] `/p3-backtest` — 2023–2025 backtest harness
 
