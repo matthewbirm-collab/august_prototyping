@@ -8,6 +8,7 @@ Projections only — not betting advice.
 - **Build order and progress:** [`docs/ROADMAP.md`](docs/ROADMAP.md)
 - **Rules for working on the code:** [`CLAUDE.md`](CLAUDE.md)
 - **Database schema:** [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md)
+- **Fantasy research:** [Week 7 buy-low analysis (Weeks 3–6)](docs/research/2026-week-7/BUY_LOW.md)
 
 ## Layout
 

@@ -1,0 +1,73 @@
+{
+  "season": 2026,
+  "weeks": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "source": "RotoWire weekly box-score reports",
+  "scoring": "0.5/rec, 0.1/rush or rec yard, 6/rush or rec TD; before fumbles and bonuses",
+  "players": [
+    {
+      "routes": 108,
+      "team_dropbacks": 131,
+      "targets": 27,
+      "receptions": 19,
+      "receiving_yards": 269,
+      "air_yards": 359,
+      "receiving_tds": 1,
+      "rushing_yards": 0,
+      "rushing_tds": 0,
+      "player": "Tee Higgins",
+      "games": 3,
+      "yprr": 2.490740740740741,
+      "adot": 13.296296296296296,
+      "tprr": 0.25,
+      "route_participation": 0.8244274809160306,
+      "catch_rate": 0.7037037037037037,
+      "half_ppr_before_fumbles": 42.400000000000006,
+      "points_per_game": 14.133333333333335
+    },
+    {
+      "routes": 138,
+      "team_dropbacks": 163,
+      "targets": 38,
+      "receptions": 20,
+      "receiving_yards": 161,
+      "air_yards": 323,
+      "receiving_tds": 1,
+      "rushing_yards": 14,
+      "rushing_tds": 1,
+      "player": "Emeka Egbuka",
+      "games": 4,
+      "yprr": 1.1666666666666667,
+      "adot": 8.5,
+      "tprr": 0.2753623188405797,
+      "route_participation": 0.8466257668711656,
+      "catch_rate": 0.5263157894736842,
+      "half_ppr_before_fumbles": 39.5,
+      "points_per_game": 9.875
+    },
+    {
+      "routes": 161,
+      "team_dropbacks": 182,
+      "targets": 44,
+      "receptions": 26,
+      "receiving_yards": 246,
+      "air_yards": 482,
+      "receiving_tds": 1,
+      "rushing_yards": 0,
+      "rushing_tds": 0,
+      "player": "Michael Wilson",
+      "games": 4,
+      "yprr": 1.5279503105590062,
+      "adot": 10.954545454545455,
+      "tprr": 0.2732919254658385,
+      "route_participation": 0.8846153846153846,
+      "catch_rate": 0.5909090909090909,
+      "half_ppr_before_fumbles": 43.6,
+      "points_per_game": 10.9
+    }
+  ]
+}
