@@ -76,6 +76,8 @@ Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000
 | `cd backend && uv run run-ingest [--tier auto\|15m\|1h\|3h\|12h] [--include-alternates] [--markets ...] [--bookmakers ...]` | Capture live prop snapshots for every game that is due, then exit (needs `ODDS_API_KEY`). `--serve` repeats it every 5 minutes with APScheduler |
 | `cd backend && uv run backfill-props --seasons 2023,2024,2025` | Estimate the credit cost of backfilling historical props (paid Odds API plans). Loads the free nflverse data first and spends nothing |
 | `cd backend && uv run backfill-props --seasons 2025 --weeks 8 --confirm` | Buy those snapshots (a pilot week). Resumable; `--probe --confirm` checks history works for 1 credit; `--report` shows status and unmatched rates; `--snapshots`, `--markets`, `--max-credits` and `--reserve` control the spend |
+| `cd backend && uv run calibration-report --seasons 2023,2024,2025 --recompute` | After the historical backfill: compare the closing consensus with real stat lines. Writes per-market reliability tables, plots and `summary.md` to `reports/calibration/` and says whether the fitted ranges are too narrow or wide |
+| `cd backend && uv run python scripts/estimate_distribution_shapes.py` | Re-estimate each stat's distribution shape from nflverse game logs (free). Rewrites `config/distribution_params.json` and `docs/DISTRIBUTION_SHAPES.md` |
 | `cd backend && uv run pytest -m live` | Live checks against The Odds API; needs `ODDS_API_KEY` and only makes free calls |
 | `make lint` | ruff, ruff format check, mypy strict, frontend ESLint and TypeScript |
 | `make format` | Auto-format backend code |

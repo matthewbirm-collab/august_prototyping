@@ -9,14 +9,16 @@ disagree. In order:
 2. De-vig each book (`engine.odds`). A book that posts only one side is de-vigged with an assumed
    margin (`devig_one_way`), or dropped if `one_sided_overround` is None.
 3. If the books post different lines, pick a reference line, the weighted median of the lines
-   posted, and shift every book's probability to it.
+   posted, and shift every book's probability to it, using the stat's fitted distribution
+   (`engine.distributions`) when `ConsensusConfig.line_model` is set, and a stand-in normal curve
+   (`STUB_LINE_CV`) when it isn't.
 4. Average the probabilities with weight = sharpness weight x recency decay.
 5. Measure disagreement: how far each book's line would have to move, in the market's own units
    (yards, receptions), to match the consensus, as a weighted standard deviation. For a market
    without a line (anytime TD) it is the weighted standard deviation of the probabilities.
 
-TODO(/p3-distributions): step 3 uses a stand-in, a normal curve whose spread is a fixed fraction
-of the line (`STUB_LINE_CV`). Replace it with the fitted distribution's slope once that exists.
+The stand-in is a normal curve whose spread is a fixed fraction of the line. It is only the
+fallback for a stat or position with no fitted shape.
 """
 
 import math
@@ -24,7 +26,7 @@ from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from statistics import NormalDist
-from typing import Final, Literal
+from typing import Final, Literal, Protocol
 
 from engine.odds import (
     InvalidOddsError,
@@ -36,9 +38,9 @@ from engine.odds import (
 
 _NORMAL: Final = NormalDist()
 
-# How spread out a stat is, as a fraction of its line: sigma = cv x line. Rough stand-ins for the
-# fitted distributions (TODO(/p3-distributions)); they only decide how far a half-point or a
-# point of difference between books moves a probability. Keyed by `markets.stat`.
+# How spread out a stat is, as a fraction of its line: sigma = cv x line. Rough stand-ins used
+# only when a stat has no fitted distribution; they decide how far a half-point or a point of
+# difference between books moves a probability. Keyed by `markets.stat`.
 STUB_LINE_CV: Final[Mapping[str, float]] = {
     "pass_yds": 0.25,
     "pass_tds": 0.65,
@@ -69,6 +71,32 @@ class BookQuote:
     captured_at: datetime
 
 
+class LineModel(Protocol):
+    """How a stat's probability moves when the line moves."""
+
+    def shift(self, p_over: float, from_line: float, to_line: float) -> float:
+        """P(over `to_line`) given P(over `from_line`) = `p_over`."""
+        ...
+
+    def slope(self, p_over: float, line: float) -> float:
+        """How fast P(over) falls per unit of line, near `line`."""
+        ...
+
+
+@dataclass(frozen=True)
+class NormalLineModel:
+    """The stand-in: a normal curve whose spread is `cv` x the line."""
+
+    cv: float = DEFAULT_LINE_CV
+
+    def shift(self, p_over: float, from_line: float, to_line: float) -> float:
+        return shift_probability(p_over, from_line, to_line, self.cv)
+
+    def slope(self, p_over: float, line: float) -> float:
+        sigma = self.cv * max(line, _MIN_LINE)
+        return float(_NORMAL.pdf(_NORMAL.inv_cdf(p_over)) / sigma)
+
+
 @dataclass(frozen=True)
 class ConsensusConfig:
     method: Method = "multiplicative"
@@ -76,6 +104,8 @@ class ConsensusConfig:
     half_life: timedelta = timedelta(minutes=45)
     one_sided_overround: float | None = 0.10
     line_cv: float = DEFAULT_LINE_CV
+    """Spread of the stand-in curve; used only when `line_model` is None."""
+    line_model: LineModel | None = None
     min_books: int = 1
 
 
@@ -166,23 +196,35 @@ def consensus(
     if len(fair) < max(config.min_books, 1):
         return None
 
-    total = sum(weight for _, _, weight in fair)
-    probabilities = [p for _, p, _ in fair]
-    fair_weights = [w for _, _, w in fair]
+    model = config.line_model or NormalLineModel(config.line_cv)
     fair_line: float | None = None
-    slope = 1.0
+    probabilities = [p for _, p, _ in fair]
     if lined:
         lines = [q.line for q, _, _ in fair if q.line is not None]
-        fair_line = weighted_median(lines, fair_weights)
-        probabilities = [
-            shift_probability(p, q.line, fair_line, config.line_cv)
-            for q, p, _ in fair
-            if q.line is not None
-        ]
+        fair_line = weighted_median(lines, [w for _, _, w in fair])
+        kept: list[tuple[BookQuote, float, float]] = []
+        shifted: list[float] = []
+        for quote, probability, weight in fair:
+            try:
+                shifted.append(model.shift(probability, quote.line or fair_line, fair_line))
+            except ValueError:  # the fitted model can't represent this line
+                invalid.append(quote.book)
+                continue
+            kept.append((quote, probability, weight))
+        fair, probabilities = kept, shifted
+        if len(fair) < max(config.min_books, 1):
+            return None
+
+    fair_weights = [w for _, _, w in fair]
+    total = sum(fair_weights)
     fair_p_over = sum(w * p for w, p in zip(fair_weights, probabilities, strict=True)) / total
+    slope = 1.0
     if lined and fair_line is not None:
-        sigma = config.line_cv * max(fair_line, _MIN_LINE)
-        slope = max(_NORMAL.pdf(_NORMAL.inv_cdf(fair_p_over)) / sigma, _MIN_SLOPE)
+        try:
+            slope = model.slope(fair_p_over, fair_line)
+        except ValueError:
+            slope = NormalLineModel(config.line_cv).slope(fair_p_over, fair_line)
+        slope = max(slope, _MIN_SLOPE)
 
     dispersion: float | None = None
     if len(fair) > 1:

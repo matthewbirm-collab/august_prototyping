@@ -16,6 +16,13 @@ from engine.consensus import (
     shift_probability,
     weighted_median,
 )
+from engine.distributions import (
+    FittedDistribution,
+    FittedLineModel,
+    StatModel,
+    line_slope,
+)
+from engine.distributions import shift_probability as fitted_shift
 from engine.odds import american_to_implied_prob, devig_one_way, devig_two_way
 
 NOW = datetime(2026, 10, 25, 15, 0, tzinfo=UTC)
@@ -454,3 +461,89 @@ def test_identical_books_never_disagree(count: int, over: int, under: int) -> No
     assert result is not None
     assert result.fair_p_over == pytest.approx(fair_over(over, under))
     assert result.dispersion == pytest.approx(0, abs=1e-6)
+
+
+# Fitted shapes in place of the stand-in --------------------------------------------------------
+
+
+def price(p: float) -> int:
+    """An American price for a fair probability (a two-way pair at p and 1 - p, no margin)."""
+    return round(-100 * p / (1 - p)) if p >= 0.5 else round(100 * (1 - p) / p)
+
+
+def true_quotes(distribution: FittedDistribution, lines: list[float]) -> list[BookQuote]:
+    return [
+        quote(f"book{i}", line, price(p := distribution.p_over(line)), price(1 - p))
+        for i, line in enumerate(lines)
+    ]
+
+
+GAMMA_MODEL = StatModel("gamma", 3.12)
+FITTED = ConsensusConfig(line_model=FittedLineModel(GAMMA_MODEL))
+
+
+def test_the_fitted_curve_shifts_books_to_the_reference_line() -> None:
+    books = [quote("dk", 64.5, -110, -110), quote("fd", 65.5, -110, -110)]
+    result = consensus(books, config=FITTED)
+
+    shifted = fitted_shift(GAMMA_MODEL, 0.5, 65.5, 64.5, zero_at=64.5)
+    assert result is not None
+    assert (result.fair_line, result.books_count) == (64.5, 2)
+    assert result.fair_p_over == pytest.approx((0.5 + shifted) / 2)
+    assert shifted != pytest.approx(NORMAL.cdf(0), abs=1e-4)  # a real shift, not a no-op
+
+
+def test_books_quoting_the_same_distribution_at_different_lines_show_no_disagreement() -> None:
+    """The stand-in curve can't do this: only the true curve makes the books agree exactly."""
+    truth = FittedDistribution(GAMMA_MODEL, 24.0)
+    books = true_quotes(truth, [60.5, 62.5, 64.5, 66.5, 68.5])
+    result = consensus(books, config=FITTED)
+
+    assert result is not None
+    assert result.fair_line == 64.5
+    assert result.fair_p_over == pytest.approx(truth.p_over(64.5), abs=2e-3)
+    assert result.dispersion is not None and result.dispersion < 0.25  # a quarter of a yard
+
+    standin = consensus(books, config=ConsensusConfig(line_cv=0.7))
+    assert standin is not None and standin.dispersion is not None
+    assert standin.dispersion > 3 * result.dispersion
+
+
+def test_the_dispersion_uses_the_fitted_slope() -> None:
+    books = [quote("dk", 64.5, -150, 130), quote("fd", 64.5, -110, -110)]
+    result = consensus(books, config=FITTED)
+    assert result is not None and result.dispersion is not None
+
+    p = [fair_over(-150, 130), 0.5]
+    mean = sum(p) / 2
+    slope = line_slope(GAMMA_MODEL, mean, 64.5)
+    expected = math.sqrt(sum(((v - mean) / slope) ** 2 for v in p) / 2)
+    assert result.dispersion == pytest.approx(expected)
+
+
+def test_counts_use_exact_half_point_shifts() -> None:
+    poisson = StatModel("poisson")
+    truth = FittedDistribution(poisson, 4.4)
+    books = true_quotes(truth, [3.5, 4.5, 5.5])
+    result = consensus(books, config=ConsensusConfig(line_model=FittedLineModel(poisson)))
+
+    assert result is not None
+    assert result.fair_line == 4.5
+    assert result.fair_p_over == pytest.approx(truth.p_over(4.5), abs=2e-3)
+    assert result.dispersion is not None and result.dispersion < 0.1  # a tenth of a reception
+
+
+def test_a_book_the_fitted_model_cannot_represent_is_dropped_not_fatal() -> None:
+    poisson = StatModel("poisson")
+    books = [quote("odd", 0.0, -110, -110), quote("normal", 4.5, -110, -110)]
+    result = consensus(books, config=ConsensusConfig(line_model=FittedLineModel(poisson)))
+
+    assert result is not None
+    assert (result.fair_line, result.books) == (0.0, ("odd",))
+    assert result.dropped_invalid == ("normal",)
+    assert result.dispersion is None
+
+
+def test_without_a_line_model_the_stand_in_is_unchanged() -> None:
+    books = [quote("dk", 64.5, -110, -110), quote("fd", 65.5, -110, -110)]
+    assert consensus(books, config=ConsensusConfig(line_cv=CV)) == consensus(books, config=CONFIG)

@@ -257,6 +257,10 @@ Backfill runs are recorded in `ingestion_runs` as `odds_historical`, with `detai
 
 Historical rows in `prop_snapshots` have `source = 'historical'` and `captured_at` equal to the provider's snapshot time. Each is compared with the row before it in time, so adding earlier snapshots after later ones still leaves "the latest quote at or before T" correct.
 
+### Distribution families
+
+`markets.distribution_family` is the family the fitted shapes use: gamma for passing, rushing and receiving yards, negative binomial for completions and rush attempts, Poisson for pass TDs, interceptions and receptions, and bernoulli for anytime TD (a Poisson count with lambda = -ln(1 - p)). `make seed` updates it; see `docs/DISTRIBUTION_SHAPES.md` for the evidence.
+
 ### Keep-alive rows and `consensus_snapshots`
 
 Storing only changes would make a quiet book look stale, so an unchanged quote is stored again once the series' last row is `QUOTE_KEEPALIVE_MINUTES` (45) old. A book that keeps quoting therefore always has a row under 45 minutes old; one that pulled the market stops getting rows and drops out of the consensus after `STALE_QUOTE_MINUTES` (90). Snapshots hours apart (the backfill) store every row for the same reason: "the latest row per series at or before T" then means "still listed at T".
@@ -265,7 +269,8 @@ Storing only changes would make a quiet book look stale, so an unchanged quote i
 
 - `fair_line` is the weighted median of the lines the books posted (NULL for markets without a line), and `fair_p_over` is the probability of the over at that line.
 - `books_count` is the number of books used. `dispersion` is the weighted spread of how far each book's line would have to move to match, in the market's own units (yards, receptions), or in probability points when there is no line. NULL with a single book.
-- Alternate-line markets get no consensus row; `/p3-distributions` uses their thresholds directly.
+- Alternate-line markets get no consensus row; `/p3-projection` will feed their thresholds to the distribution fit directly.
+- When books post different lines, each is shifted to the reference line with the stat's fitted distribution for the player's position (`backend/config/distribution_params.json`), or a stand-in normal curve if the stat or position has no fitted shape.
 
 ### How `available_at` is set by the nflverse loaders
 

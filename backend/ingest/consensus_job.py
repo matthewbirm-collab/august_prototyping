@@ -15,8 +15,13 @@ from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import distinct_on
 from sqlalchemy.orm import Session
 
+from app.distribution_params import (
+    DEFAULT_PATH,
+    DistributionParams,
+    load_distribution_params,
+)
 from app.settings import Settings
-from db.models import Book, ConsensusSnapshot, Market, PropSnapshot
+from db.models import Book, ConsensusSnapshot, Market, Player, PropSnapshot
 from engine.consensus import (
     DEFAULT_LINE_CV,
     STUB_LINE_CV,
@@ -25,6 +30,7 @@ from engine.consensus import (
     ConsensusConfig,
     consensus,
 )
+from engine.distributions import FittedLineModel
 from ingest.recompute import RecomputeRequest
 
 logger = logging.getLogger(__name__)
@@ -36,7 +42,10 @@ TOLERANCE = 1e-9
 class JobConfig:
     consensus: ConsensusConfig = field(default_factory=ConsensusConfig)
     line_cv: Mapping[str, float] = field(default_factory=lambda: dict(STUB_LINE_CV))
-    """Spread of each stat as a fraction of its line, by `markets.stat`."""
+    """Spread of each stat as a fraction of its line, by `markets.stat`: the fallback curve for a
+    stat or position with no fitted shape."""
+    params: DistributionParams | None = None
+    """Fitted shapes by stat and position. None means every stat uses the fallback curve."""
 
     @classmethod
     def from_settings(cls, settings: Settings) -> "JobConfig":
@@ -46,7 +55,8 @@ class JobConfig:
                 stale_after=timedelta(minutes=settings.stale_quote_minutes),
                 half_life=timedelta(minutes=settings.consensus_half_life_minutes),
                 one_sided_overround=settings.one_sided_overround,
-            )
+            ),
+            params=load_distribution_params(settings.distribution_params_path or DEFAULT_PATH),
         )
 
 
@@ -87,10 +97,14 @@ class ConsensusJob:
         stats = dict(self._session.execute(select(Market.key, Market.stat)).all())
         groups = self._quotes(game_id, player_ids, as_of)
         previous = self._latest_consensus(game_id, as_of)
+        positions = dict(
+            self._session.execute(
+                select(Player.id, Player.position).where(Player.id.in_({p for _, p in groups}))
+            ).all()
+        )
 
         for (market_key, player_id), quotes in sorted(groups.items()):
-            cv = self._cfg.line_cv.get(stats.get(market_key, ""), DEFAULT_LINE_CV)
-            config = replace(self._cfg.consensus, line_cv=cv)
+            config = self._consensus_config(stats.get(market_key, ""), positions.get(player_id))
             answer = consensus(quotes, weights, config, as_of)
             if answer is None:
                 result.no_consensus += 1
@@ -113,6 +127,16 @@ class ConsensusJob:
             result.written += 1
         self._session.commit()
         return result
+
+    def _consensus_config(self, stat: str, position: str | None) -> ConsensusConfig:
+        """The consensus settings with the stat's fitted curve for this player's position, or the
+        fallback curve if it has none."""
+        model = self._cfg.params.model(stat, position) if self._cfg.params else None
+        return replace(
+            self._cfg.consensus,
+            line_cv=self._cfg.line_cv.get(stat, DEFAULT_LINE_CV),
+            line_model=FittedLineModel(model) if model else None,
+        )
 
     def _quotes(
         self, game_id: str, player_ids: Iterable[int] | None, as_of: datetime
