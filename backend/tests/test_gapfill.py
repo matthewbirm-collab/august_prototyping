@@ -6,6 +6,7 @@ from engine.distributions import StatModel, ZeroInflation
 from engine.gapfill import (
     LEAGUE_IMPLIED_POINTS,
     PROMOTED_SHARE,
+    FillConfig,
     PlayerHistory,
     Shares,
     TeamHistory,
@@ -253,3 +254,61 @@ def test_a_fill_scores_less_confidence_than_a_market_and_more_than_nothing() -> 
     assert with_fill.score < 1.0
     # Book quality is judged on the market stats only.
     assert (with_fill.books, with_fill.dispersion, with_fill.freshness) == (1.0, 1.0, 1.0)
+
+
+# Tuned knobs -------------------------------------------------------------------------------------
+
+LONG_TEAM = TeamHistory(12, 400, 320, 372, 18, 12, 18)
+
+
+def test_a_longer_window_is_blended_in_per_position() -> None:
+    recent = PlayerHistory(1, "WR", 4, targets=48)  # a hot month: 12 a game
+    season = PlayerHistory(1, "WR", 12, targets=84)  # 7 a game over twelve
+    config = FillConfig(long_weight={"WR": 0.5})
+    blended = shares(TEAM, [recent], config, (LONG_TEAM, {1: season}))[1].targets
+    assert blended == pytest.approx(0.5 * (12 / 31) + 0.5 * (7 / 31))
+    # A position without a weight keeps its recent share.
+    same = shares(TEAM, [recent], FillConfig(long_weight={"RB": 0.5}), (LONG_TEAM, {1: season}))
+    assert same[1].targets == pytest.approx(12 / 31)
+
+
+def test_a_player_back_after_missing_the_recent_games_takes_his_longer_share() -> None:
+    back = PlayerHistory(1, "RB", 0)
+    season = PlayerHistory(1, "RB", 8, carries=128)
+    found = shares(TEAM, [back], FillConfig(long_weight={"RB": 0.3}), (LONG_TEAM, {1: season}))
+    assert found[1].carries == pytest.approx((128 / 8) / (320 / 12))
+
+
+def test_the_starting_quarterback_throws_at_least_the_floor() -> None:
+    # A new starter with a quarter of the recent throws, ahead on the depth chart.
+    new = PlayerHistory(1, "QB", 2, pass_attempts=33, depth_rank=1)
+    old = PlayerHistory(2, "QB", 4, pass_attempts=99, depth_rank=2)
+    found = shares(TEAM, [new, old], FillConfig(qb_starter_share=0.7))
+    assert found[1].pass_attempts == pytest.approx(0.7)
+    assert found[2].pass_attempts == pytest.approx(0.3)  # hedged, not zeroed
+    assert shares(TEAM, [new, old], FillConfig(qb_starter=False))[1].pass_attempts < 0.7
+
+
+def test_a_starter_already_above_the_floor_keeps_his_share() -> None:
+    found = shares(TEAM, [QB1, QB2], FillConfig(qb_starter_share=0.7))
+    assert found[7].pass_attempts == pytest.approx(1.0)
+    assert found[8].pass_attempts == 0
+
+
+def test_the_opponent_moves_yardage_by_its_weight() -> None:
+    share = shares(TEAM, ROOM)[1]
+    soft = {"rec_yds": 1.2}
+    base = fill(WR1, share, AVERAGE, {"rec_yds", "receptions"}, FillConfig(opponent_weight=0.0))
+    ignored = fill(WR1, share, AVERAGE, {"rec_yds"}, FillConfig(opponent_weight=0.0), opponent=soft)
+    half = fill(WR1, share, AVERAGE, {"rec_yds", "receptions"}, FillConfig(opponent_weight=0.5),
+                opponent=soft)  # fmt: skip
+    assert ignored["rec_yds"] == pytest.approx(base["rec_yds"])
+    assert half["rec_yds"] == pytest.approx(base["rec_yds"] * 1.1)
+    assert half["receptions"] == pytest.approx(base["receptions"])
+
+
+def test_efficiency_comes_from_the_longer_history_when_given() -> None:
+    share = shares(TEAM, ROOM)[1]
+    season = PlayerHistory(1, "WR", 12, targets=100, receptions=60, rec_yds=1000)
+    filled = fill(WR1, share, AVERAGE, {"rec_yds"}, efficiency=season)
+    assert filled["rec_yds"] == pytest.approx(31 * 36 / 124 * (1000 + 30 * 7.92) / (100 + 30))

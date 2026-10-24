@@ -16,17 +16,18 @@ fixed seed, so the same inputs always give the same range. Confidence in [0, 1] 
 penalties: missing markets, books disagreeing, few books, and old quotes.
 """
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Final, Literal
 
 import numpy as np
 from numpy.typing import NDArray
+from scipy import special
 
 from engine.distributions import FittedDistribution
 from engine.scoring import Position, ScoringWeights
 
-ENGINE_VERSION: Final = "2"
+ENGINE_VERSION: Final = "3"
 Source = Literal["market", "model"]
 SAMPLES: Final = 20_000
 SEED: Final = 20_260_101
@@ -72,6 +73,38 @@ TYPICAL_MEANS: Final[dict[Position, dict[str, float]]] = {
 DISPERSION_SCALE_LINE: Final = 0.10
 DISPERSION_SCALE_PROBABILITY: Final = 0.05
 FULL_BOOKS: Final = 3
+# Correlations between a player's stats in one game, on the normal-score scale, by position.
+# Measured on the 2023 tuning season by scripts/tune_gapfill.py; pairs not listed are 0.
+CORRELATIONS: Final[dict[Position, dict[tuple[str, str], float]]] = {
+    "QB": {
+        ("pass_yds", "pass_tds"): 0.43,
+        ("pass_yds", "interceptions"): 0.16,
+        ("pass_yds", "rush_yds"): 0.18,
+        ("rush_yds", "anytime_td"): 0.22,
+        ("pass_tds", "anytime_td"): -0.11,
+        ("pass_tds", "rush_yds"): 0.08,
+    },
+    "RB": {
+        ("rush_yds", "anytime_td"): 0.30,
+        ("rec_yds", "receptions"): 0.80,
+        ("rec_yds", "anytime_td"): 0.16,
+        ("receptions", "anytime_td"): 0.10,
+        ("rush_yds", "rec_yds"): 0.06,
+    },
+    "WR": {
+        ("rec_yds", "receptions"): 0.79,
+        ("rec_yds", "anytime_td"): 0.32,
+        ("receptions", "anytime_td"): 0.27,
+    },
+    "TE": {
+        ("rec_yds", "receptions"): 0.81,
+        ("rec_yds", "anytime_td"): 0.25,
+        ("receptions", "anytime_td"): 0.25,
+    },
+}
+MODEL_VOLUME_CV: Final = 0.4
+"""Spread of the shared volume multiplier on gap-filled stats, fitted on 2023 so p20-p80
+holds about 60% of outcomes."""
 MODEL_CREDIT: Final = 0.4
 """How much a gap-filled stat counts toward the missing-markets part of confidence."""
 STALE_FLOOR: Final = 0.5
@@ -138,27 +171,45 @@ def project(
     *,
     stale_minutes: float = 90.0,
     samples: int = SAMPLES,
+    correlations: Mapping[Position, Mapping[tuple[str, str], float]] | None = None,
+    volume_cv: float | None = None,
 ) -> FantasyProjection:
-    """Expected fantasy points, the p20-p80 range, a per-stat breakdown and a confidence score."""
+    """Expected fantasy points, the p20-p80 range, a per-stat breakdown and a confidence score.
+
+    The range draws a player's stats together (a Gaussian copula with `correlations`, by
+    default `CORRELATIONS`): a receiver's yards, catches and touchdowns rise and fall as one.
+    Gap-filled stats also share one volume multiplier with mean 1 and spread `volume_cv` (by
+    default `MODEL_VOLUME_CV`), for the uncertainty in the player's share itself. Neither
+    changes the mean.
+    """
     if fumbles_lost_per_game < 0:
         raise ValueError("a fumble rate can't be negative")
     if stale_minutes <= 0 or samples < 100:
         raise ValueError("stale_minutes must be positive and samples at least 100")
     pay = weights.for_position(position)
     rng = np.random.default_rng(SEED)
+    cv = MODEL_VOLUME_CV if volume_cv is None else volume_cv
+    if cv < 0:
+        raise ValueError("volume_cv can't be negative")
 
     total_mean = 0.0
     total_draws: NDArray[np.float64] = np.zeros(samples)
     breakdown: dict[str, StatBreakdown] = {}
 
-    for stat in POSITION_STATS[position]:
-        given = stats.get(stat)
-        if given is None:
-            continue
+    present = [stat for stat in POSITION_STATS[position] if stat in stats]
+    uniforms = _correlated_uniforms(
+        present, (correlations or CORRELATIONS).get(position, {}), samples, rng
+    )
+    volume = rng.gamma(1 / cv**2, cv**2, samples) if cv > 0 else np.ones(samples)
+
+    for i, stat in enumerate(present):
+        given = stats[stat]
         weight = pay[WEIGHT_KEY[stat]]
         dist = given.distribution
         mean = dist.mean
-        draws = dist.sample(samples, rng)
+        draws = dist.quantiles(uniforms[:, i])
+        if given.source == "model":
+            draws = draws * volume
         breakdown[stat] = StatBreakdown(
             mean=mean,
             p20=dist.quantile(0.2),
@@ -191,6 +242,29 @@ def project(
         breakdown=breakdown,
         confidence=confidence(position, pay, stats, stale_minutes),
     )
+
+
+def _correlated_uniforms(
+    stats: Sequence[str],
+    pairs: Mapping[tuple[str, str], float],
+    samples: int,
+    rng: np.random.Generator,
+) -> NDArray[np.float64]:
+    """`samples` x len(stats) uniforms whose normal scores have the listed correlations."""
+    k = len(stats)
+    matrix = np.eye(k)
+    for i, a in enumerate(stats):
+        for j, b in enumerate(stats):
+            if i < j:
+                rho = pairs.get((a, b), pairs.get((b, a), 0.0))
+                matrix[i, j] = matrix[j, i] = rho
+    # Clip to the nearest valid correlation matrix, in case measured pairs don't fit together.
+    values, vectors = np.linalg.eigh(matrix)
+    matrix = vectors @ np.diag(np.clip(values, 1e-6, None)) @ vectors.T
+    scale = np.sqrt(np.diag(matrix))
+    matrix = matrix / np.outer(scale, scale)
+    normals = rng.standard_normal((samples, k)) @ np.linalg.cholesky(matrix).T
+    return np.asarray(special.ndtr(normals), dtype=np.float64)
 
 
 def confidence(

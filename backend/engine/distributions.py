@@ -290,6 +290,24 @@ class FittedDistribution:
             return float(stats.nbinom.ppf(q, r, r / (r + self.location)))
         return float(stats.poisson.ppf(q, self.location))
 
+    def quantiles(self, q: NDArray[np.float64]) -> NDArray[np.float64]:
+        """`quantile` for an array of probabilities in (0, 1): turns uniform draws into draws
+        of the stat, which is how correlated draws are made."""
+        q = np.clip(np.asarray(q, dtype=np.float64), _PROBIT_EDGE, 1 - _PROBIT_EDGE)
+        if self.model.continuous:
+            u = np.clip((q - self.zero_mass) / (1 - self.zero_mass), _PROBIT_EDGE, 1 - _PROBIT_EDGE)
+            if self.family == "gamma":
+                positive = self.location * special.gammaincinv(self._shape, u)
+            else:
+                positive = np.exp(self.location + self._shape * special.ndtri(u))
+            return np.where(q <= self.zero_mass, 0.0, positive).astype(np.float64)
+        if self.location <= 0:
+            return np.zeros_like(q)
+        if self.family == "negbin":
+            r = self._shape
+            return np.asarray(stats.nbinom.ppf(q, r, r / (r + self.location)), dtype=np.float64)
+        return np.asarray(stats.poisson.ppf(q, self.location), dtype=np.float64)
+
     @property
     def median(self) -> float:
         return self.quantile(0.5)

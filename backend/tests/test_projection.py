@@ -8,7 +8,7 @@ from engine.projection import (
     StatInput,
     project,
 )
-from engine.scoring import ScoringWeights, standard_weights
+from engine.scoring import Position, ScoringWeights, standard_weights
 
 GAMMA = StatModel("gamma", 3.0, ZeroInflation((10.0, 40.0), (0.15, 0.02)))
 QB_YARDS = StatModel("gamma", 10.0)
@@ -296,3 +296,49 @@ def test_scaling_every_weight_scales_the_projection(
     assert other.p80 == pytest.approx(scale * base.p80, rel=1e-6, abs=1e-9)
     assert base.p20 <= base.p80
     assert 0 <= base.confidence.score <= 1
+
+
+# Correlated ranges --------------------------------------------------------------------------------
+
+LINKED: dict[Position, dict[tuple[str, str], float]] = {
+    "WR": {("rec_yds", "receptions"): 0.8, ("rec_yds", "anytime_td"): 0.4}
+}
+
+
+def test_correlated_draws_keep_the_mean_and_widen_the_range() -> None:
+    alone = project("WR", PPR, receiver(), 0.0, correlations={"WR": {}})
+    linked = project("WR", PPR, receiver(), 0.0, correlations=LINKED)
+    assert linked.mean == alone.mean
+    assert linked.p80 - linked.p20 > (alone.p80 - alone.p20) * 1.1
+
+
+def test_the_volume_draw_widens_only_modelled_stats() -> None:
+    from engine.gapfill import distribution
+
+    modelled = {
+        "rec_yds": StatInput(distribution(GAMMA, 40.0), 0, source="model"),
+        "receptions": StatInput(distribution(POISSON, 3.5), 0, source="model"),
+    }
+    still = project("WR", PPR, modelled, 0.0, volume_cv=0.0)
+    shaky = project("WR", PPR, modelled, 0.0, volume_cv=0.4)
+    assert shaky.mean == still.mean
+    assert shaky.p80 - shaky.p20 > still.p80 - still.p20
+    markets = project("WR", PPR, receiver(), 0.0, volume_cv=0.4)
+    assert (markets.p20, markets.p80) == (
+        project("WR", PPR, receiver(), 0.0, volume_cv=0.0).p20,
+        project("WR", PPR, receiver(), 0.0, volume_cv=0.0).p80,
+    )
+    with pytest.raises(ValueError, match="volume_cv"):
+        project("WR", PPR, modelled, 0.0, volume_cv=-0.1)
+
+
+def test_inconsistent_correlations_are_made_valid() -> None:
+    bad: dict[Position, dict[tuple[str, str], float]] = {
+        "WR": {
+            ("rec_yds", "receptions"): 0.95,
+            ("rec_yds", "anytime_td"): 0.95,
+            ("receptions", "anytime_td"): -0.95,
+        }
+    }
+    result = project("WR", PPR, receiver(), 0.0, correlations=bad)
+    assert result.p20 <= result.mean <= result.p80
