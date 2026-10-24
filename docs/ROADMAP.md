@@ -4,9 +4,11 @@ Run steps in order. Each step is a slash command. `/build-next` picks the first 
 Do not start a new phase until the previous phase gate is met.
 
 ## Phase 0 — Foundation
-- [ ] `/p0-scaffold` — monorepo, local Homebrew services, CI, Makefile
+- [x] `/p0-scaffold` — monorepo, local Homebrew services, CI, Makefile
 
 **Gate:** `make up` starts all services; CI is green on an empty app.
+
+> Met 2026-10-23: `make up` starts Postgres 18 + TimescaleDB 2.31 and Redis, `/health/ready` returns ok for all three, and CI passed on PR #2.
 
 ## Phase 1 — Data model
 - [ ] `/p1-data-model` — schema, migrations, seed data
