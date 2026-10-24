@@ -23,6 +23,7 @@ ingest-nflverse = "ingest.nflverse.cli:main"
 run-ingest = "ingest.run_ingest:main"
 backfill-props = "ingest.backfill_cli:main"
 calibration-report = "analytics.calibration_cli:main"
+backtest = "analytics.backtest_cli:main"
 
 [build-system]
 requires = ["hatchling"]

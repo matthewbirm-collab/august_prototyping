@@ -74,7 +74,7 @@ Keep `engine/` a pure library so the same code runs live and in backtests.
    - Anytime TD: λ = −ln(1 − P(TD)). Do not also add separate rush/rec TD props.
 4. **Use means, not lines.** Lines sit near the median; yardage is right-skewed, so the mean is above the line.
 5. **Score.** Apply the league's scoring weights to stat means. `engine/projection.py` does this: RB/WR/TE touchdowns come from anytime TD only; a QB's passing touchdowns come from the pass-TD prop and rushing scores from anytime TD; markets outside a position's stats (a receiver's rushing yards) are ignored. Confidence (0-1) is the product of four penalties, each weighted by the points a stat carries: missing markets, books disagreeing, fewer than three books, and old quotes. `ingest/projection_job.py` writes one `projections` row per player and scoring config whenever the result changes.
-6. **Fill gaps.** No prop for a stat → team implied total (spread + total) × trailing usage share; flag low confidence.
+6. **Fill gaps.** No prop for a stat → team implied total (spread + total) × trailing usage share; flag low confidence. `engine/gapfill.py` does this: team plays, pass rate and offensive TDs move with implied points and the spread (slopes measured on 2021-2025 team-games); players get their per-game share of the last four games' targets, carries and pass attempts, with Out/Doubtful/reserve players zeroed and their share handed to teammates (a promoted depth-chart starter gets at least 75% of it); efficiency is pulled toward the position average. Filled stats are `source="model"` and count 0.4 of a market in confidence. Red-zone share is approximated by touchdown share blended with usage share.
 7. **Range.** v1: per-stat p20/p80 assuming independence. v2: Monte Carlo with QB–pass-catcher correlation.
 
 Standard scoring, r = 1 (PPR), 0.5 (half), 0 (standard):
@@ -91,7 +91,7 @@ Fumbles lost have no market — use the player's historical rate. The rate is th
 - Steam: several books moving within minutes
 - Context join: moves matched to injury, depth-chart and weather updates by timestamp
 
-**Validation.** Backtest 2023–2025 against actual box scores: MAE, within-position rank correlation, p20/p80 coverage; compare against `load_ff_rankings()`.
+**Validation.** Backtest 2023–2025 against actual box scores: MAE, within-position rank correlation, p20/p80 coverage; compare against `load_ff_rankings()`. `uv run backtest` does this (`analytics/backtest_cli.py`). ECR ranks become points through a rank-to-points curve per position fitted only on earlier seasons (`scripts/build_ecr_curve.py`), and a ranking scraped on game day is never used. Projections are computed in memory at each snapshot time and never written to `projections`. Weekly roster `INA` (game-day inactive) rows count only from 90 minutes before kickoff, when teams announce them; before that fix the T-24h replay saw the close's inactives.
 
 ## 5. Risks
 

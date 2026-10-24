@@ -31,3 +31,27 @@ def test_missing_weight_is_rejected() -> None:
     del data["pass_td"]
     with pytest.raises(ValidationError):
         ScoringWeights.model_validate(data)
+
+
+def test_fantasy_points_score_a_box_score_line() -> None:
+    from engine.scoring import fantasy_points
+
+    line = {
+        "pass_yds": 250.0,
+        "pass_tds": 2.0,
+        "interceptions": 1.0,
+        "rush_yds": 30.0,
+        "rush_tds": 1.0,
+        "fumbles_lost": 1.0,
+    }
+    assert fantasy_points(standard_weights(1.0), "QB", line) == pytest.approx(
+        10 + 8 - 2 + 3 + 6 - 2
+    )
+    receiver = {"receptions": 6.0, "rec_yds": 80.0, "rec_tds": 1.0, "two_pt_conversions": 1.0}
+    assert fantasy_points(standard_weights(0.5), "WR", receiver) == pytest.approx(3 + 8 + 6 + 2)
+    premium = standard_weights(1.0).model_copy(
+        update={"position_overrides": {"TE": {"reception": 1.5}}}
+    )
+    assert fantasy_points(premium, "TE", receiver) - fantasy_points(premium, "WR", receiver) == (
+        pytest.approx(3.0)
+    )
