@@ -20,7 +20,7 @@ Do not start a new phase until the previous phase gate is met.
 ## Phase 2 — Ingestion
 - [x] `/p2-odds-adapter` — OddsProvider interface + The Odds API implementation (2026-10-23; tested on synthetic fixtures; record real responses and run `pytest -m live` once `ODDS_API_KEY` is set)
 - [x] `/p2-player-resolver` — map sportsbook names to canonical players (2026-10-23; reads the `rosters` table, which `/p2-nflverse` fills)
-- [ ] `/p2-nflverse` — nflreadpy loaders
+- [x] `/p2-nflverse` — nflreadpy loaders (2026-10-23; weekly rankings exist 2020–2026, but they're ranks, not points: `/p3-backtest` needs a rank-to-points conversion before comparing MAE)
 - [ ] `/p2-scheduler` — tiered snapshot capture job
 - [ ] `/p2-backfill` — historical props for 2023–2025
 

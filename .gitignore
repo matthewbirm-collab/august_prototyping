@@ -23,3 +23,6 @@ coverage/
 
 # OS
 .DS_Store
+
+# nflreadpy download cache
+.cache/
