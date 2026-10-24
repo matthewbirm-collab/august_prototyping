@@ -4,6 +4,7 @@ All scoring weights come from `scoring_configs` rows validated by this model; en
 never hard-code them (CLAUDE.md, projection rule 3).
 """
 
+from collections.abc import Mapping
 from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, model_validator
@@ -57,3 +58,27 @@ def standard_weights(reception: float) -> ScoringWeights:
         fumble_lost=-2,
         two_pt=2,
     )
+
+
+# The box-score stats `fantasy_points` scores, and the weight each is paid at. Rushing and
+# receiving touchdowns are both paid at `td`.
+BOX_SCORE_WEIGHTS = {
+    "pass_yds": "pass_yds",
+    "pass_tds": "pass_td",
+    "interceptions": "interception",
+    "rush_yds": "rush_yds",
+    "rec_yds": "rec_yds",
+    "receptions": "reception",
+    "rush_tds": "td",
+    "rec_tds": "td",
+    "fumbles_lost": "fumble_lost",
+    "two_pt_conversions": "two_pt",
+}
+
+
+def fantasy_points(
+    weights: ScoringWeights, position: Position, stats: Mapping[str, float]
+) -> float:
+    """What a stat line actually scored: for grading projections against outcomes."""
+    pay = weights.for_position(position)
+    return sum(pay[weight] * stats.get(stat, 0.0) for stat, weight in BOX_SCORE_WEIGHTS.items())

@@ -91,7 +91,7 @@ Fumbles lost have no market — use the player's historical rate. The rate is th
 - Steam: several books moving within minutes
 - Context join: moves matched to injury, depth-chart and weather updates by timestamp
 
-**Validation.** Backtest 2023–2025 against actual box scores: MAE, within-position rank correlation, p20/p80 coverage; compare against `load_ff_rankings()`.
+**Validation.** Backtest 2023–2025 against actual box scores: MAE, within-position rank correlation, p20/p80 coverage; compare against `load_ff_rankings()`. `uv run backtest` does this (`analytics/backtest_cli.py`). ECR ranks become points through a rank-to-points curve per position fitted only on earlier seasons (`scripts/build_ecr_curve.py`), and a ranking scraped on game day is never used. Projections are computed in memory at each snapshot time and never written to `projections`. Weekly roster `INA` (game-day inactive) rows count only from 90 minutes before kickoff, when teams announce them; before that fix the T-24h replay saw the close's inactives.
 
 ## 5. Risks
 

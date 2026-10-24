@@ -28,6 +28,12 @@ WEEK = {
 
 @pytest.fixture
 def db(session: Session) -> Iterator[Session]:
+    yield build_kc_world(session)
+
+
+def build_kc_world(session: Session) -> Session:
+    """The backfill world plus a KC backup RB and QB, game lines for GAME_A and four earlier
+    KC games with box scores."""
     db = world.build_world(session)
     for player_id, name in ((HUNT, "Kareem Hunt"), (MAHOMES, "Patrick Mahomes")):
         db.add(Player(id=player_id, full_name=name, position="RB" if player_id == HUNT else "QB"))
@@ -47,7 +53,7 @@ def db(session: Session) -> Iterator[Session]:
     db.execute(update(Game).where(Game.id == GAME_A).values(spread_line=-6.5, total_line=46.5))
     four_earlier_weeks(db)
     db.commit()
-    yield db
+    return db
 
 
 def four_earlier_weeks(db: Session) -> None:
@@ -278,3 +284,13 @@ def test_unavailable_players_without_props_are_not_projected(db: Session) -> Non
     put(db, "draftkings", "player_rush_yds", PACHECO, 64.5, -110, -110)
     job(db).recompute(GAME_A, None, AS_OF)
     assert ppr(db, HUNT) is None
+
+
+def test_game_day_inactives_count_only_once_announced(db: Session) -> None:
+    """The weekly roster's INA row is dated days early; teams announce it 90 minutes out."""
+    db.execute(
+        update(Roster).where(Roster.player_id == HUNT, Roster.week == 8).values(status="INA")
+    )
+    db.commit()
+    assert job(db).compute(GAME_A, [HUNT], KICKOFF_A - timedelta(hours=24))[0]
+    assert job(db).compute(GAME_A, [HUNT], KICKOFF_A - timedelta(minutes=89))[0] == []

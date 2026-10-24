@@ -10,7 +10,7 @@ are never updated: `computed_at` is when the engine ran, `as_of` the moment it c
 
 import logging
 from collections import defaultdict
-from collections.abc import Callable, Iterable, Mapping
+from collections.abc import Callable, Collection, Iterable, Mapping
 from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime, timedelta
 
@@ -75,6 +75,8 @@ class ProjectionJobConfig:
     trailing_games: int = TRAILING_GAMES
     usage_window: int = WINDOW_GAMES
     """Team games behind the usage shares used to fill stats with no market."""
+    use_markets: bool = True
+    """False projects every stat from the gap-fill model: a backtest with no props."""
 
     @classmethod
     def from_settings(cls, settings: Settings) -> "ProjectionJobConfig":
@@ -82,6 +84,14 @@ class ProjectionJobConfig:
             stale_after=timedelta(minutes=settings.stale_quote_minutes),
             params=load_distribution_params(settings.distribution_params_path or DEFAULT_PATH),
         )
+
+
+@dataclass(frozen=True)
+class ComputedProjection:
+    player_id: int
+    position: Position
+    scoring_config_id: int
+    projection: FantasyProjection
 
 
 @dataclass
@@ -117,16 +127,20 @@ class ProjectionJob:
             },
         )
 
-    def recompute(
-        self, game_id: str, player_ids: Iterable[int] | None, as_of: datetime
-    ) -> ProjectionResult:
-        """Project each player of the game as of `as_of` under every scoring config: players
+    def compute(
+        self,
+        game_id: str,
+        player_ids: Iterable[int] | None,
+        as_of: datetime,
+        scoring_keys: Collection[str] | None = None,
+    ) -> tuple[list[ComputedProjection], int]:
+        """Projections for each player of the game as of `as_of`, without writing them: players
         with consensus, plus rostered players with recent usage and no props at all. Stats with
-        no market are gap-filled. `player_ids` None means all of them. Commits."""
-        result = ProjectionResult()
+        no market are gap-filled. `player_ids` None means all of them; `scoring_keys` None means
+        every scoring config. Returns the projections and the number of players skipped."""
         game = self._session.get(Game, game_id)
-        configs = self._scoring_configs()
-        consensus = self._consensus(game_id, player_ids, as_of)
+        configs = self._scoring_configs(scoring_keys)
+        consensus = self._consensus(game_id, player_ids, as_of) if self._cfg.use_markets else {}
         newest = self._newest_quote(game_id, as_of)
         stats = dict(self._session.execute(select(Market.key, Market.stat)).all())
         usage = self._usage(game, as_of)
@@ -141,14 +155,15 @@ class ProjectionJob:
                 select(Player.id, Player.position).where(Player.id.in_(list(candidates)))
             ).all()
         )
-        computed_at = self._clock()
 
+        found: list[ComputedProjection] = []
+        skipped = 0
         for player_id in sorted(candidates):
             position = skill_position(positions.get(player_id))
             if position is None and player_id in usage:
                 position = usage[player_id][2].position
             if position is None:
-                result.skipped_players += 1
+                skipped += 1
                 continue
             inputs = self._stat_inputs(
                 position, consensus.get(player_id, []), stats, newest, player_id, as_of
@@ -156,7 +171,7 @@ class ProjectionJob:
             if player_id in usage:
                 inputs.update(self._filled(position, inputs, *usage[player_id]))
             if not inputs:
-                result.skipped_players += 1
+                skipped += 1
                 continue
             fumbles = self._fumble_rate(player_id, position, as_of)
             for config_id, weights in configs.items():
@@ -167,26 +182,39 @@ class ProjectionJob:
                     fumbles,
                     stale_minutes=self._cfg.stale_after.total_seconds() / 60,
                 )
-                previous = self._latest(game_id, player_id, config_id, as_of)
-                if previous is not None and _same(previous, answer):
-                    result.unchanged += 1
-                    continue
-                self._session.add(
-                    Projection(
-                        computed_at=computed_at,
-                        as_of=as_of,
-                        game_id=game_id,
-                        player_id=player_id,
-                        scoring_config_id=config_id,
-                        mean=answer.mean,
-                        p20=answer.p20,
-                        p80=answer.p80,
-                        breakdown=_breakdown_json(answer),
-                        confidence=answer.confidence.score,
-                        engine_version=ENGINE_VERSION,
-                    )
+                found.append(ComputedProjection(player_id, position, config_id, answer))
+        return found, skipped
+
+    def recompute(
+        self, game_id: str, player_ids: Iterable[int] | None, as_of: datetime
+    ) -> ProjectionResult:
+        """Compute as of `as_of` and write a row for each (player, scoring config) whose
+        projection differs from the latest stored one. Commits."""
+        found, skipped = self.compute(game_id, player_ids, as_of)
+        result = ProjectionResult(skipped_players=skipped)
+        computed_at = self._clock()
+        for item in found:
+            player_id, config_id, answer = item.player_id, item.scoring_config_id, item.projection
+            previous = self._latest(game_id, player_id, config_id, as_of)
+            if previous is not None and _same(previous, answer):
+                result.unchanged += 1
+                continue
+            self._session.add(
+                Projection(
+                    computed_at=computed_at,
+                    as_of=as_of,
+                    game_id=game_id,
+                    player_id=player_id,
+                    scoring_config_id=config_id,
+                    mean=answer.mean,
+                    p20=answer.p20,
+                    p80=answer.p80,
+                    breakdown=_breakdown_json(answer),
+                    confidence=answer.confidence.score,
+                    engine_version=ENGINE_VERSION,
                 )
-                result.written += 1
+            )
+            result.written += 1
         self._session.commit()
         return result
 
@@ -237,10 +265,13 @@ class ProjectionJob:
 
     # Inputs -----------------------------------------------------------------------------------
 
-    def _scoring_configs(self) -> dict[int, ScoringWeights]:
+    def _scoring_configs(self, keys: Collection[str] | None = None) -> dict[int, ScoringWeights]:
+        stmt = select(ScoringConfig).order_by(ScoringConfig.id)
+        if keys is not None:
+            stmt = stmt.where(ScoringConfig.key.in_(list(keys)))
         return {
             row.id: ScoringWeights.model_validate(row.weights)
-            for row in self._session.scalars(select(ScoringConfig).order_by(ScoringConfig.id))
+            for row in self._session.scalars(stmt)
         }
 
     def _consensus(

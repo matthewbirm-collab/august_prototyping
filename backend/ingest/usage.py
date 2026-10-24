@@ -3,7 +3,7 @@ trailing usage, and who is out this week. Reads nothing dated after `as_of`."""
 
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from sqlalchemy import or_, select
 from sqlalchemy.dialects.postgresql import distinct_on
@@ -16,8 +16,12 @@ from engine.scoring import Position
 
 WINDOW_GAMES = 4
 OUT_REPORT_STATUSES = frozenset({"Out", "Doubtful"})
-OUT_ROSTER_STATUSES = frozenset({"RES", "INA", "DEV"})
-"""Reserve (IR and the like), game-day inactive and practice squad."""
+OUT_ROSTER_STATUSES = frozenset({"RES", "DEV"})
+"""Reserve (IR and the like) and practice squad."""
+INACTIVE_STATUS = "INA"
+INACTIVES_LEAD = timedelta(minutes=90)
+"""Teams name their game-day inactives 90 minutes before kickoff. The weekly roster row carrying
+`INA` is dated days earlier, so it only counts once `as_of` reaches that point."""
 SKILL_POSITIONS: dict[str, Position] = {"QB": "QB", "RB": "RB", "WR": "WR", "TE": "TE"}
 
 
@@ -40,6 +44,7 @@ def load_usage(
     """Usage for both teams of `game`, keyed by team. A team with no finished games in the
     window is left out."""
     roster = _roster(session, game, as_of)
+    inactives_known = as_of >= game.kickoff_utc - INACTIVES_LEAD
     out = _out_this_week(session, game, as_of)
     depth = _depth(session, game, as_of)
     result: dict[str, TeamUsage] = {}
@@ -67,7 +72,9 @@ def load_usage(
                 position=position,
                 games=int(own.get("games", 0)),
                 **{k: v for k, v in own.items() if k != "games"},
-                available=status not in OUT_ROSTER_STATUSES and player_id not in out,
+                available=status not in OUT_ROSTER_STATUSES
+                and not (inactives_known and status == INACTIVE_STATUS)
+                and player_id not in out,
                 depth_rank=depth.get((player_id, position)),
             )
         result[team] = usage
