@@ -1,0 +1,5878 @@
+{
+  "version": "wr-usage-prototype-1",
+  "as_of": "2026-10-24T05:26:20.827863+00:00",
+  "config": {
+    "name": "Experimental Week 7 WR half-PPR",
+    "weights": {
+      "reception": 0.5,
+      "receiving_yards": 0.1,
+      "rushing_yards": 0.1,
+      "total_tds": 6.0
+    },
+    "model": {
+      "draws": 10000,
+      "seed": 2016,
+      "cutoff_week": 6,
+      "recency_decay": 0.8,
+      "route_prior_exposure": 20,
+      "route_prior_mean": 0.65,
+      "target_prior_exposure": 50,
+      "catch_prior_exposure": 20,
+      "yards_prior_receptions": 10,
+      "team_prior_games": 2,
+      "rushing_prior_games": 3,
+      "dropback_shape": 25,
+      "catch_yard_shape": 2,
+      "min_routes": 20,
+      "role_latest_weight": 0.6
+    },
+    "td_probability_multiplier": 0.9,
+    "td_multiplier_scenarios": [
+      0.85,
+      1.0
+    ],
+    "fallback_points_per_td": 7.0,
+    "fallback_td_scoring_fraction": 0.75,
+    "fallback_receiving_td_fraction": 0.65,
+    "stale_minutes": 90
+  },
+  "empirical_priors": {
+    "tprr": 0.20326115089293417,
+    "depth": {
+      "0": {
+        "catch_rate": 0.7013422818791947,
+        "yards_per_catch": 9.631578947368421
+      },
+      "1": {
+        "catch_rate": 0.6410034602076125,
+        "yards_per_catch": 11.935222672064777
+      },
+      "2": {
+        "catch_rate": 0.5554323725055432,
+        "yards_per_catch": 15.754491017964073
+      }
+    }
+  },
+  "input_rows": 582,
+  "covered_players": 193,
+  "rankings": [
+    {
+      "player": "Puka Nacua",
+      "player_id": "puka-nacua-16790",
+      "team": "LAR",
+      "opponent": "LV",
+      "availability": "conditional",
+      "injury": {
+        "injury": "Calf",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Questionable"
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 17.2825872835399,
+        "prior_2.0": 15.241851160127185,
+        "td_0.85": 16.09776496141817,
+        "td_1.0": 16.91124072686911,
+        "role_0.0": 16.29903435541334,
+        "role_1.0": 16.395409815179946
+      },
+      "mean_at_75pct_workload": 12.26764472345498,
+      "games": 3,
+      "sample_routes": 128,
+      "observed_route_participation": 0.8827586206896552,
+      "observed_tprr": 0.3359375,
+      "observed_yprr": 2.6796875,
+      "adot": 9.023255813953488,
+      "projected_routes": 38.23668685289123,
+      "projected_targets": 11.155674346704588,
+      "projected_receptions": 7.905056024056554,
+      "projected_receiving_yards": 87.13272589727129,
+      "projected_total_tds": 0.5846209493640941,
+      "shrunk_route_participation": 0.8507927070947285,
+      "shrunk_yprr": 2.2787729029060166,
+      "mean": 16.356859631273306,
+      "components": {
+        "receptions": 3.952528012028277,
+        "receiving_yards": 8.71327258972713,
+        "rushing_yards": 0.18333333333333335,
+        "total_tds": 3.507725696184565
+      },
+      "sd": 7.47185547051898,
+      "p20": 9.93298718042536,
+      "p80": 22.352224144998956,
+      "simulation_mean": 16.329587922041796,
+      "rank": 1,
+      "scenario_ranks": {
+        "prior_0.5": 1,
+        "prior_2.0": 1,
+        "td_0.85": 1,
+        "td_1.0": 1,
+        "role_0.0": 1,
+        "role_1.0": 1
+      },
+      "rank_sensitivity": [
+        1,
+        1
+      ]
+    },
+    {
+      "player": "Jaxon Smith-Njigba",
+      "player_id": "jaxon-smith-njigba-16654",
+      "team": "SEA",
+      "opponent": "KC",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 16.187395521208103,
+        "prior_2.0": 14.167105085097594,
+        "td_0.85": 15.049847964514221,
+        "td_1.0": 15.747541469756436,
+        "role_0.0": 15.22578778069734,
+        "role_1.0": 15.305337834803217
+      },
+      "mean_at_75pct_workload": 11.455138359870649,
+      "games": 4,
+      "sample_routes": 145,
+      "observed_route_participation": 0.8734939759036144,
+      "observed_tprr": 0.30344827586206896,
+      "observed_yprr": 3.0344827586206895,
+      "adot": 11.477272727272727,
+      "projected_routes": 34.92659418822276,
+      "projected_targets": 9.476589480979282,
+      "projected_receptions": 6.590046231705208,
+      "projected_receiving_yards": 86.2405529735678,
+      "projected_total_tds": 0.5209779952300087,
+      "shrunk_route_participation": 0.8457907266238186,
+      "shrunk_yprr": 2.4691944627869873,
+      "mean": 15.273517813160865,
+      "components": {
+        "receptions": 3.295023115852604,
+        "receiving_yards": 8.624055297356781,
+        "rushing_yards": 0.22857142857142856,
+        "total_tds": 3.125867971380052
+      },
+      "sd": 7.590187884239987,
+      "p20": 8.798626795443777,
+      "p80": 21.370582206320897,
+      "simulation_mean": 15.311198356931069,
+      "rank": 2,
+      "scenario_ranks": {
+        "prior_0.5": 2,
+        "prior_2.0": 2,
+        "td_0.85": 2,
+        "td_1.0": 2,
+        "role_0.0": 2,
+        "role_1.0": 2
+      },
+      "rank_sensitivity": [
+        2,
+        2
+      ]
+    },
+    {
+      "player": "CeeDee Lamb",
+      "player_id": "ceedee-lamb-14411",
+      "team": "DAL",
+      "opponent": "PHI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 14.85271559971777,
+        "prior_2.0": 13.83340257110578,
+        "td_0.85": 14.196444215497149,
+        "td_1.0": 14.90314242943545,
+        "role_0.0": 13.819969582557606,
+        "role_1.0": 14.824830583951977
+      },
+      "mean_at_75pct_workload": 10.817164637545673,
+      "games": 4,
+      "sample_routes": 158,
+      "observed_route_participation": 0.8229166666666666,
+      "observed_tprr": 0.3291139240506329,
+      "observed_yprr": 2.4050632911392404,
+      "adot": 9.134615384615385,
+      "projected_routes": 38.021433155169106,
+      "projected_targets": 11.198201976418051,
+      "projected_receptions": 7.125662769361328,
+      "projected_receiving_yards": 76.17781937618606,
+      "projected_total_tds": 0.5260930958967791,
+      "shrunk_route_participation": 0.8484430270450938,
+      "shrunk_yprr": 2.0035493945032816,
+      "mean": 14.422886183394231,
+      "components": {
+        "receptions": 3.562831384680664,
+        "receiving_yards": 7.617781937618607,
+        "rushing_yards": 0.08571428571428572,
+        "total_tds": 3.1565585753806746
+      },
+      "sd": 6.971217612836642,
+      "p20": 8.24289509920256,
+      "p80": 19.83660751130158,
+      "simulation_mean": 14.261924499401639,
+      "rank": 3,
+      "scenario_ranks": {
+        "prior_0.5": 5,
+        "prior_2.0": 3,
+        "td_0.85": 4,
+        "td_1.0": 3,
+        "role_0.0": 5,
+        "role_1.0": 3
+      },
+      "rank_sensitivity": [
+        3,
+        5
+      ]
+    },
+    {
+      "player": "Malik Nabers",
+      "player_id": "malik-nabers-17704",
+      "team": "NYG",
+      "opponent": "HOU",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 15.179274528050724,
+        "prior_2.0": 13.22916199061827,
+        "td_0.85": 14.200963469480275,
+        "td_1.0": 14.559966241649978,
+        "role_0.0": 14.486190566055688,
+        "role_1.0": 14.206307019562903
+      },
+      "mean_at_75pct_workload": 10.738695328620011,
+      "games": 4,
+      "sample_routes": 152,
+      "observed_route_participation": 0.8837209302325582,
+      "observed_tprr": 0.3157894736842105,
+      "observed_yprr": 2.789473684210526,
+      "adot": 10.854166666666666,
+      "projected_routes": 36.43839176104639,
+      "projected_targets": 10.42703448939001,
+      "projected_receptions": 7.126838397654573,
+      "projected_receiving_yards": 89.30469284509977,
+      "projected_total_tds": 0.30406199247045845,
+      "shrunk_route_participation": 0.8474248148281474,
+      "shrunk_yprr": 2.450840680091948,
+      "mean": 14.318260438160014,
+      "components": {
+        "receptions": 3.5634191988272863,
+        "receiving_yards": 8.930469284509977,
+        "rushing_yards": 0.0,
+        "total_tds": 1.8243719548227508
+      },
+      "sd": 6.941733057974624,
+      "p20": 8.375198830605843,
+      "p80": 19.840213613231455,
+      "simulation_mean": 14.368394808149555,
+      "rank": 4,
+      "scenario_ranks": {
+        "prior_0.5": 4,
+        "prior_2.0": 4,
+        "td_0.85": 3,
+        "td_1.0": 5,
+        "role_0.0": 3,
+        "role_1.0": 5
+      },
+      "rank_sensitivity": [
+        3,
+        5
+      ]
+    },
+    {
+      "player": "Drake London",
+      "player_id": "drake-london-15868",
+      "team": "ATL",
+      "opponent": "SF",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 15.207597880362615,
+        "prior_2.0": 13.087788801187132,
+        "td_0.85": 14.031521588284583,
+        "td_1.0": 14.6493090222054,
+        "role_0.0": 14.148780126737451,
+        "role_1.0": 14.284922914722268
+      },
+      "mean_at_75pct_workload": 10.672849349646256,
+      "games": 4,
+      "sample_routes": 123,
+      "observed_route_participation": 0.984,
+      "observed_tprr": 0.3008130081300813,
+      "observed_yprr": 3.821138211382114,
+      "adot": 11.27027027027027,
+      "projected_routes": 33.0761625493016,
+      "projected_targets": 8.59567194584489,
+      "projected_receptions": 5.440338493199107,
+      "projected_receiving_yards": 86.64688384735629,
+      "projected_total_tds": 0.4742680280321931,
+      "shrunk_route_participation": 0.9358171272603207,
+      "shrunk_yprr": 2.6196171855850863,
+      "mean": 14.230465799528343,
+      "components": {
+        "receptions": 2.7201692465995535,
+        "receiving_yards": 8.66468838473563,
+        "rushing_yards": 0.0,
+        "total_tds": 2.8456081681931584
+      },
+      "sd": 7.5426425886103265,
+      "p20": 7.761418852978519,
+      "p80": 20.299812138744883,
+      "simulation_mean": 14.257034614392925,
+      "rank": 5,
+      "scenario_ranks": {
+        "prior_0.5": 3,
+        "prior_2.0": 5,
+        "td_0.85": 5,
+        "td_1.0": 4,
+        "role_0.0": 4,
+        "role_1.0": 4
+      },
+      "rank_sensitivity": [
+        3,
+        5
+      ]
+    },
+    {
+      "player": "Matthew Golden",
+      "player_id": "matthew-golden-18500",
+      "team": "GB",
+      "opponent": "DET",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 13.567204196534226,
+        "prior_2.0": 12.457522499688643,
+        "td_0.85": 12.890497632085877,
+        "td_1.0": 13.456439799511434,
+        "role_0.0": 12.661580147878144,
+        "role_1.0": 13.34774206302933
+      },
+      "mean_at_75pct_workload": 9.80495797272664,
+      "games": 4,
+      "sample_routes": 136,
+      "observed_route_participation": 0.8343558282208589,
+      "observed_tprr": 0.2867647058823529,
+      "observed_yprr": 2.5588235294117645,
+      "adot": 16.05128205128205,
+      "projected_routes": 33.66825894870446,
+      "projected_targets": 8.84251075323195,
+      "projected_receptions": 4.740409126459698,
+      "projected_receiving_yards": 79.61654205587975,
+      "projected_total_tds": 0.44261737373945714,
+      "shrunk_route_participation": 0.8491360487087969,
+      "shrunk_yprr": 2.3647359424548844,
+      "mean": 13.073277296968852,
+      "components": {
+        "receptions": 2.370204563229849,
+        "receiving_yards": 7.961654205587975,
+        "rushing_yards": 0.08571428571428572,
+        "total_tds": 2.6557042424367427
+      },
+      "sd": 7.311843461019028,
+      "p20": 6.764107472451649,
+      "p80": 18.84918160554263,
+      "simulation_mean": 13.095495829819823,
+      "rank": 6,
+      "scenario_ranks": {
+        "prior_0.5": 7,
+        "prior_2.0": 6,
+        "td_0.85": 6,
+        "td_1.0": 6,
+        "role_0.0": 7,
+        "role_1.0": 7
+      },
+      "rank_sensitivity": [
+        6,
+        7
+      ]
+    },
+    {
+      "player": "Tetairoa McMillan",
+      "player_id": "tetairoa-mcmillan-18547",
+      "team": "CAR",
+      "opponent": "TB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 13.710779003170924,
+        "prior_2.0": 12.244537860959767,
+        "td_0.85": 12.800720660891024,
+        "td_1.0": 13.440806639918973,
+        "role_0.0": 13.25432205529276,
+        "role_1.0": 12.841431426369635
+      },
+      "mean_at_75pct_workload": 9.754940758454163,
+      "games": 3,
+      "sample_routes": 122,
+      "observed_route_participation": 0.8840579710144928,
+      "observed_tprr": 0.2459016393442623,
+      "observed_yprr": 2.418032786885246,
+      "adot": 10.133333333333333,
+      "projected_routes": 34.30560023147307,
+      "projected_targets": 8.142576147316426,
+      "projected_receptions": 5.6109886805593705,
+      "projected_receiving_yards": 72.75805704279327,
+      "projected_total_tds": 0.48754793889664505,
+      "shrunk_route_participation": 0.8153277678938006,
+      "shrunk_yprr": 2.120879872436766,
+      "mean": 13.006587677938883,
+      "components": {
+        "receptions": 2.8054943402796853,
+        "receiving_yards": 7.275805704279327,
+        "rushing_yards": 0.0,
+        "total_tds": 2.9252876333798703
+      },
+      "sd": 6.908856532699241,
+      "p20": 6.858355131810063,
+      "p80": 18.472891344721322,
+      "simulation_mean": 12.927291159341673,
+      "rank": 7,
+      "scenario_ranks": {
+        "prior_0.5": 6,
+        "prior_2.0": 8,
+        "td_0.85": 7,
+        "td_1.0": 7,
+        "role_0.0": 6,
+        "role_1.0": 8
+      },
+      "rank_sensitivity": [
+        6,
+        8
+      ]
+    },
+    {
+      "player": "Ja'Marr Chase",
+      "player_id": "jamarr-chase-15183",
+      "team": "CIN",
+      "opponent": "BAL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 13.5580387460813,
+        "prior_2.0": 12.040836000979947,
+        "td_0.85": 12.53798526462708,
+        "td_1.0": 13.327628386259345,
+        "role_0.0": 10.736966249481586,
+        "role_1.0": 14.15840055354557
+      },
+      "mean_at_75pct_workload": 9.592370123939983,
+      "games": 3,
+      "sample_routes": 80,
+      "observed_route_participation": 0.6106870229007634,
+      "observed_tprr": 0.3125,
+      "observed_yprr": 2.525,
+      "adot": 9.68,
+      "projected_routes": 32.43702002268654,
+      "projected_targets": 8.395779949390667,
+      "projected_receptions": 5.621724579656158,
+      "projected_receiving_yards": 65.47649258928475,
+      "projected_total_tds": 0.571885880527237,
+      "shrunk_route_participation": 0.7923454545454545,
+      "shrunk_yprr": 2.0185729929411,
+      "mean": 12.789826831919976,
+      "components": {
+        "receptions": 2.810862289828079,
+        "receiving_yards": 6.547649258928475,
+        "rushing_yards": 0.0,
+        "total_tds": 3.431315283163422
+      },
+      "sd": 6.934075166091077,
+      "p20": 6.824742050612113,
+      "p80": 18.341238154261774,
+      "simulation_mean": 12.838686315214067,
+      "rank": 8,
+      "scenario_ranks": {
+        "prior_0.5": 8,
+        "prior_2.0": 9,
+        "td_0.85": 8,
+        "td_1.0": 8,
+        "role_0.0": 17,
+        "role_1.0": 6
+      },
+      "rank_sensitivity": [
+        6,
+        17
+      ]
+    },
+    {
+      "player": "Amon-Ra St. Brown",
+      "player_id": "amon-ra-st-brown-15332",
+      "team": "DET",
+      "opponent": "GB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 12.505702518397921,
+        "prior_2.0": 12.311018761708636,
+        "td_0.85": 12.08188861161059,
+        "td_1.0": 13.220309937342535,
+        "role_0.0": 12.567589262990731,
+        "role_1.0": 12.351425090402184
+      },
+      "mean_at_75pct_workload": 9.328418069578202,
+      "games": 3,
+      "sample_routes": 110,
+      "observed_route_participation": 0.9016393442622951,
+      "observed_tprr": 0.2727272727272727,
+      "observed_yprr": 1.481818181818182,
+      "adot": 8.266666666666667,
+      "projected_routes": 33.334406763978734,
+      "projected_targets": 8.260886472513967,
+      "projected_receptions": 5.1274896226042,
+      "projected_receiving_yards": 54.21588000938966,
+      "projected_total_tds": 0.7420929911994228,
+      "shrunk_route_participation": 0.8415645436870324,
+      "shrunk_yprr": 1.6264240246799746,
+      "mean": 12.437890759437604,
+      "components": {
+        "receptions": 2.5637448113021,
+        "receiving_yards": 5.421588000938966,
+        "rushing_yards": 0.0,
+        "total_tds": 4.452557947196537
+      },
+      "sd": 6.857751487595674,
+      "p20": 6.401992467608091,
+      "p80": 17.862677495251084,
+      "simulation_mean": 12.369668762102085,
+      "rank": 9,
+      "scenario_ranks": {
+        "prior_0.5": 12,
+        "prior_2.0": 7,
+        "td_0.85": 11,
+        "td_1.0": 9,
+        "role_0.0": 8,
+        "role_1.0": 11
+      },
+      "rank_sensitivity": [
+        7,
+        12
+      ]
+    },
+    {
+      "player": "Zay Flowers",
+      "player_id": "zay-flowers-16919",
+      "team": "BAL",
+      "opponent": "CIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 13.107055683818334,
+        "prior_2.0": 11.660033519331085,
+        "td_0.85": 12.275243806484568,
+        "td_1.0": 12.768672395906401,
+        "role_0.0": 12.249719073249342,
+        "role_1.0": 12.558942766129668
+      },
+      "mean_at_75pct_workload": 9.326439966733155,
+      "games": 4,
+      "sample_routes": 114,
+      "observed_route_participation": 0.8444444444444444,
+      "observed_tprr": 0.3157894736842105,
+      "observed_yprr": 2.8157894736842106,
+      "adot": 7.583333333333333,
+      "projected_routes": 30.829912827785677,
+      "projected_targets": 8.398988522002542,
+      "projected_receptions": 5.796427748337893,
+      "projected_receiving_yards": 66.72833493564825,
+      "projected_total_tds": 0.3964152725882465,
+      "shrunk_route_participation": 0.8440626133121704,
+      "shrunk_yprr": 2.164402322782725,
+      "mean": 12.435253288977536,
+      "components": {
+        "receptions": 2.8982138741689467,
+        "receiving_yards": 6.672833493564825,
+        "rushing_yards": 0.4857142857142857,
+        "total_tds": 2.378491635529479
+      },
+      "sd": 6.37453734990477,
+      "p20": 6.815671890882346,
+      "p80": 17.61329623496882,
+      "simulation_mean": 12.449048751750558,
+      "rank": 10,
+      "scenario_ranks": {
+        "prior_0.5": 9,
+        "prior_2.0": 12,
+        "td_0.85": 9,
+        "td_1.0": 11,
+        "role_0.0": 10,
+        "role_1.0": 10
+      },
+      "rank_sensitivity": [
+        9,
+        12
+      ]
+    },
+    {
+      "player": "Christian Watson",
+      "player_id": "christian-watson-15946",
+      "team": "GB",
+      "opponent": "DET",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 12.891314036534594,
+        "prior_2.0": 11.831532442325788,
+        "td_0.85": 12.17410370067752,
+        "td_1.0": 12.806266794624479,
+        "role_0.0": 12.003815491415395,
+        "role_1.0": 12.626644690275752
+      },
+      "mean_at_75pct_workload": 9.283134758048707,
+      "games": 4,
+      "sample_routes": 132,
+      "observed_route_participation": 0.8098159509202454,
+      "observed_tprr": 0.2196969696969697,
+      "observed_yprr": 2.6515151515151514,
+      "adot": 16.310344827586206,
+      "projected_routes": 32.926329957682654,
+      "projected_targets": 7.053391223270632,
+      "projected_receptions": 4.15521122735068,
+      "projected_receiving_yards": 74.0279676671476,
+      "projected_total_tds": 0.48285177172358457,
+      "shrunk_route_participation": 0.8304241024564348,
+      "shrunk_yprr": 2.248290889458051,
+      "mean": 12.377513010731608,
+      "components": {
+        "receptions": 2.07760561367534,
+        "receiving_yards": 7.402796766714761,
+        "rushing_yards": 0.0,
+        "total_tds": 2.8971106303415075
+      },
+      "sd": 7.336523786481464,
+      "p20": 6.0,
+      "p80": 18.250835380436236,
+      "simulation_mean": 12.389085537607711,
+      "rank": 11,
+      "scenario_ranks": {
+        "prior_0.5": 10,
+        "prior_2.0": 10,
+        "td_0.85": 10,
+        "td_1.0": 10,
+        "role_0.0": 11,
+        "role_1.0": 9
+      },
+      "rank_sensitivity": [
+        9,
+        11
+      ]
+    },
+    {
+      "player": "George Pickens",
+      "player_id": "george-pickens-15853",
+      "team": "DAL",
+      "opponent": "PHI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 12.584013049792054,
+        "prior_2.0": 11.755058451817519,
+        "td_0.85": 12.05543749584246,
+        "td_1.0": 12.553475399564519,
+        "role_0.0": 12.289420655917782,
+        "role_1.0": 12.168552868607343
+      },
+      "mean_at_75pct_workload": 9.16267498764864,
+      "games": 4,
+      "sample_routes": 160,
+      "observed_route_participation": 0.8333333333333334,
+      "observed_tprr": 0.2375,
+      "observed_yprr": 2.25,
+      "adot": 10.921052631578947,
+      "projected_routes": 36.05218936539047,
+      "projected_targets": 8.294416182228428,
+      "projected_receptions": 5.232989936672313,
+      "projected_receiving_yards": 72.03868253282151,
+      "projected_total_tds": 0.3994227936522018,
+      "shrunk_route_participation": 0.8044996239868535,
+      "shrunk_yprr": 1.9981777473402904,
+      "mean": 12.216899983531519,
+      "components": {
+        "receptions": 2.6164949683361565,
+        "receiving_yards": 7.203868253282152,
+        "rushing_yards": 0.0,
+        "total_tds": 2.396536761913211
+      },
+      "sd": 6.789897547066543,
+      "p20": 6.21990568938977,
+      "p80": 17.42590711827129,
+      "simulation_mean": 12.18619943837084,
+      "rank": 12,
+      "scenario_ranks": {
+        "prior_0.5": 11,
+        "prior_2.0": 11,
+        "td_0.85": 12,
+        "td_1.0": 12,
+        "role_0.0": 9,
+        "role_1.0": 12
+      },
+      "rank_sensitivity": [
+        9,
+        12
+      ]
+    },
+    {
+      "player": "Tee Higgins",
+      "player_id": "tee-higgins-14506",
+      "team": "CIN",
+      "opponent": "BAL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 11.888014563248355,
+        "prior_2.0": 10.953942842524382,
+        "td_0.85": 11.232018472747805,
+        "td_1.0": 11.82265890962732,
+        "role_0.0": 11.728898714420872,
+        "role_1.0": 11.218251961444897
+      },
+      "mean_at_75pct_workload": 8.566882996976465,
+      "games": 3,
+      "sample_routes": 108,
+      "observed_route_participation": 0.8244274809160306,
+      "observed_tprr": 0.25,
+      "observed_yprr": 2.490740740740741,
+      "adot": 13.296296296296296,
+      "projected_routes": 30.894087707772417,
+      "projected_targets": 7.10255158554806,
+      "projected_receptions": 4.3778312913250375,
+      "projected_receiving_yards": 64.86596455219886,
+      "projected_total_tds": 0.4578330936254804,
+      "shrunk_route_participation": 0.754655944055944,
+      "shrunk_yprr": 2.099623888096871,
+      "mean": 11.422510662635288,
+      "components": {
+        "receptions": 2.1889156456625187,
+        "receiving_yards": 6.486596455219886,
+        "rushing_yards": 0.0,
+        "total_tds": 2.7469985617528825
+      },
+      "sd": 6.850910433973809,
+      "p20": 5.58968553681335,
+      "p80": 16.914416006157825,
+      "simulation_mean": 11.474727574874645,
+      "rank": 13,
+      "scenario_ranks": {
+        "prior_0.5": 14,
+        "prior_2.0": 13,
+        "td_0.85": 13,
+        "td_1.0": 13,
+        "role_0.0": 12,
+        "role_1.0": 15
+      },
+      "rank_sensitivity": [
+        12,
+        15
+      ]
+    },
+    {
+      "player": "Nico Collins",
+      "player_id": "nico-collins-15200",
+      "team": "HOU",
+      "opponent": "NYG",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 11.956477392369111,
+        "prior_2.0": 10.795341643444557,
+        "td_0.85": 11.143785695233879,
+        "td_1.0": 11.815415245801887,
+        "role_0.0": 11.349904971259882,
+        "role_1.0": 11.365755782264111
+      },
+      "mean_at_75pct_workload": 8.519561593396816,
+      "games": 3,
+      "sample_routes": 86,
+      "observed_route_participation": 0.7962962962962963,
+      "observed_tprr": 0.23255813953488372,
+      "observed_yprr": 2.883720930232558,
+      "adot": 14.7,
+      "projected_routes": 28.273324170315394,
+      "projected_targets": 6.0942711232405395,
+      "projected_receptions": 3.853900948159902,
+      "projected_receiving_yards": 63.13093626468885,
+      "projected_total_tds": 0.5060063373300417,
+      "shrunk_route_participation": 0.7715769944341374,
+      "shrunk_yprr": 2.232879865289098,
+      "mean": 11.35941545786242,
+      "components": {
+        "receptions": 1.926950474079951,
+        "receiving_yards": 6.313093626468885,
+        "rushing_yards": 0.08333333333333334,
+        "total_tds": 3.0360380239802502
+      },
+      "sd": 6.857415252234339,
+      "p20": 5.429661347088783,
+      "p80": 16.898278018240838,
+      "simulation_mean": 11.429491231142089,
+      "rank": 14,
+      "scenario_ranks": {
+        "prior_0.5": 13,
+        "prior_2.0": 15,
+        "td_0.85": 14,
+        "td_1.0": 14,
+        "role_0.0": 13,
+        "role_1.0": 14
+      },
+      "rank_sensitivity": [
+        13,
+        15
+      ]
+    },
+    {
+      "player": "DK Metcalf",
+      "player_id": "dk-metcalf-13424",
+      "team": "PIT",
+      "opponent": "NO",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 11.29270647618951,
+        "prior_2.0": 10.944689274575323,
+        "td_0.85": 10.96266586726468,
+        "td_1.0": 11.506028556750687,
+        "role_0.0": 11.204463480699637,
+        "role_1.0": 11.094316885164767
+      },
+      "mean_at_75pct_workload": 8.353781642534036,
+      "games": 4,
+      "sample_routes": 147,
+      "observed_route_participation": 0.8698224852071006,
+      "observed_tprr": 0.22448979591836735,
+      "observed_yprr": 1.7074829931972788,
+      "adot": 10.242424242424242,
+      "projected_routes": 34.47194901311577,
+      "projected_targets": 7.865598186979081,
+      "projected_receptions": 5.234049909892066,
+      "projected_receiving_yards": 57.93325084608376,
+      "projected_total_tds": 0.42848043778024153,
+      "shrunk_route_participation": 0.8289436104210919,
+      "shrunk_yprr": 1.6805911039158683,
+      "mean": 11.138375523378716,
+      "components": {
+        "receptions": 2.617024954946033,
+        "receiving_yards": 5.793325084608377,
+        "rushing_yards": 0.15714285714285714,
+        "total_tds": 2.570882626681449
+      },
+      "sd": 6.0568388713268515,
+      "p20": 5.548321221299713,
+      "p80": 15.90062684177122,
+      "simulation_mean": 10.996224336864998,
+      "rank": 15,
+      "scenario_ranks": {
+        "prior_0.5": 17,
+        "prior_2.0": 14,
+        "td_0.85": 15,
+        "td_1.0": 15,
+        "role_0.0": 14,
+        "role_1.0": 16
+      },
+      "rank_sensitivity": [
+        14,
+        17
+      ]
+    },
+    {
+      "player": "Garrett Wilson",
+      "player_id": "garrett-wilson-15829",
+      "team": "NYJ",
+      "opponent": "MIA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 11.503875883755715,
+        "prior_2.0": 10.59739168255161,
+        "td_0.85": 10.914889795437382,
+        "td_1.0": 11.432017522182118,
+        "role_0.0": 11.1395171298621,
+        "role_1.0": 11.044258378753725
+      },
+      "mean_at_75pct_workload": 8.311771409397807,
+      "games": 4,
+      "sample_routes": 124,
+      "observed_route_participation": 0.9538461538461539,
+      "observed_tprr": 0.27419354838709675,
+      "observed_yprr": 2.274193548387097,
+      "adot": 9.205882352941176,
+      "projected_routes": 31.16880651474302,
+      "projected_targets": 7.58645553085912,
+      "projected_receptions": 5.077642333545375,
+      "projected_receiving_yards": 60.72895048615812,
+      "projected_total_tds": 0.4117742773014291,
+      "shrunk_route_participation": 0.8930368984329071,
+      "shrunk_yprr": 1.9483887025777835,
+      "mean": 11.082361879197075,
+      "components": {
+        "receptions": 2.5388211667726877,
+        "receiving_yards": 6.072895048615813,
+        "rushing_yards": 0.0,
+        "total_tds": 2.4706456638085745
+      },
+      "sd": 6.188969658934675,
+      "p20": 5.7671810530620276,
+      "p80": 16.01284522729967,
+      "simulation_mean": 11.158636661185549,
+      "rank": 16,
+      "scenario_ranks": {
+        "prior_0.5": 16,
+        "prior_2.0": 16,
+        "td_0.85": 17,
+        "td_1.0": 16,
+        "role_0.0": 15,
+        "role_1.0": 17
+      },
+      "rank_sensitivity": [
+        15,
+        17
+      ]
+    },
+    {
+      "player": "Jalen Coker",
+      "player_id": "jalen-coker-17976",
+      "team": "CAR",
+      "opponent": "TB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 11.558637932748507,
+        "prior_2.0": 10.556233917926008,
+        "td_0.85": 10.915641904320337,
+        "td_1.0": 11.409070493742169,
+        "role_0.0": 10.048401773895018,
+        "role_1.0": 11.760484462092164
+      },
+      "mean_at_75pct_workload": 8.306738540109977,
+      "games": 2,
+      "sample_routes": 51,
+      "observed_route_participation": 0.5483870967741935,
+      "observed_tprr": 0.3333333333333333,
+      "observed_yprr": 2.2549019607843137,
+      "adot": 13.647058823529411,
+      "projected_routes": 30.16277424263539,
+      "projected_targets": 8.202833072329872,
+      "projected_receptions": 4.243867843890303,
+      "projected_receiving_yards": 65.75225829338673,
+      "projected_total_tds": 0.3964152725882465,
+      "shrunk_route_participation": 0.7168668447949362,
+      "shrunk_yprr": 2.179914147301651,
+      "mean": 11.075651386813306,
+      "components": {
+        "receptions": 2.1219339219451516,
+        "receiving_yards": 6.575225829338674,
+        "rushing_yards": 0.0,
+        "total_tds": 2.378491635529479
+      },
+      "sd": 6.730962143068185,
+      "p20": 5.226920634696017,
+      "p80": 16.489580174271595,
+      "simulation_mean": 11.125791619382783,
+      "rank": 17,
+      "scenario_ranks": {
+        "prior_0.5": 15,
+        "prior_2.0": 17,
+        "td_0.85": 16,
+        "td_1.0": 17,
+        "role_0.0": 19,
+        "role_1.0": 13
+      },
+      "rank_sensitivity": [
+        13,
+        19
+      ]
+    },
+    {
+      "player": "Chris Olave",
+      "player_id": "chris-olave-15895",
+      "team": "NO",
+      "opponent": "PIT",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 11.081891637845095,
+        "prior_2.0": 10.305543200787985,
+        "td_0.85": 10.578379256322549,
+        "td_1.0": 11.050429972121307,
+        "role_0.0": 11.08407986123705,
+        "role_1.0": 10.496679662735119
+      },
+      "mean_at_75pct_workload": 8.048729806601918,
+      "games": 4,
+      "sample_routes": 138,
+      "observed_route_participation": 0.8903225806451613,
+      "observed_tprr": 0.2753623188405797,
+      "observed_yprr": 2.260869565217391,
+      "adot": 11.105263157894736,
+      "projected_routes": 30.816443027865063,
+      "projected_targets": 7.613720656069976,
+      "projected_receptions": 4.909257173960749,
+      "projected_receiving_yards": 59.82997234669152,
+      "projected_total_tds": 0.3823356534143941,
+      "shrunk_route_participation": 0.814895947426068,
+      "shrunk_yprr": 1.9414950743209278,
+      "mean": 10.731639742135892,
+      "components": {
+        "receptions": 2.4546285869803746,
+        "receiving_yards": 5.982997234669153,
+        "rushing_yards": 0.0,
+        "total_tds": 2.294013920486365
+      },
+      "sd": 6.12216760638484,
+      "p20": 5.378633525635398,
+      "p80": 15.678206721738837,
+      "simulation_mean": 10.750787533960937,
+      "rank": 18,
+      "scenario_ranks": {
+        "prior_0.5": 19,
+        "prior_2.0": 18,
+        "td_0.85": 18,
+        "td_1.0": 18,
+        "role_0.0": 16,
+        "role_1.0": 19
+      },
+      "rank_sensitivity": [
+        16,
+        19
+      ]
+    },
+    {
+      "player": "DeVonta Smith",
+      "player_id": "devonta-smith-15406",
+      "team": "PHI",
+      "opponent": "DAL",
+      "availability": "conditional",
+      "injury": {
+        "injury": "",
+        "practice": "Did Not Participate In Practice",
+        "designation": ""
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 10.700358605770056,
+        "prior_2.0": 9.703510471419902,
+        "td_0.85": 10.06433564986586,
+        "td_1.0": 10.562538709843247,
+        "role_0.0": 10.581834541824799,
+        "role_1.0": 9.988527282072535
+      },
+      "mean_at_75pct_workload": 7.669387639480081,
+      "games": 2,
+      "sample_routes": 63,
+      "observed_route_participation": 0.7974683544303798,
+      "observed_tprr": 0.3492063492063492,
+      "observed_yprr": 2.2222222222222223,
+      "adot": 10.5,
+      "projected_routes": 27.7504573034676,
+      "projected_targets": 7.97277114506865,
+      "projected_receptions": 4.790876438517947,
+      "projected_receiving_yards": 54.332297311843696,
+      "projected_total_tds": 0.39953037258834984,
+      "shrunk_route_participation": 0.6997710797405571,
+      "shrunk_yprr": 1.9578883590165026,
+      "mean": 10.225850185973442,
+      "components": {
+        "receptions": 2.3954382192589736,
+        "receiving_yards": 5.43322973118437,
+        "rushing_yards": 0.0,
+        "total_tds": 2.397182235530099
+      },
+      "sd": 6.021089245575572,
+      "p20": 4.90666320816266,
+      "p80": 14.968131857658655,
+      "simulation_mean": 10.191315995644068,
+      "rank": 19,
+      "scenario_ranks": {
+        "prior_0.5": 20,
+        "prior_2.0": 19,
+        "td_0.85": 19,
+        "td_1.0": 19,
+        "role_0.0": 18,
+        "role_1.0": 23
+      },
+      "rank_sensitivity": [
+        18,
+        23
+      ]
+    },
+    {
+      "player": "Carnell Tate",
+      "player_id": "carnell-tate-19268",
+      "team": "TEN",
+      "opponent": "CLE",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 10.612845748135543,
+        "prior_2.0": 9.5522509559999,
+        "td_0.85": 10.023737774504694,
+        "td_1.0": 10.29859499069246,
+        "role_0.0": 9.828504416236832,
+        "role_1.0": 10.304272120328676
+      },
+      "mean_at_75pct_workload": 7.585473779018954,
+      "games": 4,
+      "sample_routes": 111,
+      "observed_route_participation": 0.8222222222222222,
+      "observed_tprr": 0.2972972972972973,
+      "observed_yprr": 2.5135135135135136,
+      "adot": 13.121212121212121,
+      "projected_routes": 28.672036143740982,
+      "projected_targets": 7.445580758341123,
+      "projected_receptions": 4.59941901035227,
+      "projected_receiving_yards": 63.67283192614474,
+      "projected_total_tds": 0.24116205681688804,
+      "shrunk_route_participation": 0.8140398488594374,
+      "shrunk_yprr": 2.220729340843982,
+      "mean": 10.113965038691937,
+      "components": {
+        "receptions": 2.299709505176135,
+        "receiving_yards": 6.367283192614474,
+        "rushing_yards": 0.0,
+        "total_tds": 1.4469723409013282
+      },
+      "sd": 5.821200257754257,
+      "p20": 4.970678601682584,
+      "p80": 14.732525953010715,
+      "simulation_mean": 10.112821386264246,
+      "rank": 20,
+      "scenario_ranks": {
+        "prior_0.5": 21,
+        "prior_2.0": 22,
+        "td_0.85": 21,
+        "td_1.0": 21,
+        "role_0.0": 22,
+        "role_1.0": 21
+      },
+      "rank_sensitivity": [
+        20,
+        22
+      ]
+    },
+    {
+      "player": "Germie Bernard",
+      "player_id": "germie-bernard-19263",
+      "team": "PIT",
+      "opponent": "NO",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 10.516758862795653,
+        "prior_2.0": 9.559219112545843,
+        "td_0.85": 9.922347491091468,
+        "td_1.0": 10.324477921499591,
+        "role_0.0": 9.11851032167595,
+        "role_1.0": 10.676691493294134
+      },
+      "mean_at_75pct_workload": 7.540064268485146,
+      "games": 4,
+      "sample_routes": 100,
+      "observed_route_participation": 0.591715976331361,
+      "observed_tprr": 0.24,
+      "observed_yprr": 1.92,
+      "adot": 3.8333333333333335,
+      "projected_routes": 30.573558219973393,
+      "projected_targets": 7.15277668574941,
+      "projected_receptions": 5.517236092574637,
+      "projected_receiving_yards": 52.29372609274796,
+      "projected_total_tds": 0.33471425199031496,
+      "shrunk_route_participation": 0.7351993855827963,
+      "shrunk_yprr": 1.7104232918033397,
+      "mean": 10.053419024646862,
+      "components": {
+        "receptions": 2.7586180462873187,
+        "receiving_yards": 5.2293726092747965,
+        "rushing_yards": 0.05714285714285714,
+        "total_tds": 2.0082855119418896
+      },
+      "sd": 5.518854511244997,
+      "p20": 5.10634353505595,
+      "p80": 14.387152573466254,
+      "simulation_mean": 9.955454134541837,
+      "rank": 21,
+      "scenario_ranks": {
+        "prior_0.5": 22,
+        "prior_2.0": 21,
+        "td_0.85": 22,
+        "td_1.0": 20,
+        "role_0.0": 26,
+        "role_1.0": 18
+      },
+      "rank_sensitivity": [
+        18,
+        26
+      ]
+    },
+    {
+      "player": "Omar Cooper",
+      "player_id": "omar-cooper-19314",
+      "team": "NYJ",
+      "opponent": "MIA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "model: implied team points \u00d7 assumed TD fractions \u00d7 target share",
+      "scenarios": {
+        "prior_0.5": 11.119689337639798,
+        "prior_2.0": 9.268213069247023,
+        "td_0.85": 10.041129159402962,
+        "td_1.0": 10.041129159402962,
+        "role_0.0": 10.041129159402962,
+        "role_1.0": 10.041129159402962
+      },
+      "mean_at_75pct_workload": 7.530846869552221,
+      "games": 1,
+      "sample_routes": 26,
+      "observed_route_participation": 0.7878787878787878,
+      "observed_tprr": 0.2692307692307692,
+      "observed_yprr": 3.9615384615384617,
+      "adot": 12.428571428571429,
+      "projected_routes": 25.682630706061833,
+      "projected_targets": 5.799900904026971,
+      "projected_receptions": 3.6751281412065455,
+      "projected_receiving_yards": 59.845995715583086,
+      "projected_total_tds": 0.3698275862068966,
+      "shrunk_route_participation": 0.7358490566037735,
+      "shrunk_yprr": 2.3302128353018654,
+      "mean": 10.041129159402962,
+      "components": {
+        "receptions": 1.8375640706032728,
+        "receiving_yards": 5.984599571558309,
+        "rushing_yards": 0.0,
+        "total_tds": 2.2189655172413794
+      },
+      "sd": 6.398754343866998,
+      "p20": 4.373517286130538,
+      "p80": 15.170650379259168,
+      "simulation_mean": 10.015799362831569,
+      "rank": 22,
+      "scenario_ranks": {
+        "prior_0.5": 18,
+        "prior_2.0": 24,
+        "td_0.85": 20,
+        "td_1.0": 22,
+        "role_0.0": 20,
+        "role_1.0": 22
+      },
+      "rank_sensitivity": [
+        18,
+        24
+      ]
+    },
+    {
+      "player": "Justin Jefferson",
+      "player_id": "justin-jefferson-14509",
+      "team": "MIN",
+      "opponent": "IND",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 10.387807001889144,
+        "prior_2.0": 9.113999449173669,
+        "td_0.85": 9.478691608597885,
+        "td_1.0": 10.01112679026091,
+        "role_0.0": 8.509310607220517,
+        "role_1.0": 10.412081454276494
+      },
+      "mean_at_75pct_workload": 7.238229836590577,
+      "games": 2,
+      "sample_routes": 35,
+      "observed_route_participation": 0.5,
+      "observed_tprr": 0.2571428571428571,
+      "observed_yprr": 3.1714285714285713,
+      "adot": 11.11111111111111,
+      "projected_routes": 27.5175072947923,
+      "projected_targets": 5.966340907766504,
+      "projected_receptions": 4.178067637468573,
+      "projected_receiving_yards": 52.5258474963125,
+      "projected_total_tds": 0.4215590911814274,
+      "shrunk_route_participation": 0.713676233118027,
+      "shrunk_yprr": 1.9088156108621452,
+      "mean": 9.6509731154541,
+      "components": {
+        "receptions": 2.0890338187342863,
+        "receiving_yards": 5.25258474963125,
+        "rushing_yards": -0.22000000000000003,
+        "total_tds": 2.5293545470885643
+      },
+      "sd": 6.131973109404255,
+      "p20": 4.270839159513838,
+      "p80": 14.5972244259745,
+      "simulation_mean": 9.714890084690927,
+      "rank": 23,
+      "scenario_ranks": {
+        "prior_0.5": 23,
+        "prior_2.0": 25,
+        "td_0.85": 23,
+        "td_1.0": 23,
+        "role_0.0": 29,
+        "role_1.0": 20
+      },
+      "rank_sensitivity": [
+        20,
+        29
+      ]
+    },
+    {
+      "player": "Michael Wilson",
+      "player_id": "michael-wilson-16957",
+      "team": "ARI",
+      "opponent": "DEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.458965236436086,
+        "prior_2.0": 9.560878281761369,
+        "td_0.85": 9.406010260282496,
+        "td_1.0": 9.77475174927212,
+        "role_0.0": 9.862339359798906,
+        "role_1.0": 9.302479717620223
+      },
+      "mean_at_75pct_workload": 7.144817680868773,
+      "games": 4,
+      "sample_routes": 161,
+      "observed_route_participation": 0.8846153846153846,
+      "observed_tprr": 0.2732919254658385,
+      "observed_yprr": 1.5279503105590062,
+      "adot": 10.954545454545455,
+      "projected_routes": 33.85036980150697,
+      "projected_targets": 8.237147783541253,
+      "projected_receptions": 5.001658613946766,
+      "projected_receiving_yards": 51.591549454465586,
+      "projected_total_tds": 0.31107322034529233,
+      "shrunk_route_participation": 0.8036008699803725,
+      "shrunk_yprr": 1.524105933169711,
+      "mean": 9.526423574491696,
+      "components": {
+        "receptions": 2.500829306973383,
+        "receiving_yards": 5.159154945446559,
+        "rushing_yards": 0.0,
+        "total_tds": 1.866439322071754
+      },
+      "sd": 5.474676816406877,
+      "p20": 4.675739712072147,
+      "p80": 13.68905648681463,
+      "simulation_mean": 9.434552607167277,
+      "rank": 24,
+      "scenario_ranks": {
+        "prior_0.5": 26,
+        "prior_2.0": 20,
+        "td_0.85": 24,
+        "td_1.0": 24,
+        "role_0.0": 21,
+        "role_1.0": 26
+      },
+      "rank_sensitivity": [
+        20,
+        26
+      ]
+    },
+    {
+      "player": "Xavier Worthy",
+      "player_id": "xavier-worthy-17687",
+      "team": "KC",
+      "opponent": "SEA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.894541658575726,
+        "prior_2.0": 8.955535434430073,
+        "td_0.85": 9.264407735457675,
+        "td_1.0": 9.666075925869176,
+        "role_0.0": 9.294431799604066,
+        "role_1.0": 9.462598785347659
+      },
+      "mean_at_75pct_workload": 7.046498993287666,
+      "games": 3,
+      "sample_routes": 75,
+      "observed_route_participation": 0.8426966292134831,
+      "observed_tprr": 0.21333333333333335,
+      "observed_yprr": 2.1733333333333333,
+      "adot": 9.25,
+      "projected_routes": 28.10417651765452,
+      "projected_targets": 6.029825329117292,
+      "projected_receptions": 4.341694846530003,
+      "projected_receiving_yards": 52.1813814528089,
+      "projected_total_tds": 0.33439107041738836,
+      "shrunk_route_participation": 0.8148932184338704,
+      "shrunk_yprr": 1.8567126996241834,
+      "mean": 9.395331991050222,
+      "components": {
+        "receptions": 2.1708474232650015,
+        "receiving_yards": 5.21813814528089,
+        "rushing_yards": 0.0,
+        "total_tds": 2.00634642250433
+      },
+      "sd": 5.659568863983297,
+      "p20": 4.326075492677056,
+      "p80": 13.918113529330165,
+      "simulation_mean": 9.355275958894742,
+      "rank": 25,
+      "scenario_ranks": {
+        "prior_0.5": 24,
+        "prior_2.0": 26,
+        "td_0.85": 26,
+        "td_1.0": 25,
+        "role_0.0": 24,
+        "role_1.0": 25
+      },
+      "rank_sensitivity": [
+        24,
+        26
+      ]
+    },
+    {
+      "player": "Keenan Allen",
+      "player_id": "keenan-allen-8627",
+      "team": "IND",
+      "opponent": "MIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.735039909894475,
+        "prior_2.0": 8.942696031573654,
+        "td_0.85": 9.288441726869731,
+        "td_1.0": 9.537933944033167,
+        "role_0.0": 9.192381922098502,
+        "role_1.0": 9.489176167177508
+      },
+      "mean_at_75pct_workload": 7.027843851859431,
+      "games": 3,
+      "sample_routes": 94,
+      "observed_route_participation": 0.6911764705882353,
+      "observed_tprr": 0.30851063829787234,
+      "observed_yprr": 2.021276595744681,
+      "adot": 7.931034482758621,
+      "projected_routes": 29.410823711382182,
+      "projected_targets": 7.835374604261811,
+      "projected_receptions": 5.105232916803576,
+      "projected_receiving_yards": 54.89840434330297,
+      "projected_total_tds": 0.22133359606897024,
+      "shrunk_route_participation": 0.6986624669270506,
+      "shrunk_yprr": 1.866605467498584,
+      "mean": 9.370458469145907,
+      "components": {
+        "receptions": 2.552616458401788,
+        "receiving_yards": 5.489840434330297,
+        "rushing_yards": 0.0,
+        "total_tds": 1.3280015764138215
+      },
+      "sd": 5.434402022131791,
+      "p20": 4.623684497008194,
+      "p80": 13.565906322802505,
+      "simulation_mean": 9.356394475399883,
+      "rank": 26,
+      "scenario_ranks": {
+        "prior_0.5": 25,
+        "prior_2.0": 27,
+        "td_0.85": 25,
+        "td_1.0": 27,
+        "role_0.0": 25,
+        "role_1.0": 24
+      },
+      "rank_sensitivity": [
+        24,
+        27
+      ]
+    },
+    {
+      "player": "Jameson Williams",
+      "player_id": "jameson-williams-15849",
+      "team": "DET",
+      "opponent": "GB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.289153918627076,
+        "prior_2.0": 9.287846704483725,
+        "td_0.85": 9.102098932235881,
+        "td_1.0": 9.558014374103413,
+        "role_0.0": 9.656149109406119,
+        "role_1.0": 8.979658273359439
+      },
+      "mean_at_75pct_workload": 6.937690955833583,
+      "games": 3,
+      "sample_routes": 108,
+      "observed_route_participation": 0.8852459016393442,
+      "observed_tprr": 0.14814814814814814,
+      "observed_yprr": 1.8333333333333333,
+      "adot": 19.1875,
+      "projected_routes": 31.308514034463112,
+      "projected_targets": 5.375994440644162,
+      "projected_receptions": 3.2921322874873367,
+      "projected_receiving_yards": 53.74807125439543,
+      "projected_total_tds": 0.37156355643248307,
+      "shrunk_route_participation": 0.790418606021328,
+      "shrunk_yprr": 1.71672380219744,
+      "mean": 9.25025460777811,
+      "components": {
+        "receptions": 1.6460661437436683,
+        "receiving_yards": 5.374807125439543,
+        "rushing_yards": 0.0,
+        "total_tds": 2.2293813385948984
+      },
+      "sd": 6.149482318213297,
+      "p20": 3.7669772757630313,
+      "p80": 14.101483176332863,
+      "simulation_mean": 9.264690225948948,
+      "rank": 27,
+      "scenario_ranks": {
+        "prior_0.5": 27,
+        "prior_2.0": 23,
+        "td_0.85": 27,
+        "td_1.0": 26,
+        "role_0.0": 23,
+        "role_1.0": 29
+      },
+      "rank_sensitivity": [
+        23,
+        29
+      ]
+    },
+    {
+      "player": "Tre Tucker",
+      "player_id": "tre-tucker-16694",
+      "team": "LV",
+      "opponent": "LAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.105960704363998,
+        "prior_2.0": 8.910523181444221,
+        "td_0.85": 8.909189501629585,
+        "td_1.0": 9.170771107009148,
+        "role_0.0": 8.727763806721967,
+        "role_1.0": 9.173361538296874
+      },
+      "mean_at_75pct_workload": 6.746341834250185,
+      "games": 4,
+      "sample_routes": 130,
+      "observed_route_participation": 0.7647058823529411,
+      "observed_tprr": 0.18461538461538463,
+      "observed_yprr": 1.7307692307692308,
+      "adot": 13.666666666666666,
+      "projected_routes": 32.23769808776303,
+      "projected_targets": 6.203325904907639,
+      "projected_receptions": 3.8870980582114854,
+      "projected_receiving_yards": 57.52266198548994,
+      "projected_total_tds": 0.23083691728774353,
+      "shrunk_route_participation": 0.7863670991692565,
+      "shrunk_yprr": 1.7843290742686349,
+      "mean": 8.995122445666913,
+      "components": {
+        "receptions": 1.9435490291057427,
+        "receiving_yards": 5.752266198548995,
+        "rushing_yards": -0.08571428571428572,
+        "total_tds": 1.385021503726461
+      },
+      "sd": 5.745308870588681,
+      "p20": 3.965026760282622,
+      "p80": 13.597361940189561,
+      "simulation_mean": 9.031920531062969,
+      "rank": 28,
+      "scenario_ranks": {
+        "prior_0.5": 29,
+        "prior_2.0": 28,
+        "td_0.85": 28,
+        "td_1.0": 28,
+        "role_0.0": 28,
+        "role_1.0": 27
+      },
+      "rank_sensitivity": [
+        27,
+        29
+      ]
+    },
+    {
+      "player": "Malik Washington",
+      "player_id": "malik-washington-17863",
+      "team": "MIA",
+      "opponent": "NYJ",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.249736488576351,
+        "prior_2.0": 8.390665082797327,
+        "td_0.85": 8.739432931429448,
+        "td_1.0": 8.969848355702911,
+        "role_0.0": 8.879656848088697,
+        "role_1.0": 8.772327328165105
+      },
+      "mean_at_75pct_workload": 6.611444352100906,
+      "games": 3,
+      "sample_routes": 78,
+      "observed_route_participation": 0.7878787878787878,
+      "observed_tprr": 0.2948717948717949,
+      "observed_yprr": 2.128205128205128,
+      "adot": 10.652173913043478,
+      "projected_routes": 26.690896807199383,
+      "projected_targets": 6.648958044727789,
+      "projected_receptions": 4.47733580706338,
+      "projected_receiving_yards": 49.06433277135613,
+      "projected_total_tds": 0.2061374370223177,
+      "shrunk_route_participation": 0.7468158413672217,
+      "shrunk_yprr": 1.838242196422636,
+      "mean": 8.815259136134543,
+      "components": {
+        "receptions": 2.23866790353169,
+        "receiving_yards": 4.906433277135613,
+        "rushing_yards": 0.43333333333333335,
+        "total_tds": 1.2368246221339063
+      },
+      "sd": 5.21928183125217,
+      "p20": 4.396567352252221,
+      "p80": 12.985504035048404,
+      "simulation_mean": 8.92949920946831,
+      "rank": 29,
+      "scenario_ranks": {
+        "prior_0.5": 28,
+        "prior_2.0": 31,
+        "td_0.85": 29,
+        "td_1.0": 29,
+        "role_0.0": 27,
+        "role_1.0": 30
+      },
+      "rank_sensitivity": [
+        27,
+        31
+      ]
+    },
+    {
+      "player": "Ryan Flournoy",
+      "player_id": "ryan-flournoy-17974",
+      "team": "DAL",
+      "opponent": "PHI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 8.483625929461308,
+        "prior_2.0": 8.834664912242538,
+        "td_0.85": 8.557422858889586,
+        "td_1.0": 8.791754592683967,
+        "role_0.0": 8.036077452772266,
+        "role_1.0": 9.033483389807676
+      },
+      "mean_at_75pct_workload": 6.475890761245134,
+      "games": 4,
+      "sample_routes": 146,
+      "observed_route_participation": 0.7604166666666666,
+      "observed_tprr": 0.1780821917808219,
+      "observed_yprr": 1.2945205479452055,
+      "adot": 8.076923076923077,
+      "projected_routes": 37.36788935829511,
+      "projected_targets": 6.809390395672561,
+      "projected_receptions": 4.448804461414433,
+      "projected_receiving_yards": 51.544545835913986,
+      "projected_total_tds": 0.2092773667824829,
+      "shrunk_route_participation": 0.8338592875247193,
+      "shrunk_yprr": 1.3793807121854975,
+      "mean": 8.634521014993513,
+      "components": {
+        "receptions": 2.2244022307072164,
+        "receiving_yards": 5.154454583591399,
+        "rushing_yards": 0.0,
+        "total_tds": 1.2556642006948975
+      },
+      "sd": 5.217688488346179,
+      "p20": 4.164803438216451,
+      "p80": 12.8405726040527,
+      "simulation_mean": 8.706871118399532,
+      "rank": 30,
+      "scenario_ranks": {
+        "prior_0.5": 31,
+        "prior_2.0": 29,
+        "td_0.85": 30,
+        "td_1.0": 30,
+        "role_0.0": 31,
+        "role_1.0": 28
+      },
+      "rank_sensitivity": [
+        28,
+        31
+      ]
+    },
+    {
+      "player": "Denzel Boston",
+      "player_id": "denzel-boston-19298",
+      "team": "CLE",
+      "opponent": "TEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 8.009221332234253,
+        "prior_2.0": 8.799620525347638,
+        "td_0.85": 8.250276540270699,
+        "td_1.0": 8.651944730682198,
+        "role_0.0": 8.368030034333882,
+        "role_1.0": 8.389981303549483
+      },
+      "mean_at_75pct_workload": 6.285900596897433,
+      "games": 4,
+      "sample_routes": 140,
+      "observed_route_participation": 0.8860759493670886,
+      "observed_tprr": 0.16428571428571428,
+      "observed_yprr": 1.3642857142857143,
+      "adot": 17.08695652173913,
+      "projected_routes": 33.714742255939825,
+      "projected_targets": 5.96916500810791,
+      "projected_receptions": 2.9088019301668444,
+      "projected_receiving_yards": 49.20453408275491,
+      "projected_total_tds": 0.33439107041738836,
+      "shrunk_route_participation": 0.8577876645313741,
+      "shrunk_yprr": 1.4594367564558828,
+      "mean": 8.381200795863244,
+      "components": {
+        "receptions": 1.4544009650834222,
+        "receiving_yards": 4.920453408275492,
+        "rushing_yards": 0.0,
+        "total_tds": 2.00634642250433
+      },
+      "sd": 5.810689262521988,
+      "p20": 3.2319386410872286,
+      "p80": 12.963527250437767,
+      "simulation_mean": 8.364835102340063,
+      "rank": 31,
+      "scenario_ranks": {
+        "prior_0.5": 34,
+        "prior_2.0": 30,
+        "td_0.85": 32,
+        "td_1.0": 31,
+        "role_0.0": 30,
+        "role_1.0": 34
+      },
+      "rank_sensitivity": [
+        30,
+        34
+      ]
+    },
+    {
+      "player": "Wan'Dale Robinson",
+      "player_id": "wandale-robinson-15838",
+      "team": "TEN",
+      "opponent": "CLE",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "model: implied team points \u00d7 assumed TD fractions \u00d7 target share",
+      "scenarios": {
+        "prior_0.5": 8.2953272579753,
+        "prior_2.0": 8.161325773095788,
+        "td_0.85": 8.253553158490977,
+        "td_1.0": 8.253553158490977,
+        "role_0.0": 7.916246557858866,
+        "role_1.0": 8.478424225579051
+      },
+      "mean_at_75pct_workload": 6.190164868868233,
+      "games": 4,
+      "sample_routes": 105,
+      "observed_route_participation": 0.7777777777777778,
+      "observed_tprr": 0.2857142857142857,
+      "observed_yprr": 1.438095238095238,
+      "adot": 6.433333333333334,
+      "projected_routes": 28.30867961264014,
+      "projected_targets": 7.109359988032019,
+      "projected_receptions": 4.689728239402355,
+      "projected_receiving_yards": 40.66278324504084,
+      "projected_total_tds": 0.3046875,
+      "shrunk_route_participation": 0.8037236406147018,
+      "shrunk_yprr": 1.4364069183532129,
+      "mean": 8.253553158490977,
+      "components": {
+        "receptions": 2.3448641197011777,
+        "receiving_yards": 4.0662783245040846,
+        "rushing_yards": 0.014285714285714285,
+        "total_tds": 1.828125
+      },
+      "sd": 4.9322738445023715,
+      "p20": 3.9061599596372014,
+      "p80": 12.130839383373509,
+      "simulation_mean": 8.258473125923075,
+      "rank": 32,
+      "scenario_ranks": {
+        "prior_0.5": 33,
+        "prior_2.0": 34,
+        "td_0.85": 31,
+        "td_1.0": 34,
+        "role_0.0": 33,
+        "role_1.0": 32
+      },
+      "rank_sensitivity": [
+        31,
+        34
+      ]
+    },
+    {
+      "player": "Jahan Dotson",
+      "player_id": "jahan-dotson-15850",
+      "team": "ATL",
+      "opponent": "SF",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 8.402861724193802,
+        "prior_2.0": 8.011476944074806,
+        "td_0.85": 8.102942235734208,
+        "td_1.0": 8.322056910977153,
+        "role_0.0": 7.538292458314512,
+        "role_1.0": 8.59963003440223
+      },
+      "mean_at_75pct_workload": 6.131321252975357,
+      "games": 4,
+      "sample_routes": 90,
+      "observed_route_participation": 0.72,
+      "observed_tprr": 0.16666666666666666,
+      "observed_yprr": 2.2888888888888888,
+      "adot": 18.533333333333335,
+      "projected_routes": 28.497632902828244,
+      "projected_targets": 5.058505468540734,
+      "projected_receptions": 2.796535280180353,
+      "projected_receiving_yards": 55.947238835450285,
+      "projected_total_tds": 0.19701724672198967,
+      "shrunk_route_participation": 0.8062777209143637,
+      "shrunk_yprr": 1.963224069389209,
+      "mean": 8.175095003967144,
+      "components": {
+        "receptions": 1.3982676400901766,
+        "receiving_yards": 5.594723883545029,
+        "rushing_yards": 0.0,
+        "total_tds": 1.182103480331938
+      },
+      "sd": 5.946374752613717,
+      "p20": 2.977628131161121,
+      "p80": 12.852547413220405,
+      "simulation_mean": 8.20529021417699,
+      "rank": 33,
+      "scenario_ranks": {
+        "prior_0.5": 32,
+        "prior_2.0": 37,
+        "td_0.85": 33,
+        "td_1.0": 32,
+        "role_0.0": 38,
+        "role_1.0": 31
+      },
+      "rank_sensitivity": [
+        31,
+        38
+      ]
+    },
+    {
+      "player": "Jaylin Noel",
+      "player_id": "jaylin-noel-18555",
+      "team": "HOU",
+      "opponent": "NYG",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 9.034045589337442,
+        "prior_2.0": 7.444649263562861,
+        "td_0.85": 8.095253113079066,
+        "td_1.0": 8.304988392273,
+        "role_0.0": 7.703259252556145,
+        "role_1.0": 8.471749590033646
+      },
+      "mean_at_75pct_workload": 6.123265091281983,
+      "games": 4,
+      "sample_routes": 70,
+      "observed_route_participation": 0.5035971223021583,
+      "observed_tprr": 0.2,
+      "observed_yprr": 3.5714285714285716,
+      "adot": 12.5,
+      "projected_routes": 21.324420521547776,
+      "projected_targets": 4.32285604163037,
+      "projected_receptions": 3.0807400550561117,
+      "projected_receiving_yards": 53.019929115342904,
+      "projected_total_tds": 0.18937937171100216,
+      "shrunk_route_participation": 0.5819419108609871,
+      "shrunk_yprr": 2.4863479437468246,
+      "mean": 8.164353455042646,
+      "components": {
+        "receptions": 1.5403700275280559,
+        "receiving_yards": 5.301992911534291,
+        "rushing_yards": 0.18571428571428572,
+        "total_tds": 1.136276230266013
+      },
+      "sd": 5.583628569735378,
+      "p20": 3.2444870124117653,
+      "p80": 12.61846782556197,
+      "simulation_mean": 8.187807787971531,
+      "rank": 34,
+      "scenario_ranks": {
+        "prior_0.5": 30,
+        "prior_2.0": 40,
+        "td_0.85": 34,
+        "td_1.0": 33,
+        "role_0.0": 36,
+        "role_1.0": 33
+      },
+      "rank_sensitivity": [
+        30,
+        40
+      ]
+    },
+    {
+      "player": "Devaughn Vele",
+      "player_id": "devaughn-vele-17975",
+      "team": "NO",
+      "opponent": "PIT",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 7.783619079858309,
+        "prior_2.0": 8.250503092462237,
+        "td_0.85": 7.911351758270523,
+        "td_1.0": 8.210596853872485,
+        "role_0.0": 7.987690318423139,
+        "role_1.0": 8.023958348188783
+      },
+      "mean_at_75pct_workload": 6.007088352211894,
+      "games": 4,
+      "sample_routes": 140,
+      "observed_route_participation": 0.9032258064516129,
+      "observed_tprr": 0.19285714285714287,
+      "observed_yprr": 1.15,
+      "adot": 11.851851851851851,
+      "projected_routes": 32.791388740468335,
+      "projected_targets": 6.56177005756457,
+      "projected_receptions": 4.039195509337891,
+      "projected_receiving_yards": 44.308384729287845,
+      "projected_total_tds": 0.25983581811413237,
+      "shrunk_route_participation": 0.8671205100120762,
+      "shrunk_yprr": 1.351220135260884,
+      "mean": 8.009451136282525,
+      "components": {
+        "receptions": 2.0195977546689456,
+        "receiving_yards": 4.430838472928785,
+        "rushing_yards": 0.0,
+        "total_tds": 1.5590149086847942
+      },
+      "sd": 5.048710726803888,
+      "p20": 3.5498369333349973,
+      "p80": 11.977224782804843,
+      "simulation_mean": 8.02055157638668,
+      "rank": 35,
+      "scenario_ranks": {
+        "prior_0.5": 35,
+        "prior_2.0": 32,
+        "td_0.85": 35,
+        "td_1.0": 35,
+        "role_0.0": 32,
+        "role_1.0": 35
+      },
+      "rank_sensitivity": [
+        32,
+        35
+      ]
+    },
+    {
+      "player": "Josh Downs",
+      "player_id": "josh-downs-16689",
+      "team": "IND",
+      "opponent": "MIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 7.555584486820951,
+        "prior_2.0": 8.180609965179826,
+        "td_0.85": 7.775946581983802,
+        "td_1.0": 8.014388553880886,
+        "role_0.0": 7.890077674506296,
+        "role_1.0": 7.830580002642334
+      },
+      "mean_at_75pct_workload": 5.890784303540938,
+      "games": 4,
+      "sample_routes": 146,
+      "observed_route_participation": 0.8439306358381503,
+      "observed_tprr": 0.19863013698630136,
+      "observed_yprr": 1.2328767123287672,
+      "adot": 11.724137931034482,
+      "projected_routes": 34.42533401857546,
+      "projected_targets": 6.665941119371535,
+      "projected_receptions": 3.8540023868049733,
+      "projected_receiving_yards": 45.52009226083395,
+      "projected_total_tds": 0.21256144198367283,
+      "shrunk_route_participation": 0.8177835828820219,
+      "shrunk_yprr": 1.3222846940648971,
+      "mean": 7.8543790713879185,
+      "components": {
+        "receptions": 1.9270011934024867,
+        "receiving_yards": 4.552009226083395,
+        "rushing_yards": 0.1,
+        "total_tds": 1.275368651902037
+      },
+      "sd": 5.032021438202814,
+      "p20": 3.439312538618611,
+      "p80": 11.840915418603966,
+      "simulation_mean": 7.890446399903797,
+      "rank": 36,
+      "scenario_ranks": {
+        "prior_0.5": 37,
+        "prior_2.0": 33,
+        "td_0.85": 36,
+        "td_1.0": 38,
+        "role_0.0": 34,
+        "role_1.0": 38
+      },
+      "rank_sensitivity": [
+        33,
+        38
+      ]
+    },
+    {
+      "player": "Chris Godwin",
+      "player_id": "chris-godwin-11718",
+      "team": "TB",
+      "opponent": "CAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 7.56076885670792,
+        "prior_2.0": 8.092099510984301,
+        "td_0.85": 7.681678155405086,
+        "td_1.0": 8.05041964439471,
+        "role_0.0": 7.578923441993395,
+        "role_1.0": 7.950870154694881
+      },
+      "mean_at_75pct_workload": 5.851568602210715,
+      "games": 4,
+      "sample_routes": 132,
+      "observed_route_participation": 0.8098159509202454,
+      "observed_tprr": 0.16666666666666666,
+      "observed_yprr": 0.9848484848484849,
+      "adot": 4.2727272727272725,
+      "projected_routes": 33.57540180212957,
+      "projected_targets": 6.032424808375736,
+      "projected_receptions": 4.21505974195328,
+      "projected_receiving_yards": 37.852651337087494,
+      "projected_total_tds": 0.31107322034529233,
+      "shrunk_route_participation": 0.8306836454172934,
+      "shrunk_yprr": 1.1273923558730616,
+      "mean": 7.802091469614287,
+      "components": {
+        "receptions": 2.10752987097664,
+        "receiving_yards": 3.7852651337087497,
+        "rushing_yards": 0.04285714285714286,
+        "total_tds": 1.866439322071754
+      },
+      "sd": 4.830156679238596,
+      "p20": 3.4611006705023564,
+      "p80": 11.63744598639086,
+      "simulation_mean": 7.732101389020749,
+      "rank": 37,
+      "scenario_ranks": {
+        "prior_0.5": 36,
+        "prior_2.0": 36,
+        "td_0.85": 37,
+        "td_1.0": 37,
+        "role_0.0": 37,
+        "role_1.0": 37
+      },
+      "rank_sensitivity": [
+        36,
+        37
+      ]
+    },
+    {
+      "player": "Jaylen Waddle",
+      "player_id": "jaylen-waddle-15404",
+      "team": "DEN",
+      "opponent": "ARI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 7.418376319359878,
+        "prior_2.0": 8.099748088528159,
+        "td_0.85": 7.625228968390917,
+        "td_1.0": 8.081144410258448,
+        "role_0.0": 7.72278146237227,
+        "role_1.0": 7.807120098307063
+      },
+      "mean_at_75pct_workload": 5.830038482949858,
+      "games": 4,
+      "sample_routes": 108,
+      "observed_route_participation": 0.7883211678832117,
+      "observed_tprr": 0.23148148148148148,
+      "observed_yprr": 0.8148148148148148,
+      "adot": 7.48,
+      "projected_routes": 27.444499690684545,
+      "projected_targets": 6.151655155733581,
+      "projected_receptions": 3.6252994239670824,
+      "projected_receiving_yards": 34.027821647832766,
+      "projected_total_tds": 0.37156355643248307,
+      "shrunk_route_participation": 0.7697615519331806,
+      "shrunk_yprr": 1.2398776451145432,
+      "mean": 7.773384643933145,
+      "components": {
+        "receptions": 1.8126497119835412,
+        "receiving_yards": 3.402782164783277,
+        "rushing_yards": 0.32857142857142857,
+        "total_tds": 2.2293813385948984
+      },
+      "sd": 4.979771182460115,
+      "p20": 3.331812331152045,
+      "p80": 11.58438061070293,
+      "simulation_mean": 7.719749480478968,
+      "rank": 38,
+      "scenario_ranks": {
+        "prior_0.5": 38,
+        "prior_2.0": 35,
+        "td_0.85": 38,
+        "td_1.0": 36,
+        "role_0.0": 35,
+        "role_1.0": 39
+      },
+      "rank_sensitivity": [
+        35,
+        39
+      ]
+    },
+    {
+      "player": "KC Concepcion",
+      "player_id": "kc-concepcion-19242",
+      "team": "CLE",
+      "opponent": "TEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 7.19693399808168,
+        "prior_2.0": 7.628843648907713,
+        "td_0.85": 7.328411700664618,
+        "td_1.0": 7.618063087260727,
+        "role_0.0": 6.586842493360325,
+        "role_1.0": 7.981133221515304
+      },
+      "mean_at_75pct_workload": 5.567562697689985,
+      "games": 4,
+      "sample_routes": 110,
+      "observed_route_participation": 0.6962025316455697,
+      "observed_tprr": 0.21818181818181817,
+      "observed_yprr": 1.0454545454545454,
+      "adot": 6.166666666666667,
+      "projected_routes": 30.83619525918385,
+      "projected_targets": 6.375888247713483,
+      "projected_receptions": 4.023478312541851,
+      "projected_receiving_yards": 38.67898237294145,
+      "projected_total_tds": 0.25253468468613544,
+      "shrunk_route_participation": 0.7845502039912127,
+      "shrunk_yprr": 1.2543370557825808,
+      "mean": 7.423416930253312,
+      "components": {
+        "receptions": 2.0117391562709255,
+        "receiving_yards": 3.867898237294145,
+        "rushing_yards": 0.02857142857142857,
+        "total_tds": 1.5152081081168127
+      },
+      "sd": 4.7757847301578975,
+      "p20": 3.292474321354167,
+      "p80": 11.182445955430802,
+      "simulation_mean": 7.480129638164556,
+      "rank": 39,
+      "scenario_ranks": {
+        "prior_0.5": 39,
+        "prior_2.0": 39,
+        "td_0.85": 39,
+        "td_1.0": 39,
+        "role_0.0": 47,
+        "role_1.0": 36
+      },
+      "rank_sensitivity": [
+        36,
+        47
+      ]
+    },
+    {
+      "player": "Makai Lemon",
+      "player_id": "makai-lemon-19231",
+      "team": "PHI",
+      "opponent": "DAL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.98975848762519,
+        "prior_2.0": 7.7679816908262,
+        "td_0.85": 7.246367910180108,
+        "td_1.0": 7.583082091056361,
+        "role_0.0": 7.1507687941153275,
+        "role_1.0": 7.493686935121934
+      },
+      "mean_at_75pct_workload": 5.517389759039467,
+      "games": 4,
+      "sample_routes": 130,
+      "observed_route_participation": 0.8441558441558441,
+      "observed_tprr": 0.17692307692307693,
+      "observed_yprr": 0.9076923076923077,
+      "adot": 6.217391304347826,
+      "projected_routes": 33.99735041127078,
+      "projected_targets": 6.206181291509763,
+      "projected_receptions": 4.053163107098126,
+      "projected_receiving_yards": 36.03062860528234,
+      "projected_total_tds": 0.2878125441069989,
+      "shrunk_route_participation": 0.8572962364350034,
+      "shrunk_yprr": 1.0598069605252969,
+      "mean": 7.356519678719291,
+      "components": {
+        "receptions": 2.026581553549063,
+        "receiving_yards": 3.603062860528234,
+        "rushing_yards": 0.0,
+        "total_tds": 1.7268752646419934
+      },
+      "sd": 4.770433484468485,
+      "p20": 3.1620603011351514,
+      "p80": 11.211383732407313,
+      "simulation_mean": 7.404078489577588,
+      "rank": 40,
+      "scenario_ranks": {
+        "prior_0.5": 40,
+        "prior_2.0": 38,
+        "td_0.85": 40,
+        "td_1.0": 40,
+        "role_0.0": 40,
+        "role_1.0": 40
+      },
+      "rank_sensitivity": [
+        38,
+        40
+      ]
+    },
+    {
+      "player": "Cooper Kupp",
+      "player_id": "cooper-kupp-11863",
+      "team": "SEA",
+      "opponent": "KC",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.443332356604991,
+        "prior_2.0": 7.315323015993589,
+        "td_0.85": 6.779068288063536,
+        "td_1.0": 6.990477868780074,
+        "role_0.0": 6.6583157852551516,
+        "role_1.0": 6.975645726415933
+      },
+      "mean_at_75pct_workload": 5.136535312463716,
+      "games": 4,
+      "sample_routes": 131,
+      "observed_route_participation": 0.7891566265060241,
+      "observed_tprr": 0.15267175572519084,
+      "observed_yprr": 0.9465648854961832,
+      "adot": 8.35,
+      "projected_routes": 33.6560017010489,
+      "projected_targets": 5.8241227298888525,
+      "projected_receptions": 3.552983122678225,
+      "projected_receiving_yards": 39.27737862321531,
+      "projected_total_tds": 0.1907473877151628,
+      "shrunk_route_participation": 0.8150217562175397,
+      "shrunk_yprr": 1.16702450196249,
+      "mean": 6.848713749951621,
+      "components": {
+        "receptions": 1.7764915613391126,
+        "receiving_yards": 3.9277378623215315,
+        "rushing_yards": 0.0,
+        "total_tds": 1.1444843262909767
+      },
+      "sd": 4.668939486486862,
+      "p20": 2.8603799299312245,
+      "p80": 10.494889511043535,
+      "simulation_mean": 6.931672223129112,
+      "rank": 41,
+      "scenario_ranks": {
+        "prior_0.5": 45,
+        "prior_2.0": 42,
+        "td_0.85": 41,
+        "td_1.0": 42,
+        "role_0.0": 45,
+        "role_1.0": 41
+      },
+      "rank_sensitivity": [
+        41,
+        45
+      ]
+    },
+    {
+      "player": "Dontayvion Wicks",
+      "player_id": "dontayvion-wicks-16658",
+      "team": "PHI",
+      "opponent": "DAL",
+      "availability": "conditional",
+      "injury": {
+        "injury": "",
+        "practice": "Did Not Participate In Practice",
+        "designation": ""
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.551570526650721,
+        "prior_2.0": 7.112613500879753,
+        "td_0.85": 6.713400391445816,
+        "td_1.0": 7.054267179378613,
+        "role_0.0": 7.469321405689733,
+        "role_1.0": 6.395260322293569
+      },
+      "mean_at_75pct_workload": 5.118663566739027,
+      "games": 4,
+      "sample_routes": 118,
+      "observed_route_participation": 0.7662337662337663,
+      "observed_tprr": 0.1864406779661017,
+      "observed_yprr": 1.1610169491525424,
+      "adot": 12.318181818181818,
+      "projected_routes": 25.686978541660533,
+      "projected_targets": 4.894034556313227,
+      "projected_receptions": 2.7140030300444935,
+      "projected_receiving_yards": 37.22712888414824,
+      "projected_total_tds": 0.2908617253691606,
+      "shrunk_route_participation": 0.6477372431309166,
+      "shrunk_yprr": 1.4492607148704264,
+      "mean": 6.824884755652035,
+      "components": {
+        "receptions": 1.3570015150222468,
+        "receiving_yards": 3.7227128884148244,
+        "rushing_yards": 0.0,
+        "total_tds": 1.7451703522149637
+      },
+      "sd": 4.97042131666444,
+      "p20": 2.3541901813854462,
+      "p80": 10.651682626363346,
+      "simulation_mean": 6.7342763766161,
+      "rank": 42,
+      "scenario_ranks": {
+        "prior_0.5": 41,
+        "prior_2.0": 43,
+        "td_0.85": 42,
+        "td_1.0": 41,
+        "role_0.0": 39,
+        "role_1.0": 46
+      },
+      "rank_sensitivity": [
+        39,
+        46
+      ]
+    },
+    {
+      "player": "Courtland Sutton",
+      "player_id": "courtland-sutton-12586",
+      "team": "DEN",
+      "opponent": "ARI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.146941680887914,
+        "prior_2.0": 7.3238688502936045,
+        "td_0.85": 6.60956139343642,
+        "td_1.0": 6.968495646339201,
+        "role_0.0": 6.614922102879326,
+        "role_1.0": 6.801445971535198
+      },
+      "mean_at_75pct_workload": 5.045127318054638,
+      "games": 4,
+      "sample_routes": 114,
+      "observed_route_participation": 0.8321167883211679,
+      "observed_tprr": 0.16666666666666666,
+      "observed_yprr": 0.7631578947368421,
+      "adot": 13.0,
+      "projected_routes": 29.154971839472704,
+      "projected_targets": 5.080869536833707,
+      "projected_receptions": 2.6135964803023772,
+      "projected_receiving_yards": 35.95963339698392,
+      "projected_total_tds": 0.30401247403721154,
+      "shrunk_route_participation": 0.8177367641115453,
+      "shrunk_yprr": 1.2333962658231223,
+      "mean": 6.72683642407285,
+      "components": {
+        "receptions": 1.3067982401511886,
+        "receiving_yards": 3.595963339698392,
+        "rushing_yards": 0.0,
+        "total_tds": 1.8240748442232693
+      },
+      "sd": 4.940916055869418,
+      "p20": 2.209072259555459,
+      "p80": 10.519219451929388,
+      "simulation_mean": 6.648979699694139,
+      "rank": 43,
+      "scenario_ranks": {
+        "prior_0.5": 47,
+        "prior_2.0": 41,
+        "td_0.85": 43,
+        "td_1.0": 43,
+        "role_0.0": 46,
+        "role_1.0": 42
+      },
+      "rank_sensitivity": [
+        41,
+        47
+      ]
+    },
+    {
+      "player": "Rashid Shaheed",
+      "player_id": "rashid-shaheed-16560",
+      "team": "SEA",
+      "opponent": "KC",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.550781921092941,
+        "prior_2.0": 6.715669395106205,
+        "td_0.85": 6.570345249180048,
+        "td_1.0": 6.782158273463008,
+        "role_0.0": 6.845901455483515,
+        "role_1.0": 6.502935778156871
+      },
+      "mean_at_75pct_workload": 4.980091536815646,
+      "games": 4,
+      "sample_routes": 90,
+      "observed_route_participation": 0.5421686746987951,
+      "observed_tprr": 0.2,
+      "observed_yprr": 1.3666666666666667,
+      "adot": 13.055555555555555,
+      "projected_routes": 22.098851465608508,
+      "projected_targets": 4.618950567570049,
+      "projected_receptions": 2.5819858303042484,
+      "projected_receiving_yards": 37.02668762908353,
+      "projected_total_tds": 0.19107672850450827,
+      "shrunk_route_participation": 0.5351510524593739,
+      "shrunk_yprr": 1.6755028055058234,
+      "mean": 6.640122049087527,
+      "components": {
+        "receptions": 1.2909929151521242,
+        "receiving_yards": 3.7026687629083535,
+        "rushing_yards": 0.5,
+        "total_tds": 1.1464603710270496
+      },
+      "sd": 4.678876482042555,
+      "p20": 2.5496346260249547,
+      "p80": 10.207949659775117,
+      "simulation_mean": 6.680029304807282,
+      "rank": 44,
+      "scenario_ranks": {
+        "prior_0.5": 42,
+        "prior_2.0": 45,
+        "td_0.85": 44,
+        "td_1.0": 44,
+        "role_0.0": 42,
+        "role_1.0": 44
+      },
+      "rank_sensitivity": [
+        42,
+        45
+      ]
+    },
+    {
+      "player": "Kendrick Bourne",
+      "player_id": "kendrick-bourne-11847",
+      "team": "ARI",
+      "opponent": "DEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.524187494642163,
+        "prior_2.0": 6.661174696770135,
+        "td_0.85": 6.509549261959059,
+        "td_1.0": 6.759041479122495,
+        "role_0.0": 6.835229386630569,
+        "role_1.0": 6.429123749305012
+      },
+      "mean_at_75pct_workload": 4.9436745031764255,
+      "games": 4,
+      "sample_routes": 122,
+      "observed_route_participation": 0.6703296703296703,
+      "observed_tprr": 0.1557377049180328,
+      "observed_yprr": 1.139344262295082,
+      "adot": 5.684210526315789,
+      "projected_routes": 26.367065616874196,
+      "projected_targets": 5.068613832554618,
+      "projected_receptions": 3.3922653852207705,
+      "projected_receiving_yards": 35.67431735211028,
+      "projected_total_tds": 0.22133359606897024,
+      "shrunk_route_participation": 0.6259487560341626,
+      "shrunk_yprr": 1.3529877715812142,
+      "mean": 6.591566004235235,
+      "components": {
+        "receptions": 1.6961326926103852,
+        "receiving_yards": 3.567431735211028,
+        "rushing_yards": 0.0,
+        "total_tds": 1.3280015764138215
+      },
+      "sd": 4.5089543500930525,
+      "p20": 2.6797138802826526,
+      "p80": 10.111334560583,
+      "simulation_mean": 6.596713685203643,
+      "rank": 45,
+      "scenario_ranks": {
+        "prior_0.5": 43,
+        "prior_2.0": 46,
+        "td_0.85": 45,
+        "td_1.0": 45,
+        "role_0.0": 43,
+        "role_1.0": 45
+      },
+      "rank_sensitivity": [
+        43,
+        46
+      ]
+    },
+    {
+      "player": "Ja'Kobi Lane",
+      "player_id": "jakobi-lane-19230",
+      "team": "BAL",
+      "opponent": "CIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.474173958658405,
+        "prior_2.0": 6.206399884569514,
+        "td_0.85": 6.242627519480603,
+        "td_1.0": 6.465358326638066,
+        "role_0.0": 6.315956260430975,
+        "role_1.0": 6.315956260430975
+      },
+      "mean_at_75pct_workload": 4.73696719532323,
+      "games": 1,
+      "sample_routes": 22,
+      "observed_route_participation": 0.5789473684210527,
+      "observed_tprr": 0.22727272727272727,
+      "observed_yprr": 1.8181818181818181,
+      "adot": 10.4,
+      "projected_routes": 22.04132424240487,
+      "projected_targets": 4.6418592756639105,
+      "projected_receptions": 3.12305577010412,
+      "projected_receiving_yards": 35.54756365277564,
+      "projected_total_tds": 0.19994533501689185,
+      "shrunk_route_participation": 0.603448275862069,
+      "shrunk_yprr": 1.6127689635083893,
+      "mean": 6.315956260430975,
+      "components": {
+        "receptions": 1.56152788505206,
+        "receiving_yards": 3.554756365277564,
+        "rushing_yards": 0.0,
+        "total_tds": 1.1996720101013512
+      },
+      "sd": 4.58885864148357,
+      "p20": 2.3042334084706146,
+      "p80": 9.898616194907124,
+      "simulation_mean": 6.334045216975549,
+      "rank": 46,
+      "scenario_ranks": {
+        "prior_0.5": 44,
+        "prior_2.0": 52,
+        "td_0.85": 46,
+        "td_1.0": 48,
+        "role_0.0": 48,
+        "role_1.0": 49
+      },
+      "rank_sensitivity": [
+        44,
+        52
+      ]
+    },
+    {
+      "player": "Savion Williams",
+      "player_id": "savion-williams-18554",
+      "team": "GB",
+      "opponent": "DET",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.227810667702155,
+        "prior_2.0": 6.400769874044518,
+        "td_0.85": 6.231977881893327,
+        "td_1.0": 6.474738791702002,
+        "role_0.0": 6.311811791111046,
+        "role_1.0": 6.311811791111046
+      },
+      "mean_at_75pct_workload": 4.733858843333284,
+      "games": 1,
+      "sample_routes": 26,
+      "observed_route_participation": 0.5909090909090909,
+      "observed_tprr": 0.15384615384615385,
+      "observed_yprr": 1.2307692307692308,
+      "adot": 1.5,
+      "projected_routes": 24.161729240048732,
+      "projected_targets": 4.502683705328726,
+      "projected_receptions": 3.382049337951051,
+      "projected_receiving_yards": 30.997880774152865,
+      "projected_total_tds": 0.21599984078670548,
+      "shrunk_route_participation": 0.609375,
+      "shrunk_yprr": 1.2829330411820452,
+      "mean": 6.311811791111046,
+      "components": {
+        "receptions": 1.6910246689755255,
+        "receiving_yards": 3.099788077415287,
+        "rushing_yards": 0.225,
+        "total_tds": 1.295999044720233
+      },
+      "sd": 4.307605266532345,
+      "p20": 2.517540267217423,
+      "p80": 9.597331575311136,
+      "simulation_mean": 6.270400798932618,
+      "rank": 47,
+      "scenario_ranks": {
+        "prior_0.5": 46,
+        "prior_2.0": 49,
+        "td_0.85": 47,
+        "td_1.0": 47,
+        "role_0.0": 49,
+        "role_1.0": 50
+      },
+      "rank_sensitivity": [
+        46,
+        50
+      ]
+    },
+    {
+      "player": "Laquon Treadwell",
+      "player_id": "laquon-treadwell-10739",
+      "team": "IND",
+      "opponent": "MIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 5.673845523109014,
+        "prior_2.0": 6.936085305843276,
+        "td_0.85": 6.226164246931871,
+        "td_1.0": 6.3463284768344135,
+        "role_0.0": 6.094773643711971,
+        "role_1.0": 6.380071222765619
+      },
+      "mean_at_75pct_workload": 4.69946414335812,
+      "games": 4,
+      "sample_routes": 139,
+      "observed_route_participation": 0.8034682080924855,
+      "observed_tprr": 0.14388489208633093,
+      "observed_yprr": 0.841726618705036,
+      "adot": 12.45,
+      "projected_routes": 34.32790148320908,
+      "projected_targets": 5.698826053940491,
+      "projected_receptions": 2.936229179322675,
+      "projected_receiving_yards": 41.19148774855832,
+      "projected_total_tds": 0.11311480443783152,
+      "shrunk_route_participation": 0.8154690453435277,
+      "shrunk_yprr": 1.1999419122286414,
+      "mean": 6.26595219114416,
+      "components": {
+        "receptions": 1.4681145896613375,
+        "receiving_yards": 4.119148774855833,
+        "rushing_yards": 0.0,
+        "total_tds": 0.6786888266269892
+      },
+      "sd": 4.555533739832281,
+      "p20": 2.3609603502367,
+      "p80": 9.890119844056104,
+      "simulation_mean": 6.365146902673404,
+      "rank": 48,
+      "scenario_ranks": {
+        "prior_0.5": 53,
+        "prior_2.0": 44,
+        "td_0.85": 48,
+        "td_1.0": 50,
+        "role_0.0": 51,
+        "role_1.0": 47
+      },
+      "rank_sensitivity": [
+        44,
+        53
+      ]
+    },
+    {
+      "player": "Jerry Jeudy",
+      "player_id": "jerry-jeudy-14458",
+      "team": "CLE",
+      "opponent": "TEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.09948802228065,
+        "prior_2.0": 6.4942201407636,
+        "td_0.85": 6.214924279140989,
+        "td_1.0": 6.367474869335851,
+        "role_0.0": 6.101879624196746,
+        "role_1.0": 6.374321490400948
+      },
+      "mean_at_75pct_workload": 4.699008557939449,
+      "games": 4,
+      "sample_routes": 110,
+      "observed_route_participation": 0.6962025316455697,
+      "observed_tprr": 0.12727272727272726,
+      "observed_yprr": 1.1272727272727272,
+      "adot": 10.571428571428571,
+      "projected_routes": 28.766653089463656,
+      "projected_targets": 4.650123712543459,
+      "projected_receptions": 3.118779730045625,
+      "projected_receiving_yards": 38.57484954597483,
+      "projected_total_tds": 0.14141165404982856,
+      "shrunk_route_participation": 0.731895856793861,
+      "shrunk_yprr": 1.340957164047131,
+      "mean": 6.265344743919266,
+      "components": {
+        "receptions": 1.5593898650228124,
+        "receiving_yards": 3.857484954597483,
+        "rushing_yards": 0.0,
+        "total_tds": 0.8484699242989713
+      },
+      "sd": 4.503075525043145,
+      "p20": 2.3256408979232392,
+      "p80": 9.780391307675812,
+      "simulation_mean": 6.303860428800797,
+      "rank": 49,
+      "scenario_ranks": {
+        "prior_0.5": 48,
+        "prior_2.0": 47,
+        "td_0.85": 49,
+        "td_1.0": 49,
+        "role_0.0": 50,
+        "role_1.0": 48
+      },
+      "rank_sensitivity": [
+        47,
+        50
+      ]
+    },
+    {
+      "player": "Konata Mumpfield",
+      "player_id": "konata-mumpfield-17081",
+      "team": "LAR",
+      "opponent": "LV",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.006777954827703,
+        "prior_2.0": 6.431360083592028,
+        "td_0.85": 6.093888285767077,
+        "td_1.0": 6.496334479753003,
+        "role_0.0": 5.718934163060272,
+        "role_1.0": 6.562477929332676
+      },
+      "mean_at_75pct_workload": 4.668795317117786,
+      "games": 4,
+      "sample_routes": 82,
+      "observed_route_participation": 0.4019607843137255,
+      "observed_tprr": 0.17073170731707318,
+      "observed_yprr": 1.4024390243902438,
+      "adot": 13.428571428571429,
+      "projected_routes": 20.547913812241703,
+      "projected_targets": 3.8154444023257743,
+      "projected_receptions": 2.0771722528618426,
+      "projected_receiving_yards": 31.76864552578834,
+      "projected_total_tds": 0.3349349573023265,
+      "shrunk_route_participation": 0.45720528257914156,
+      "shrunk_yprr": 1.546076444357175,
+      "mean": 6.225060422823715,
+      "components": {
+        "receptions": 1.0385861264309213,
+        "receiving_yards": 3.1768645525788344,
+        "rushing_yards": 0.0,
+        "total_tds": 2.009609743813959
+      },
+      "sd": 5.002348980607231,
+      "p20": 1.6549428265605235,
+      "p80": 10.105842574180365,
+      "simulation_mean": 6.183183169699533,
+      "rank": 50,
+      "scenario_ranks": {
+        "prior_0.5": 50,
+        "prior_2.0": 48,
+        "td_0.85": 50,
+        "td_1.0": 46,
+        "role_0.0": 55,
+        "role_1.0": 43
+      },
+      "rank_sensitivity": [
+        43,
+        55
+      ]
+    },
+    {
+      "player": "Kevin Coleman",
+      "player_id": "kevin-coleman-19322",
+      "team": "MIA",
+      "opponent": "NYJ",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "model: implied team points \u00d7 assumed TD fractions \u00d7 target share",
+      "scenarios": {
+        "prior_0.5": 5.696414800417039,
+        "prior_2.0": 6.337856294086074,
+        "td_0.85": 6.092061140326163,
+        "td_1.0": 6.092061140326163,
+        "role_0.0": 5.90177437737508,
+        "role_1.0": 6.2189189822935536
+      },
+      "mean_at_75pct_workload": 4.569045855244623,
+      "games": 3,
+      "sample_routes": 56,
+      "observed_route_participation": 0.5656565656565656,
+      "observed_tprr": 0.26785714285714285,
+      "observed_yprr": 0.6428571428571429,
+      "adot": 15.666666666666666,
+      "projected_routes": 22.0539112574228,
+      "projected_targets": 5.198823080326465,
+      "projected_receptions": 2.523110180619892,
+      "projected_receiving_yards": 34.443453357305025,
+      "projected_total_tds": 0.23102678571428573,
+      "shrunk_route_participation": 0.6170721954425942,
+      "shrunk_yprr": 1.5617843454281704,
+      "mean": 6.092061140326163,
+      "components": {
+        "receptions": 1.261555090309946,
+        "receiving_yards": 3.4443453357305027,
+        "rushing_yards": 0.0,
+        "total_tds": 1.3861607142857144
+      },
+      "sd": 4.679418769028187,
+      "p20": 1.8824961456863105,
+      "p80": 9.796331780867803,
+      "simulation_mean": 6.055851787849173,
+      "rank": 51,
+      "scenario_ranks": {
+        "prior_0.5": 52,
+        "prior_2.0": 51,
+        "td_0.85": 51,
+        "td_1.0": 51,
+        "role_0.0": 52,
+        "role_1.0": 51
+      },
+      "rank_sensitivity": [
+        51,
+        52
+      ]
+    },
+    {
+      "player": "Ted Hurst",
+      "player_id": "ted-hurst-19320",
+      "team": "TB",
+      "opponent": "CAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 5.584367111142657,
+        "prior_2.0": 6.204528486440337,
+        "td_0.85": 5.787016021382557,
+        "td_1.0": 6.086591480111965,
+        "role_0.0": 5.836448587378016,
+        "role_1.0": 5.917737421608914
+      },
+      "mean_at_75pct_workload": 4.413916415937415,
+      "games": 4,
+      "sample_routes": 91,
+      "observed_route_participation": 0.558282208588957,
+      "observed_tprr": 0.13186813186813187,
+      "observed_yprr": 1.1538461538461537,
+      "adot": 14.333333333333334,
+      "projected_routes": 22.893372440320586,
+      "projected_targets": 3.8478033659248734,
+      "projected_receptions": 2.077083269246379,
+      "projected_receiving_yards": 32.86162963230249,
+      "projected_total_tds": 0.2600862150105192,
+      "shrunk_route_participation": 0.5664012656258104,
+      "shrunk_yprr": 1.4354210904473585,
+      "mean": 5.885221887916554,
+      "components": {
+        "receptions": 1.0385416346231895,
+        "receiving_yards": 3.286162963230249,
+        "rushing_yards": 0.0,
+        "total_tds": 1.5605172900631152
+      },
+      "sd": 4.877298574578893,
+      "p20": 1.6291588631297484,
+      "p80": 9.76504247169888,
+      "simulation_mean": 5.9756531038011085,
+      "rank": 52,
+      "scenario_ranks": {
+        "prior_0.5": 54,
+        "prior_2.0": 54,
+        "td_0.85": 53,
+        "td_1.0": 52,
+        "role_0.0": 53,
+        "role_1.0": 54
+      },
+      "rank_sensitivity": [
+        52,
+        54
+      ]
+    },
+    {
+      "player": "Malachi Fields",
+      "player_id": "malachi-fields-19313",
+      "team": "NYG",
+      "opponent": "HOU",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 5.373929728778485,
+        "prior_2.0": 6.383929569460666,
+        "td_0.85": 5.811513860568838,
+        "td_1.0": 5.935913617303636,
+        "role_0.0": 5.349631351530766,
+        "role_1.0": 6.18806998251071
+      },
+      "mean_at_75pct_workload": 4.38952089758905,
+      "games": 4,
+      "sample_routes": 113,
+      "observed_route_participation": 0.6569767441860465,
+      "observed_tprr": 0.13274336283185842,
+      "observed_yprr": 0.9734513274336283,
+      "adot": 9.266666666666667,
+      "projected_routes": 31.91405580849202,
+      "projected_targets": 5.143035696122855,
+      "projected_receptions": 2.9590264347845894,
+      "projected_receiving_yards": 36.71995271890572,
+      "projected_total_tds": 0.11686434013931092,
+      "shrunk_route_participation": 0.7422051722611447,
+      "shrunk_yprr": 1.1505887230144816,
+      "mean": 5.8526945301187325,
+      "components": {
+        "receptions": 1.4795132173922947,
+        "receiving_yards": 3.6719952718905726,
+        "rushing_yards": 0.0,
+        "total_tds": 0.7011860408358656
+      },
+      "sd": 4.250895261573601,
+      "p20": 2.123588362312695,
+      "p80": 9.139733595745046,
+      "simulation_mean": 5.852218743692925,
+      "rank": 53,
+      "scenario_ranks": {
+        "prior_0.5": 55,
+        "prior_2.0": 50,
+        "td_0.85": 52,
+        "td_1.0": 53,
+        "role_0.0": 59,
+        "role_1.0": 52
+      },
+      "rank_sensitivity": [
+        50,
+        59
+      ]
+    },
+    {
+      "player": "Chris Bell",
+      "player_id": "chris-bell-19309",
+      "team": "MIA",
+      "opponent": "NYJ",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 5.304761901314277,
+        "prior_2.0": 6.206311870381633,
+        "td_0.85": 5.751607697112905,
+        "td_1.0": 5.895982143630596,
+        "role_0.0": 5.737172783410257,
+        "role_1.0": 5.84079739629562
+      },
+      "mean_at_75pct_workload": 4.3495106633561065,
+      "games": 3,
+      "sample_routes": 65,
+      "observed_route_participation": 0.6565656565656566,
+      "observed_tprr": 0.18461538461538463,
+      "observed_yprr": 1.0307692307692307,
+      "adot": 17.416666666666668,
+      "projected_routes": 23.98325432886408,
+      "projected_targets": 4.489594889466537,
+      "projected_receptions": 2.179309959951693,
+      "projected_receiving_yards": 34.70270922645823,
+      "projected_total_tds": 0.13434805253107857,
+      "shrunk_route_participation": 0.6710555433829973,
+      "shrunk_yprr": 1.4469558113593108,
+      "mean": 5.799347551141475,
+      "components": {
+        "receptions": 1.0896549799758466,
+        "receiving_yards": 3.4702709226458235,
+        "rushing_yards": 0.43333333333333335,
+        "total_tds": 0.8060883151864714
+      },
+      "sd": 4.466801456170536,
+      "p20": 1.9016642224501659,
+      "p80": 9.090418343430095,
+      "simulation_mean": 5.8383360682384735,
+      "rank": 54,
+      "scenario_ranks": {
+        "prior_0.5": 56,
+        "prior_2.0": 53,
+        "td_0.85": 54,
+        "td_1.0": 55,
+        "role_0.0": 54,
+        "role_1.0": 55
+      },
+      "rank_sensitivity": [
+        53,
+        56
+      ]
+    },
+    {
+      "player": "Isaac TeSlaa",
+      "player_id": "isaac-teslaa-18642",
+      "team": "DET",
+      "opponent": "GB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 5.7993413563800384,
+        "prior_2.0": 5.790153782460471,
+        "td_0.85": 5.710324536006036,
+        "td_1.0": 5.933127889930219,
+        "role_0.0": 6.868038424070872,
+        "role_1.0": 5.060769157959823
+      },
+      "mean_at_75pct_workload": 4.337757648303182,
+      "games": 3,
+      "sample_routes": 76,
+      "observed_route_participation": 0.6229508196721312,
+      "observed_tprr": 0.17105263157894737,
+      "observed_yprr": 2.1184210526315788,
+      "adot": 15.076923076923077,
+      "projected_routes": 19.828066282384842,
+      "projected_targets": 3.721815321358996,
+      "projected_receptions": 2.002721186143991,
+      "projected_receiving_yards": 35.82292365391963,
+      "projected_total_tds": 0.2000039843233806,
+      "shrunk_route_participation": 0.5005818063983974,
+      "shrunk_yprr": 1.8066776227061807,
+      "mean": 5.783676864404242,
+      "components": {
+        "receptions": 1.0013605930719955,
+        "receiving_yards": 3.582292365391963,
+        "rushing_yards": 0.0,
+        "total_tds": 1.2000239059402835
+      },
+      "sd": 4.78012009438291,
+      "p20": 1.4144073743285812,
+      "p80": 9.474951376266354,
+      "simulation_mean": 5.724910472292293,
+      "rank": 55,
+      "scenario_ranks": {
+        "prior_0.5": 51,
+        "prior_2.0": 56,
+        "td_0.85": 55,
+        "td_1.0": 54,
+        "role_0.0": 41,
+        "role_1.0": 61
+      },
+      "rank_sensitivity": [
+        41,
+        61
+      ]
+    },
+    {
+      "player": "Xavier Hutchinson",
+      "player_id": "xavier-hutchinson-16932",
+      "team": "HOU",
+      "opponent": "NYG",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 6.047697667596785,
+        "prior_2.0": 5.254973456492667,
+        "td_0.85": 5.590658877599594,
+        "td_1.0": 5.721078250844942,
+        "role_0.0": 5.6535694422045015,
+        "role_1.0": 5.6206500075949535
+      },
+      "mean_at_75pct_workload": 4.225363336079079,
+      "games": 4,
+      "sample_routes": 58,
+      "observed_route_participation": 0.4172661870503597,
+      "observed_tprr": 0.3275862068965517,
+      "observed_yprr": 2.9655172413793105,
+      "adot": 12.421052631578947,
+      "projected_routes": 16.182897611434345,
+      "projected_targets": 4.129433109354199,
+      "projected_receptions": 2.453017238975741,
+      "projected_receiving_yards": 36.171605009627996,
+      "projected_total_tds": 0.12216763397420755,
+      "shrunk_route_participation": 0.4416301183776441,
+      "shrunk_yprr": 2.2351748047933166,
+      "mean": 5.633817781438773,
+      "components": {
+        "receptions": 1.2265086194878705,
+        "receiving_yards": 3.6171605009628,
+        "rushing_yards": 0.05714285714285714,
+        "total_tds": 0.7330058038452453
+      },
+      "sd": 4.373151744654118,
+      "p20": 1.795440585903092,
+      "p80": 9.084823606531678,
+      "simulation_mean": 5.6439216208157115,
+      "rank": 56,
+      "scenario_ranks": {
+        "prior_0.5": 49,
+        "prior_2.0": 62,
+        "td_0.85": 56,
+        "td_1.0": 56,
+        "role_0.0": 56,
+        "role_1.0": 57
+      },
+      "rank_sensitivity": [
+        49,
+        62
+      ]
+    },
+    {
+      "player": "Jalen Royals",
+      "player_id": "jalen-royals-18550",
+      "team": "KC",
+      "opponent": "SEA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.890623257837151,
+        "prior_2.0": 5.664544260216799,
+        "td_0.85": 5.2383029747123615,
+        "td_1.0": 5.443405489463769,
+        "role_0.0": 4.806393474352813,
+        "role_1.0": 5.638895090774409
+      },
+      "mean_at_75pct_workload": 3.9794208331543275,
+      "games": 3,
+      "sample_routes": 50,
+      "observed_route_participation": 0.5617977528089888,
+      "observed_tprr": 0.14,
+      "observed_yprr": 0.7,
+      "adot": 6.857142857142857,
+      "projected_routes": 24.74387347463465,
+      "projected_targets": 4.339495308270897,
+      "projected_receptions": 2.7826552050446614,
+      "projected_receiving_yards": 28.01065152995657,
+      "projected_total_tds": 0.1855836147812972,
+      "shrunk_route_participation": 0.7174597227426002,
+      "shrunk_yprr": 1.13202371321009,
+      "mean": 5.305894444205771,
+      "components": {
+        "receptions": 1.3913276025223307,
+        "receiving_yards": 2.801065152995657,
+        "rushing_yards": 0.0,
+        "total_tds": 1.113501688687783
+      },
+      "sd": 4.087279369328384,
+      "p20": 1.7963566011803807,
+      "p80": 8.430573333685402,
+      "simulation_mean": 5.299572130868791,
+      "rank": 57,
+      "scenario_ranks": {
+        "prior_0.5": 60,
+        "prior_2.0": 58,
+        "td_0.85": 57,
+        "td_1.0": 57,
+        "role_0.0": 63,
+        "role_1.0": 56
+      },
+      "rank_sensitivity": [
+        56,
+        63
+      ]
+    },
+    {
+      "player": "Dohnte Meyers",
+      "player_id": "dohnte-meyers-19247",
+      "team": "CIN",
+      "opponent": "BAL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 5.277085306542806,
+        "prior_2.0": 5.268836148811428,
+        "td_0.85": 5.192462235127289,
+        "td_1.0": 5.415265589051473,
+        "role_0.0": 6.674725106552299,
+        "role_1.0": 4.326540868174293
+      },
+      "mean_at_75pct_workload": 3.9493609226441224,
+      "games": 3,
+      "sample_routes": 87,
+      "observed_route_participation": 0.6641221374045801,
+      "observed_tprr": 0.1839080459770115,
+      "observed_yprr": 1.4137931034482758,
+      "adot": 5.75,
+      "projected_routes": 19.68452526848608,
+      "projected_targets": 3.7889650140513167,
+      "projected_receptions": 2.740774897236582,
+      "projected_receiving_yards": 26.954032089669216,
+      "projected_total_tds": 0.2000039843233806,
+      "shrunk_route_participation": 0.4808377622377623,
+      "shrunk_yprr": 1.3693005913036291,
+      "mean": 5.265814563525496,
+      "components": {
+        "receptions": 1.370387448618291,
+        "receiving_yards": 2.6954032089669218,
+        "rushing_yards": 0.0,
+        "total_tds": 1.2000239059402835
+      },
+      "sd": 4.024996710736919,
+      "p20": 1.7719249887146662,
+      "p80": 8.403826778382086,
+      "simulation_mean": 5.275272713699743,
+      "rank": 58,
+      "scenario_ranks": {
+        "prior_0.5": 57,
+        "prior_2.0": 61,
+        "td_0.85": 58,
+        "td_1.0": 58,
+        "role_0.0": 44,
+        "role_1.0": 67
+      },
+      "rank_sensitivity": [
+        44,
+        67
+      ]
+    },
+    {
+      "player": "Darius Cooper",
+      "player_id": "darius-cooper-18958",
+      "team": "PHI",
+      "opponent": "DAL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.968467003311085,
+        "prior_2.0": 5.53258732353179,
+        "td_0.85": 5.168802522785225,
+        "td_1.0": 5.359330089926901,
+        "role_0.0": 5.492631311176543,
+        "role_1.0": 5.057648902753474
+      },
+      "mean_at_75pct_workload": 3.923731399592027,
+      "games": 4,
+      "sample_routes": 87,
+      "observed_route_participation": 0.564935064935065,
+      "observed_tprr": 0.13793103448275862,
+      "observed_yprr": 1.2988505747126438,
+      "adot": 14.083333333333334,
+      "projected_routes": 22.32038976118572,
+      "projected_targets": 3.546089456727648,
+      "projected_receptions": 1.9189952197282403,
+      "projected_receiving_yards": 32.30902162713665,
+      "projected_total_tds": 0.17354034892415282,
+      "shrunk_route_participation": 0.5628434541676288,
+      "shrunk_yprr": 1.4475115341991374,
+      "mean": 5.231641866122702,
+      "components": {
+        "receptions": 0.9594976098641201,
+        "receiving_yards": 3.230902162713665,
+        "rushing_yards": 0.0,
+        "total_tds": 1.041242093544917
+      },
+      "sd": 4.527131236962353,
+      "p20": 1.1736400517261854,
+      "p80": 8.625322620115309,
+      "simulation_mean": 5.206865689815753,
+      "rank": 59,
+      "scenario_ranks": {
+        "prior_0.5": 58,
+        "prior_2.0": 60,
+        "td_0.85": 59,
+        "td_1.0": 59,
+        "role_0.0": 57,
+        "role_1.0": 62
+      },
+      "rank_sensitivity": [
+        57,
+        62
+      ]
+    },
+    {
+      "player": "Jordan Watkins",
+      "player_id": "jordan-watkins-18647",
+      "team": "SF",
+      "opponent": "ATL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.7240852313785275,
+        "prior_2.0": 5.715168211396232,
+        "td_0.85": 5.15034403939792,
+        "td_1.0": 5.337308816455006,
+        "role_0.0": 4.028353095503743,
+        "role_1.0": 6.001132203232293
+      },
+      "mean_at_75pct_workload": 3.9090154201056553,
+      "games": 4,
+      "sample_routes": 53,
+      "observed_route_participation": 0.4108527131782946,
+      "observed_tprr": 0.05660377358490566,
+      "observed_yprr": 1.5471698113207548,
+      "adot": 16.333333333333332,
+      "projected_routes": 24.251769997564544,
+      "projected_targets": 3.1237604265648065,
+      "projected_receptions": 1.8626609335580975,
+      "projected_receiving_yards": 32.572541075325944,
+      "projected_total_tds": 0.1705726643048717,
+      "shrunk_route_participation": 0.6884474815848709,
+      "shrunk_yprr": 1.343099537831548,
+      "mean": 5.212020560140873,
+      "components": {
+        "receptions": 0.9313304667790487,
+        "receiving_yards": 3.2572541075325945,
+        "rushing_yards": 0.0,
+        "total_tds": 1.0234359858292301
+      },
+      "sd": 4.602932345177047,
+      "p20": 1.1773582925794828,
+      "p80": 8.628435754530699,
+      "simulation_mean": 5.231778154671078,
+      "rank": 60,
+      "scenario_ranks": {
+        "prior_0.5": 61,
+        "prior_2.0": 57,
+        "td_0.85": 60,
+        "td_1.0": 60,
+        "role_0.0": 74,
+        "role_1.0": 53
+      },
+      "rank_sensitivity": [
+        53,
+        74
+      ]
+    },
+    {
+      "player": "Jalen Nailor",
+      "player_id": "jalen-nailor-16025",
+      "team": "LV",
+      "opponent": "LAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.363570522918781,
+        "prior_2.0": 5.7906011292979045,
+        "td_0.85": 5.058393098687325,
+        "td_1.0": 5.230393813065218,
+        "role_0.0": 4.458448823699648,
+        "role_1.0": 5.553001736136237
+      },
+      "mean_at_75pct_workload": 3.8363854283712016,
+      "games": 3,
+      "sample_routes": 62,
+      "observed_route_participation": 0.47692307692307695,
+      "observed_tprr": 0.11290322580645161,
+      "observed_yprr": 0.4032258064516129,
+      "adot": 12.714285714285714,
+      "projected_routes": 25.86447585973526,
+      "projected_targets": 4.178479201491208,
+      "projected_receptions": 2.065128167279186,
+      "projected_receiving_yards": 31.345909926625193,
+      "projected_total_tds": 0.1580042491432483,
+      "shrunk_route_participation": 0.630906487118994,
+      "shrunk_yprr": 1.2119290604076458,
+      "mean": 5.115180571161602,
+      "components": {
+        "receptions": 1.032564083639593,
+        "receiving_yards": 3.1345909926625195,
+        "rushing_yards": 0.0,
+        "total_tds": 0.9480254948594897
+      },
+      "sd": 4.400937338444097,
+      "p20": 1.3326341745861372,
+      "p80": 8.588273096320084,
+      "simulation_mean": 5.242901442077455,
+      "rank": 61,
+      "scenario_ranks": {
+        "prior_0.5": 66,
+        "prior_2.0": 55,
+        "td_0.85": 61,
+        "td_1.0": 61,
+        "role_0.0": 69,
+        "role_1.0": 58
+      },
+      "rank_sensitivity": [
+        55,
+        69
+      ]
+    },
+    {
+      "player": "John Metchie",
+      "player_id": "john-metchie-16069",
+      "team": "CAR",
+      "opponent": "TB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "model: implied team points \u00d7 assumed TD fractions \u00d7 target share",
+      "scenarios": {
+        "prior_0.5": 4.942691882479687,
+        "prior_2.0": 5.055140955431431,
+        "td_0.85": 5.008772661311374,
+        "td_1.0": 5.008772661311374,
+        "role_0.0": 5.328354153658085,
+        "role_1.0": 4.795718333080233
+      },
+      "mean_at_75pct_workload": 3.756579495983531,
+      "games": 3,
+      "sample_routes": 62,
+      "observed_route_participation": 0.4492753623188406,
+      "observed_tprr": 0.20967741935483872,
+      "observed_yprr": 1.2903225806451613,
+      "adot": 8.76923076923077,
+      "projected_routes": 18.126115981038936,
+      "projected_targets": 3.748814546757674,
+      "projected_receptions": 2.315514639851737,
+      "projected_receiving_yards": 27.388309202032396,
+      "projected_total_tds": 0.18536407019704434,
+      "shrunk_route_participation": 0.43079630100295224,
+      "shrunk_yprr": 1.5109860949076073,
+      "mean": 5.008772661311374,
+      "components": {
+        "receptions": 1.1577573199258686,
+        "receiving_yards": 2.73883092020324,
+        "rushing_yards": 0.0,
+        "total_tds": 1.112184421182266
+      },
+      "sd": 4.102956855357742,
+      "p20": 1.4679530193086503,
+      "p80": 8.207573476046756,
+      "simulation_mean": 5.033547041725135,
+      "rank": 62,
+      "scenario_ranks": {
+        "prior_0.5": 59,
+        "prior_2.0": 63,
+        "td_0.85": 62,
+        "td_1.0": 62,
+        "role_0.0": 60,
+        "role_1.0": 63
+      },
+      "rank_sensitivity": [
+        59,
+        63
+      ]
+    },
+    {
+      "player": "Tai Felton",
+      "player_id": "tai-felton-18553",
+      "team": "MIN",
+      "opponent": "IND",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.272582319366117,
+        "prior_2.0": 5.572280542186164,
+        "td_0.85": 4.882232491052215,
+        "td_1.0": 4.998892031277581,
+        "role_0.0": 4.644803886205111,
+        "role_1.0": 5.104909950427161
+      },
+      "mean_at_75pct_workload": 3.690650643553756,
+      "games": 3,
+      "sample_routes": 77,
+      "observed_route_participation": 0.6814159292035398,
+      "observed_tprr": 0.07792207792207792,
+      "observed_yprr": 0.5324675324675324,
+      "adot": 9.0,
+      "projected_routes": 28.247055591448998,
+      "projected_targets": 3.947356645512921,
+      "projected_receptions": 2.470389970698756,
+      "projected_receiving_yards": 30.256671681029925,
+      "projected_total_tds": 0.1100008952143285,
+      "shrunk_route_participation": 0.7325973248672843,
+      "shrunk_yprr": 1.0711442678715613,
+      "mean": 4.920867524738342,
+      "components": {
+        "receptions": 1.235194985349378,
+        "receiving_yards": 3.0256671681029927,
+        "rushing_yards": 0.0,
+        "total_tds": 0.660005371285971
+      },
+      "sd": 3.8950490836441807,
+      "p20": 1.4652943537033762,
+      "p80": 7.9562869793438225,
+      "simulation_mean": 4.896461985910367,
+      "rank": 63,
+      "scenario_ranks": {
+        "prior_0.5": 67,
+        "prior_2.0": 59,
+        "td_0.85": 63,
+        "td_1.0": 63,
+        "role_0.0": 67,
+        "role_1.0": 60
+      },
+      "rank_sensitivity": [
+        59,
+        67
+      ]
+    },
+    {
+      "player": "Jalen Brooks",
+      "player_id": "jalen-brooks-17185",
+      "team": "ARI",
+      "opponent": "DEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.415542791070802,
+        "prior_2.0": 4.986287635308807,
+        "td_0.85": 4.695351326794113,
+        "td_1.0": 4.81830732351795,
+        "role_0.0": 3.9584960071413766,
+        "role_1.0": 5.25443155108662
+      },
+      "mean_at_75pct_workload": 3.552043000131392,
+      "games": 4,
+      "sample_routes": 52,
+      "observed_route_participation": 0.2857142857142857,
+      "observed_tprr": 0.21153846153846154,
+      "observed_yprr": 0.8846153846153846,
+      "adot": 12.545454545454545,
+      "projected_routes": 19.87324240414634,
+      "projected_targets": 4.055067443032623,
+      "projected_receptions": 2.048796283525329,
+      "projected_receiving_yards": 30.181316720534102,
+      "projected_total_tds": 0.11558791994874126,
+      "shrunk_route_participation": 0.4717867184006911,
+      "shrunk_yprr": 1.5186911177733684,
+      "mean": 4.736057333508523,
+      "components": {
+        "receptions": 1.0243981417626644,
+        "receiving_yards": 3.0181316720534106,
+        "rushing_yards": 0.0,
+        "total_tds": 0.6935275196924475
+      },
+      "sd": 4.018064563113038,
+      "p20": 1.2066436066752577,
+      "p80": 7.813106602501261,
+      "simulation_mean": 4.7124311625862285,
+      "rank": 64,
+      "scenario_ranks": {
+        "prior_0.5": 64,
+        "prior_2.0": 66,
+        "td_0.85": 64,
+        "td_1.0": 64,
+        "role_0.0": 76,
+        "role_1.0": 59
+      },
+      "rank_sensitivity": [
+        59,
+        76
+      ]
+    },
+    {
+      "player": "Andrew Armstrong",
+      "player_id": "andrew-armstrong-18453",
+      "team": "KC",
+      "opponent": "SEA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.234225240626982,
+        "prior_2.0": 5.048670096351028,
+        "td_0.85": 4.6661628926505525,
+        "td_1.0": 4.7653387043578155,
+        "role_0.0": 4.699039687238306,
+        "role_1.0": 4.699039687238306
+      },
+      "mean_at_75pct_workload": 3.52427976542873,
+      "games": 1,
+      "sample_routes": 21,
+      "observed_route_participation": 0.65625,
+      "observed_tprr": 0.09523809523809523,
+      "observed_yprr": 0.6190476190476191,
+      "adot": 11.5,
+      "projected_routes": 22.54995784404484,
+      "projected_targets": 3.863048378682744,
+      "projected_receptions": 2.4267089060174394,
+      "projected_receiving_yards": 29.198211574021382,
+      "projected_total_tds": 0.09431067947124133,
+      "shrunk_route_participation": 0.6538461538461539,
+      "shrunk_yprr": 1.2948233329727605,
+      "mean": 4.699039687238306,
+      "components": {
+        "receptions": 1.2133544530087197,
+        "receiving_yards": 2.919821157402138,
+        "rushing_yards": 0.0,
+        "total_tds": 0.565864076827448
+      },
+      "sd": 3.8755229965274793,
+      "p20": 1.347828633865101,
+      "p80": 7.6355364615702594,
+      "simulation_mean": 4.684437200650066,
+      "rank": 65,
+      "scenario_ranks": {
+        "prior_0.5": 68,
+        "prior_2.0": 64,
+        "td_0.85": 65,
+        "td_1.0": 66,
+        "role_0.0": 65,
+        "role_1.0": 64
+      },
+      "rank_sensitivity": [
+        64,
+        68
+      ]
+    },
+    {
+      "player": "Tez Johnson",
+      "player_id": "tez-johnson-18484",
+      "team": "TB",
+      "opponent": "CAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.595656559063019,
+        "prior_2.0": 4.753956702082967,
+        "td_0.85": 4.60283962880215,
+        "td_1.0": 4.783883362021955,
+        "role_0.0": 4.652615350317852,
+        "role_1.0": 4.669227452570931
+      },
+      "mean_at_75pct_workload": 3.496936958752274,
+      "games": 4,
+      "sample_routes": 58,
+      "observed_route_participation": 0.3558282208588957,
+      "observed_tprr": 0.13793103448275862,
+      "observed_yprr": 1.6551724137931034,
+      "adot": 12.125,
+      "projected_routes": 16.35373668819691,
+      "projected_targets": 2.8168908913267607,
+      "projected_receptions": 1.6942618292273228,
+      "projected_receiving_yards": 26.788763111427556,
+      "projected_total_tds": 0.16561970717602315,
+      "shrunk_route_participation": 0.4046051835330325,
+      "shrunk_yprr": 1.6380820862036984,
+      "mean": 4.662582611669699,
+      "components": {
+        "receptions": 0.8471309146136614,
+        "receiving_yards": 2.678876311142756,
+        "rushing_yards": 0.14285714285714288,
+        "total_tds": 0.9937182430561389
+      },
+      "sd": 4.122386327367377,
+      "p20": 1.0201583026495007,
+      "p80": 7.824959187314638,
+      "simulation_mean": 4.678522783774346,
+      "rank": 66,
+      "scenario_ranks": {
+        "prior_0.5": 62,
+        "prior_2.0": 69,
+        "td_0.85": 66,
+        "td_1.0": 65,
+        "role_0.0": 66,
+        "role_1.0": 65
+      },
+      "rank_sensitivity": [
+        62,
+        69
+      ]
+    },
+    {
+      "player": "Kayshon Boutte",
+      "player_id": "kayshon-boutte-16795",
+      "team": "HOU",
+      "opponent": "NYG",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.583147596370826,
+        "prior_2.0": 4.60236609567291,
+        "td_0.85": 4.545415373959359,
+        "td_1.0": 4.680846968825016,
+        "role_0.0": 5.058558180472584,
+        "role_1.0": 4.2779952699014085
+      },
+      "mean_at_75pct_workload": 3.442665325597409,
+      "games": 4,
+      "sample_routes": 77,
+      "observed_route_participation": 0.5539568345323741,
+      "observed_tprr": 0.18181818181818182,
+      "observed_yprr": 1.4415584415584415,
+      "adot": 10.785714285714286,
+      "projected_routes": 17.57098648605512,
+      "projected_targets": 3.5204174496136744,
+      "projected_receptions": 2.3210155990555617,
+      "projected_receiving_yards": 26.703486100098196,
+      "projected_total_tds": 0.12656067076537975,
+      "shrunk_route_participation": 0.47951096448670677,
+      "shrunk_yprr": 1.5197488269250512,
+      "mean": 4.590220434129879,
+      "components": {
+        "receptions": 1.1605077995277808,
+        "receiving_yards": 2.6703486100098197,
+        "rushing_yards": 0.0,
+        "total_tds": 0.7593640245922785
+      },
+      "sd": 3.767062041315903,
+      "p20": 1.3567845200350392,
+      "p80": 7.56888848961103,
+      "simulation_mean": 4.642731428223875,
+      "rank": 67,
+      "scenario_ranks": {
+        "prior_0.5": 63,
+        "prior_2.0": 70,
+        "td_0.85": 67,
+        "td_1.0": 67,
+        "role_0.0": 61,
+        "role_1.0": 68
+      },
+      "rank_sensitivity": [
+        61,
+        70
+      ]
+    },
+    {
+      "player": "Tim Patrick",
+      "player_id": "tim-patrick-12061",
+      "team": "NYJ",
+      "opponent": "MIA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.9234765978214434,
+        "prior_2.0": 4.770470773645904,
+        "td_0.85": 4.335224868539986,
+        "td_1.0": 4.409759988531329,
+        "role_0.0": 4.773683107993021,
+        "role_1.0": 4.084156547409917
+      },
+      "mean_at_75pct_workload": 3.2699753787323687,
+      "games": 2,
+      "sample_routes": 53,
+      "observed_route_participation": 0.7794117647058824,
+      "observed_tprr": 0.11320754716981132,
+      "observed_yprr": 0.7735849056603774,
+      "adot": 7.833333333333333,
+      "projected_routes": 23.156776606934365,
+      "projected_targets": 3.738488038197596,
+      "projected_receptions": 2.269596231019776,
+      "projected_receiving_yards": 27.94705626980222,
+      "projected_total_tds": 0.07174390485884134,
+      "shrunk_route_participation": 0.6634792368125702,
+      "shrunk_yprr": 1.2068629733826337,
+      "mean": 4.3599671716431585,
+      "components": {
+        "receptions": 1.134798115509888,
+        "receiving_yards": 2.7947056269802224,
+        "rushing_yards": 0.0,
+        "total_tds": 0.430463429153048
+      },
+      "sd": 3.6375297526486063,
+      "p20": 1.220266172748473,
+      "p80": 7.136379686793777,
+      "simulation_mean": 4.373301903463605,
+      "rank": 68,
+      "scenario_ranks": {
+        "prior_0.5": 69,
+        "prior_2.0": 68,
+        "td_0.85": 68,
+        "td_1.0": 69,
+        "role_0.0": 64,
+        "role_1.0": 71
+      },
+      "rank_sensitivity": [
+        64,
+        71
+      ]
+    },
+    {
+      "player": "Rashod Bateman",
+      "player_id": "rashod-bateman-15210",
+      "team": "BAL",
+      "opponent": "CIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 4.378752489225418,
+        "prior_2.0": 4.348952608195231,
+        "td_0.85": 4.288740690906021,
+        "td_1.0": 4.475385164120947,
+        "role_0.0": 5.463668491195902,
+        "role_1.0": 3.6080754194817937
+      },
+      "mean_at_75pct_workload": 3.262734486125577,
+      "games": 4,
+      "sample_routes": 78,
+      "observed_route_participation": 0.5777777777777777,
+      "observed_tprr": 0.15384615384615385,
+      "observed_yprr": 1.858974358974359,
+      "adot": 10.666666666666666,
+      "projected_routes": 15.325358473608752,
+      "projected_targets": 2.7171052555536046,
+      "projected_receptions": 1.8158411008587125,
+      "projected_receiving_yards": 24.205596981409453,
+      "projected_total_tds": 0.17030539993285582,
+      "shrunk_route_participation": 0.41957829058542623,
+      "shrunk_yprr": 1.5794473599487437,
+      "mean": 4.350312648167437,
+      "components": {
+        "receptions": 0.9079205504293563,
+        "receiving_yards": 2.4205596981409454,
+        "rushing_yards": 0.0,
+        "total_tds": 1.0218323995971348
+      },
+      "sd": 3.871558926949238,
+      "p20": 0.9468760216359559,
+      "p80": 7.283139531754868,
+      "simulation_mean": 4.303485508404417,
+      "rank": 69,
+      "scenario_ranks": {
+        "prior_0.5": 65,
+        "prior_2.0": 72,
+        "td_0.85": 69,
+        "td_1.0": 68,
+        "role_0.0": 58,
+        "role_1.0": 76
+      },
+      "rank_sensitivity": [
+        58,
+        76
+      ]
+    },
+    {
+      "player": "Bryce Lance",
+      "player_id": "bryce-lance-19319",
+      "team": "NO",
+      "opponent": "PIT",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.358280480297223,
+        "prior_2.0": 4.976280905375798,
+        "td_0.85": 4.1207593479682885,
+        "td_1.0": 4.2594452631533075,
+        "role_0.0": 4.426697071178502,
+        "role_1.0": 3.9932564945569746
+      },
+      "mean_at_75pct_workload": 3.124974543904189,
+      "games": 4,
+      "sample_routes": 117,
+      "observed_route_participation": 0.7548387096774194,
+      "observed_tprr": 0.1282051282051282,
+      "observed_yprr": 0.13675213675213677,
+      "adot": 15.133333333333333,
+      "projected_routes": 25.445953512154215,
+      "projected_targets": 4.14328502946133,
+      "projected_receptions": 1.829540247796314,
+      "projected_receiving_yards": 24.754506056123596,
+      "projected_total_tds": 0.12940199928251142,
+      "shrunk_route_participation": 0.6728811750498497,
+      "shrunk_yprr": 0.972826820747733,
+      "mean": 4.166632725205585,
+      "components": {
+        "receptions": 0.914770123898157,
+        "receiving_yards": 2.4754506056123597,
+        "rushing_yards": 0.0,
+        "total_tds": 0.7764119956950686
+      },
+      "sd": 3.7798965635480024,
+      "p20": 0.918196961510478,
+      "p80": 7.018589224556735,
+      "simulation_mean": 4.184532800630511,
+      "rank": 70,
+      "scenario_ranks": {
+        "prior_0.5": 75,
+        "prior_2.0": 67,
+        "td_0.85": 70,
+        "td_1.0": 70,
+        "role_0.0": 70,
+        "role_1.0": 72
+      },
+      "rank_sensitivity": [
+        67,
+        75
+      ]
+    },
+    {
+      "player": "Jauan Jennings",
+      "player_id": "jauan-jennings-14376",
+      "team": "MIN",
+      "opponent": "IND",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.130302974665591,
+        "prior_2.0": 5.046122944536617,
+        "td_0.85": 4.018007645924706,
+        "td_1.0": 4.162382092442397,
+        "role_0.0": 4.361931038846614,
+        "role_1.0": 3.868291807357716
+      },
+      "mean_at_75pct_workload": 3.0493106249649564,
+      "games": 3,
+      "sample_routes": 92,
+      "observed_route_participation": 0.8141592920353983,
+      "observed_tprr": 0.03260869565217391,
+      "observed_yprr": 0.08695652173913043,
+      "adot": 14.666666666666666,
+      "projected_routes": 27.217801104659895,
+      "projected_targets": 3.002050497284262,
+      "projected_receptions": 1.6066888174208636,
+      "projected_receiving_yards": 24.56314776056372,
+      "projected_total_tds": 0.13434805253107857,
+      "shrunk_route_participation": 0.705903247631935,
+      "shrunk_yprr": 0.90246628175846,
+      "mean": 4.065747499953275,
+      "components": {
+        "receptions": 0.8033444087104318,
+        "receiving_yards": 2.456314776056372,
+        "rushing_yards": 0.0,
+        "total_tds": 0.8060883151864714
+      },
+      "sd": 3.9013260194448227,
+      "p20": 0.0,
+      "p80": 7.023975321967592,
+      "simulation_mean": 4.065130986241317,
+      "rank": 71,
+      "scenario_ranks": {
+        "prior_0.5": 80,
+        "prior_2.0": 65,
+        "td_0.85": 71,
+        "td_1.0": 71,
+        "role_0.0": 71,
+        "role_1.0": 74
+      },
+      "rank_sensitivity": [
+        65,
+        80
+      ]
+    },
+    {
+      "player": "Tory Horton",
+      "player_id": "tory-horton-17772",
+      "team": "SEA",
+      "opponent": "KC",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.8734509284802865,
+        "prior_2.0": 4.1297542474786635,
+        "td_0.85": 3.9851544231686336,
+        "td_1.0": 4.096612736606246,
+        "role_0.0": 3.4358301036583576,
+        "role_1.0": 4.412909291919267
+      },
+      "mean_at_75pct_workload": 3.016558212461177,
+      "games": 4,
+      "sample_routes": 43,
+      "observed_route_participation": 0.25903614457831325,
+      "observed_tprr": 0.20930232558139536,
+      "observed_yprr": 1.558139534883721,
+      "adot": 9.222222222222221,
+      "projected_routes": 16.513322854174632,
+      "projected_targets": 3.3480525633987788,
+      "projected_receptions": 1.9706976929373785,
+      "projected_receiving_yards": 24.045656761992557,
+      "projected_total_tds": 0.1053605156578263,
+      "shrunk_route_participation": 0.39989056077261836,
+      "shrunk_yprr": 1.4561367796375229,
+      "mean": 4.022077616614903,
+      "components": {
+        "receptions": 0.9853488464686893,
+        "receiving_yards": 2.404565676199256,
+        "rushing_yards": 0.0,
+        "total_tds": 0.6321630939469578
+      },
+      "sd": 3.5733147237043155,
+      "p20": 0.9611233738700007,
+      "p80": 6.813804042262035,
+      "simulation_mean": 4.043587315431293,
+      "rank": 72,
+      "scenario_ranks": {
+        "prior_0.5": 70,
+        "prior_2.0": 76,
+        "td_0.85": 72,
+        "td_1.0": 73,
+        "role_0.0": 83,
+        "role_1.0": 66
+      },
+      "rank_sensitivity": [
+        66,
+        83
+      ]
+    },
+    {
+      "player": "Brandin Cooks",
+      "player_id": "brandin-cooks-9260",
+      "team": "SF",
+      "opponent": "ATL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.696276461366521,
+        "prior_2.0": 4.206445854391274,
+        "td_0.85": 3.9228860289577874,
+        "td_1.0": 4.113142207240498,
+        "role_0.0": 3.6577274749606534,
+        "role_1.0": 4.204243038072892
+      },
+      "mean_at_75pct_workload": 2.9892276096209973,
+      "games": 3,
+      "sample_routes": 32,
+      "observed_route_participation": 0.31683168316831684,
+      "observed_tprr": 0.15625,
+      "observed_yprr": 0.625,
+      "adot": 10.8,
+      "projected_routes": 15.806108214901469,
+      "projected_targets": 2.9261733441663105,
+      "projected_receptions": 1.7648868314792523,
+      "projected_receiving_yards": 20.63305663665351,
+      "projected_total_tds": 0.1733146222371699,
+      "shrunk_route_participation": 0.4486961320884882,
+      "shrunk_yprr": 1.305385004083507,
+      "mean": 3.985636812827997,
+      "components": {
+        "receptions": 0.8824434157396261,
+        "receiving_yards": 2.0633056636653513,
+        "rushing_yards": 0.0,
+        "total_tds": 1.0398877334230194
+      },
+      "sd": 3.646447746549656,
+      "p20": 0.8138774306394863,
+      "p80": 6.758853933157139,
+      "simulation_mean": 3.9549460272554047,
+      "rank": 73,
+      "scenario_ranks": {
+        "prior_0.5": 72,
+        "prior_2.0": 75,
+        "td_0.85": 73,
+        "td_1.0": 72,
+        "role_0.0": 78,
+        "role_1.0": 69
+      },
+      "rank_sensitivity": [
+        69,
+        78
+      ]
+    },
+    {
+      "player": "Calvin Ridley",
+      "player_id": "calvin-ridley-12616",
+      "team": "TEN",
+      "opponent": "CLE",
+      "availability": "conditional",
+      "injury": {
+        "injury": "Hip",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Questionable"
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.5233590800275234,
+        "prior_2.0": 4.206844509435323,
+        "td_0.85": 3.854869320740666,
+        "td_1.0": 3.947462214458054,
+        "role_0.0": 3.575482642554897,
+        "role_1.0": 4.092303445707426
+      },
+      "mean_at_75pct_workload": 2.9141813433348114,
+      "games": 4,
+      "sample_routes": 59,
+      "observed_route_participation": 0.43703703703703706,
+      "observed_tprr": 0.13559322033898305,
+      "observed_yprr": 0.7796610169491526,
+      "adot": 8.625,
+      "projected_routes": 19.2350813245254,
+      "projected_targets": 3.3181889918421663,
+      "projected_receptions": 1.9079167627366833,
+      "projected_receiving_yards": 24.01609346670675,
+      "projected_total_tds": 0.08833456606789962,
+      "shrunk_route_participation": 0.546111291703075,
+      "shrunk_yprr": 1.2485568977597923,
+      "mean": 3.8855751244464143,
+      "components": {
+        "receptions": 0.9539583813683417,
+        "receiving_yards": 2.401609346670675,
+        "rushing_yards": 0.0,
+        "total_tds": 0.5300073964073977
+      },
+      "sd": 3.4364299721265086,
+      "p20": 0.9733247194226817,
+      "p80": 6.46545282353847,
+      "simulation_mean": 3.8941432412632246,
+      "rank": 74,
+      "scenario_ranks": {
+        "prior_0.5": 73,
+        "prior_2.0": 74,
+        "td_0.85": 74,
+        "td_1.0": 74,
+        "role_0.0": 81,
+        "role_1.0": 70
+      },
+      "rank_sensitivity": [
+        70,
+        81
+      ]
+    },
+    {
+      "player": "Marvin Mims",
+      "player_id": "marvin-mims-16849",
+      "team": "DEN",
+      "opponent": "ARI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.8545807068405575,
+        "prior_2.0": 3.713389297592688,
+        "td_0.85": 3.734390633321336,
+        "td_1.0": 3.898350979489247,
+        "role_0.0": 3.572446333121811,
+        "role_1.0": 3.932615395595191
+      },
+      "mean_at_75pct_workload": 2.8414108279543795,
+      "games": 3,
+      "sample_routes": 25,
+      "observed_route_participation": 0.24271844660194175,
+      "observed_tprr": 0.36,
+      "observed_yprr": 1.16,
+      "adot": 5.444444444444445,
+      "projected_routes": 12.521128124233588,
+      "projected_targets": 3.1684577725345853,
+      "projected_receptions": 2.1031151540731163,
+      "projected_receiving_yards": 17.799057805280242,
+      "projected_total_tds": 0.15118073550687608,
+      "shrunk_route_participation": 0.35119179163378056,
+      "shrunk_yprr": 1.4215218971229648,
+      "mean": 3.788547770605839,
+      "components": {
+        "receptions": 1.0515575770365582,
+        "receiving_yards": 1.7799057805280243,
+        "rushing_yards": 0.05,
+        "total_tds": 0.9070844130412565
+      },
+      "sd": 3.3306037460070774,
+      "p20": 0.9906598395677266,
+      "p80": 6.330030313247907,
+      "simulation_mean": 3.780869389422127,
+      "rank": 75,
+      "scenario_ranks": {
+        "prior_0.5": 71,
+        "prior_2.0": 81,
+        "td_0.85": 77,
+        "td_1.0": 75,
+        "role_0.0": 82,
+        "role_1.0": 73
+      },
+      "rank_sensitivity": [
+        71,
+        82
+      ]
+    },
+    {
+      "player": "Darnell Mooney",
+      "player_id": "darnell-mooney-14510",
+      "team": "NYG",
+      "opponent": "HOU",
+      "availability": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.2041876254747845,
+        "prior_2.0": 4.336640695448006,
+        "td_0.85": 3.7382214897289106,
+        "td_1.0": 3.8496798031665227,
+        "role_0.0": 4.518934484840933,
+        "role_1.0": 3.2792848153980114
+      },
+      "mean_at_75pct_workload": 2.831358512381385,
+      "games": 4,
+      "sample_routes": 100,
+      "observed_route_participation": 0.5813953488372093,
+      "observed_tprr": 0.14,
+      "observed_yprr": 0.34,
+      "adot": 15.0,
+      "projected_routes": 19.08536341911078,
+      "projected_targets": 3.151347904730535,
+      "projected_receptions": 1.4228152869644264,
+      "projected_receiving_yards": 20.172882314602948,
+      "projected_total_tds": 0.1053605156578263,
+      "shrunk_route_participation": 0.443856322403824,
+      "shrunk_yprr": 1.0569818279909304,
+      "mean": 3.77514468317518,
+      "components": {
+        "receptions": 0.7114076434822132,
+        "receiving_yards": 2.0172882314602947,
+        "rushing_yards": 0.41428571428571437,
+        "total_tds": 0.6321630939469578
+      },
+      "sd": 3.4130204651555225,
+      "p20": 0.41428571428571437,
+      "p80": 6.414285714285715,
+      "simulation_mean": 3.7924513665023154,
+      "rank": 76,
+      "scenario_ranks": {
+        "prior_0.5": 78,
+        "prior_2.0": 73,
+        "td_0.85": 76,
+        "td_1.0": 76,
+        "role_0.0": 68,
+        "role_1.0": 81
+      },
+      "rank_sensitivity": [
+        68,
+        81
+      ]
+    },
+    {
+      "player": "Brycen Tremayne",
+      "player_id": "brycen-tremayne-17330",
+      "team": "CAR",
+      "opponent": "TB",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.4912919970866825,
+        "prior_2.0": 4.080722925833974,
+        "td_0.85": 3.7462898959380007,
+        "td_1.0": 3.8208250159293433,
+        "role_0.0": 4.812169665353617,
+        "role_1.0": 3.076940554832877
+      },
+      "mean_at_75pct_workload": 2.8282741492808796,
+      "games": 3,
+      "sample_routes": 86,
+      "observed_route_participation": 0.6231884057971014,
+      "observed_tprr": 0.10465116279069768,
+      "observed_yprr": 1.3372093023255813,
+      "adot": 16.22222222222222,
+      "projected_routes": 18.484364002792812,
+      "projected_targets": 2.684075580048686,
+      "projected_receptions": 1.5504582617883604,
+      "projected_receiving_yards": 25.653396389939445,
+      "projected_total_tds": 0.07174390485884134,
+      "shrunk_route_participation": 0.43931064145926607,
+      "shrunk_yprr": 1.3878430648770743,
+      "mean": 3.771032199041173,
+      "components": {
+        "receptions": 0.7752291308941802,
+        "receiving_yards": 2.5653396389939447,
+        "rushing_yards": 0.0,
+        "total_tds": 0.430463429153048
+      },
+      "sd": 3.623290076572611,
+      "p20": 0.0,
+      "p80": 6.391588914111996,
+      "simulation_mean": 3.749981299953545,
+      "rank": 77,
+      "scenario_ranks": {
+        "prior_0.5": 74,
+        "prior_2.0": 77,
+        "td_0.85": 75,
+        "td_1.0": 77,
+        "role_0.0": 62,
+        "role_1.0": 82
+      },
+      "rank_sensitivity": [
+        62,
+        82
+      ]
+    },
+    {
+      "player": "Devontez Walker",
+      "player_id": "devontez-walker-17728",
+      "team": "BAL",
+      "opponent": "CIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.021839859436714,
+        "prior_2.0": 4.46376029449745,
+        "td_0.85": 3.7038936954670003,
+        "td_1.0": 3.7748743939731817,
+        "role_0.0": 3.6345142217771813,
+        "role_1.0": 3.78942510248359
+      },
+      "mean_at_75pct_workload": 2.7955955626507705,
+      "games": 4,
+      "sample_routes": 84,
+      "observed_route_participation": 0.6222222222222222,
+      "observed_tprr": 0.08333333333333333,
+      "observed_yprr": 0.3333333333333333,
+      "adot": 22.142857142857142,
+      "projected_routes": 24.33358111957967,
+      "projected_targets": 3.2433357432683576,
+      "projected_receptions": 1.7050309309716678,
+      "projected_receiving_yards": 24.64283853734086,
+      "projected_total_tds": 0.06844357183018454,
+      "shrunk_route_participation": 0.6662057783220563,
+      "shrunk_yprr": 1.0127090795325786,
+      "mean": 3.7274607502010273,
+      "components": {
+        "receptions": 0.8525154654858339,
+        "receiving_yards": 2.464283853734086,
+        "rushing_yards": 0.0,
+        "total_tds": 0.41066143098110724
+      },
+      "sd": 3.4568098563636367,
+      "p20": 0.0,
+      "p80": 6.100201617885199,
+      "simulation_mean": 3.6583311594087484,
+      "rank": 78,
+      "scenario_ranks": {
+        "prior_0.5": 84,
+        "prior_2.0": 71,
+        "td_0.85": 78,
+        "td_1.0": 78,
+        "role_0.0": 79,
+        "role_1.0": 75
+      },
+      "rank_sensitivity": [
+        71,
+        84
+      ]
+    },
+    {
+      "player": "Elic Ayomanor",
+      "player_id": "elic-ayomanor-18552",
+      "team": "TEN",
+      "opponent": "CLE",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.2581332590596066,
+        "prior_2.0": 3.9916527387367937,
+        "td_0.85": 3.582538282992267,
+        "td_1.0": 3.7151142155771804,
+        "role_0.0": 3.9746581560532626,
+        "role_1.0": 3.394237188518856
+      },
+      "mean_at_75pct_workload": 2.7198041816494642,
+      "games": 4,
+      "sample_routes": 79,
+      "observed_route_participation": 0.5851851851851851,
+      "observed_tprr": 0.10126582278481013,
+      "observed_yprr": 0.6708860759493671,
+      "adot": 10.75,
+      "projected_routes": 18.06936147286868,
+      "projected_targets": 2.7676102428416756,
+      "projected_receptions": 1.6934722330935568,
+      "projected_receiving_yards": 20.35307640807575,
+      "projected_total_tds": 0.12406030302971083,
+      "shrunk_route_participation": 0.5130148486357685,
+      "shrunk_yprr": 1.126386034096229,
+      "mean": 3.626405575532618,
+      "components": {
+        "receptions": 0.8467361165467784,
+        "receiving_yards": 2.035307640807575,
+        "rushing_yards": 0.0,
+        "total_tds": 0.744361818178265
+      },
+      "sd": 3.482972374156989,
+      "p20": 0.6736903355406887,
+      "p80": 6.195468662222463,
+      "simulation_mean": 3.665233864069229,
+      "rank": 79,
+      "scenario_ranks": {
+        "prior_0.5": 77,
+        "prior_2.0": 78,
+        "td_0.85": 79,
+        "td_1.0": 79,
+        "role_0.0": 75,
+        "role_1.0": 80
+      },
+      "rank_sensitivity": [
+        75,
+        80
+      ]
+    },
+    {
+      "player": "Troy Franklin",
+      "player_id": "troy-franklin-17719",
+      "team": "DEN",
+      "opponent": "ARI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.1525526295364608,
+        "prior_2.0": 3.7979219302784544,
+        "td_0.85": 3.4329672623632526,
+        "td_1.0": 3.5811229379054814,
+        "role_0.0": 3.3185492436658204,
+        "role_1.0": 3.590879047886483
+      },
+      "mean_at_75pct_workload": 2.611460344648664,
+      "games": 4,
+      "sample_routes": 52,
+      "observed_route_participation": 0.3795620437956204,
+      "observed_tprr": 0.07692307692307693,
+      "observed_yprr": 0.75,
+      "adot": 5.25,
+      "projected_routes": 17.040072057569592,
+      "projected_targets": 2.505848293259956,
+      "projected_receptions": 1.8582272018598756,
+      "projected_receiving_yards": 17.27105258011994,
+      "projected_total_tds": 0.13762137787604772,
+      "shrunk_route_participation": 0.477938838744443,
+      "shrunk_yprr": 1.0135551376643233,
+      "mean": 3.481947126198218,
+      "components": {
+        "receptions": 0.9291136009299378,
+        "receiving_yards": 1.7271052580119939,
+        "rushing_yards": 0.0,
+        "total_tds": 0.8257282672562863
+      },
+      "sd": 3.2379104178148275,
+      "p20": 0.8726800335891141,
+      "p80": 6.0,
+      "simulation_mean": 3.579677046753102,
+      "rank": 80,
+      "scenario_ranks": {
+        "prior_0.5": 79,
+        "prior_2.0": 79,
+        "td_0.85": 80,
+        "td_1.0": 80,
+        "role_0.0": 84,
+        "role_1.0": 77
+      },
+      "rank_sensitivity": [
+        77,
+        84
+      ]
+    },
+    {
+      "player": "Zachariah Branch",
+      "player_id": "zachariah-branch-19262",
+      "team": "ATL",
+      "opponent": "SF",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.347003911251467,
+        "prior_2.0": 3.2546400011947796,
+        "td_0.85": 3.2600200097687595,
+        "td_1.0": 3.357463869843179,
+        "role_0.0": 2.972291963863027,
+        "role_1.0": 3.5056816508384916
+      },
+      "mean_at_75pct_workload": 2.4692443320362294,
+      "games": 4,
+      "sample_routes": 30,
+      "observed_route_participation": 0.24,
+      "observed_tprr": 0.26666666666666666,
+      "observed_yprr": 1.3666666666666667,
+      "adot": 2.625,
+      "projected_routes": 12.700451495116242,
+      "projected_targets": 2.7501197441378307,
+      "projected_receptions": 2.061617927589725,
+      "projected_receiving_yards": 17.05064502061754,
+      "projected_total_tds": 0.0927420516986148,
+      "shrunk_route_participation": 0.35933128625042643,
+      "shrunk_yprr": 1.3425227463113494,
+      "mean": 3.2923257760483056,
+      "components": {
+        "receptions": 1.0308089637948625,
+        "receiving_yards": 1.705064502061754,
+        "rushing_yards": 0.0,
+        "total_tds": 0.5564523101916887
+      },
+      "sd": 2.927102028509638,
+      "p20": 0.8936860880327934,
+      "p80": 5.46299043960509,
+      "simulation_mean": 3.316761246924526,
+      "rank": 81,
+      "scenario_ranks": {
+        "prior_0.5": 76,
+        "prior_2.0": 82,
+        "td_0.85": 81,
+        "td_1.0": 81,
+        "role_0.0": 87,
+        "role_1.0": 78
+      },
+      "rank_sensitivity": [
+        76,
+        87
+      ]
+    },
+    {
+      "player": "Olamide Zaccheaus",
+      "player_id": "olamide-zaccheaus-13833",
+      "team": "ATL",
+      "opponent": "SF",
+      "availability": "conditional",
+      "injury": {
+        "injury": "Shoulder",
+        "practice": "Limited Participation in Practice",
+        "designation": "Questionable"
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.644254856712556,
+        "prior_2.0": 3.785224878371137,
+        "td_0.85": 3.2313552096671048,
+        "td_1.0": 3.3081241665855177,
+        "role_0.0": 2.9940687071987098,
+        "role_1.0": 3.4320139939334036
+      },
+      "mean_at_75pct_workload": 2.442626909429644,
+      "games": 4,
+      "sample_routes": 56,
+      "observed_route_participation": 0.448,
+      "observed_tprr": 0.125,
+      "observed_yprr": 0.16071428571428573,
+      "adot": 7.142857142857143,
+      "projected_routes": 19.257125903514083,
+      "projected_targets": 3.211223447187123,
+      "projected_receptions": 1.7322474919285722,
+      "projected_receiving_yards": 19.47839185737838,
+      "projected_total_tds": 0.07381215792290034,
+      "shrunk_route_participation": 0.5448379392698738,
+      "shrunk_yprr": 1.0114900819038586,
+      "mean": 3.256835879239526,
+      "components": {
+        "receptions": 0.8661237459642861,
+        "receiving_yards": 1.947839185737838,
+        "rushing_yards": 0.0,
+        "total_tds": 0.44287294753740203
+      },
+      "sd": 3.0574985820442775,
+      "p20": 0.6094703287079072,
+      "p80": 5.6000959157404395,
+      "simulation_mean": 3.234542670785304,
+      "rank": 82,
+      "scenario_ranks": {
+        "prior_0.5": 86,
+        "prior_2.0": 80,
+        "td_0.85": 82,
+        "td_1.0": 82,
+        "role_0.0": 86,
+        "role_1.0": 79
+      },
+      "rank_sensitivity": [
+        79,
+        86
+      ]
+    },
+    {
+      "player": "Cody White",
+      "player_id": "cody-white-14495",
+      "team": "LV",
+      "opponent": "LAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.05280966951886,
+        "prior_2.0": 3.1774521520698515,
+        "td_0.85": 3.0975133909066104,
+        "td_1.0": 3.1920035327154457,
+        "role_0.0": 3.9193475562621147,
+        "role_1.0": 2.6018433871477917
+      },
+      "mean_at_75pct_workload": 2.3466337910951407,
+      "games": 4,
+      "sample_routes": 60,
+      "observed_route_participation": 0.35294117647058826,
+      "observed_tprr": 0.21666666666666667,
+      "observed_yprr": 1.4,
+      "adot": 10.384615384615385,
+      "projected_routes": 12.186205682177444,
+      "projected_targets": 2.540192793088435,
+      "projected_receptions": 1.4057134541725322,
+      "projected_receiving_yards": 18.856233841981677,
+      "projected_total_tds": 0.09006082391818114,
+      "shrunk_route_participation": 0.29725544255938346,
+      "shrunk_yprr": 1.5473424898415489,
+      "mean": 3.128845054793521,
+      "components": {
+        "receptions": 0.7028567270862661,
+        "receiving_yards": 1.8856233841981678,
+        "rushing_yards": 0.0,
+        "total_tds": 0.5403649435090868
+      },
+      "sd": 3.141705652126367,
+      "p20": 0.0,
+      "p80": 5.562367697207067,
+      "simulation_mean": 3.0921759866183485,
+      "rank": 83,
+      "scenario_ranks": {
+        "prior_0.5": 82,
+        "prior_2.0": 83,
+        "td_0.85": 83,
+        "td_1.0": 83,
+        "role_0.0": 77,
+        "role_1.0": 86
+      },
+      "rank_sensitivity": [
+        77,
+        86
+      ]
+    },
+    {
+      "player": "Mitchell Tinsley",
+      "player_id": "mitchell-tinsley-16834",
+      "team": "CIN",
+      "opponent": "BAL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.0533585800796583,
+        "prior_2.0": 3.1281162962064055,
+        "td_0.85": 3.075309319140946,
+        "td_1.0": 3.152078276059359,
+        "role_0.0": 4.244747143119348,
+        "role_1.0": 2.338151885776047
+      },
+      "mean_at_75pct_workload": 2.3255924915350255,
+      "games": 2,
+      "sample_routes": 32,
+      "observed_route_participation": 0.3516483516483517,
+      "observed_tprr": 0.21875,
+      "observed_yprr": 1.53125,
+      "adot": 15.0,
+      "projected_routes": 11.58233900969724,
+      "projected_targets": 2.395492325149761,
+      "projected_receptions": 1.2749193208260858,
+      "projected_receiving_yards": 20.204573807629224,
+      "projected_total_tds": 0.07381215792290034,
+      "shrunk_route_participation": 0.2829240682688958,
+      "shrunk_yprr": 1.744429496556185,
+      "mean": 3.1007899887133674,
+      "components": {
+        "receptions": 0.6374596604130429,
+        "receiving_yards": 2.0204573807629225,
+        "rushing_yards": 0.0,
+        "total_tds": 0.44287294753740203
+      },
+      "sd": 3.3247457485800873,
+      "p20": 0.0,
+      "p80": 5.819811112294909,
+      "simulation_mean": 3.124872726481352,
+      "rank": 84,
+      "scenario_ranks": {
+        "prior_0.5": 81,
+        "prior_2.0": 85,
+        "td_0.85": 84,
+        "td_1.0": 84,
+        "role_0.0": 73,
+        "role_1.0": 87
+      },
+      "rank_sensitivity": [
+        73,
+        87
+      ]
+    },
+    {
+      "player": "Deion Burks",
+      "player_id": "deion-burks-19315",
+      "team": "IND",
+      "opponent": "MIN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 3.0294020476607937,
+        "prior_2.0": 2.8165368214263333,
+        "td_0.85": 2.879397961351365,
+        "td_1.0": 2.958410307966095,
+        "role_0.0": 2.7768324869024896,
+        "role_1.0": 2.991478291623508
+      },
+      "mean_at_75pct_workload": 2.1792149773013256,
+      "games": 4,
+      "sample_routes": 23,
+      "observed_route_participation": 0.1329479768786127,
+      "observed_tprr": 0.2608695652173913,
+      "observed_yprr": 2.0434782608695654,
+      "adot": 24.666666666666668,
+      "projected_routes": 9.139472214979289,
+      "projected_targets": 2.024228599199546,
+      "projected_receptions": 1.1185854247920548,
+      "projected_receiving_yards": 17.91019072189836,
+      "projected_total_tds": 0.07588469752487274,
+      "shrunk_route_participation": 0.21711075714134015,
+      "shrunk_yprr": 1.959652625514213,
+      "mean": 2.9056199697351,
+      "components": {
+        "receptions": 0.5592927123960274,
+        "receiving_yards": 1.791019072189836,
+        "rushing_yards": 0.1,
+        "total_tds": 0.45530818514923643
+      },
+      "sd": 3.100726269769767,
+      "p20": 0.1,
+      "p80": 5.295821408696958,
+      "simulation_mean": 2.8710378404699983,
+      "rank": 85,
+      "scenario_ranks": {
+        "prior_0.5": 83,
+        "prior_2.0": 88,
+        "td_0.85": 85,
+        "td_1.0": 85,
+        "role_0.0": 88,
+        "role_1.0": 84
+      },
+      "rank_sensitivity": [
+        83,
+        88
+      ]
+    },
+    {
+      "player": "Jonathan Mingo",
+      "player_id": "jonathan-mingo-16937",
+      "team": "DAL",
+      "opponent": "PHI",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.65032340416941,
+        "prior_2.0": 3.054561381618125,
+        "td_0.85": 2.8565141468420143,
+        "td_1.0": 2.945845821804518,
+        "role_0.0": 2.6268814116113797,
+        "role_1.0": 3.0589854534015957
+      },
+      "mean_at_75pct_workload": 2.1646078775141318,
+      "games": 4,
+      "sample_routes": 31,
+      "observed_route_participation": 0.16145833333333334,
+      "observed_tprr": 0.1935483870967742,
+      "observed_yprr": 0.6451612903225806,
+      "adot": 13.5,
+      "projected_routes": 11.824012729138925,
+      "projected_targets": 2.290934937035785,
+      "projected_receptions": 1.1893253450134693,
+      "projected_receiving_yards": 17.793220704718344,
+      "projected_total_tds": 0.08535984895115678,
+      "shrunk_route_participation": 0.26385121020527535,
+      "shrunk_yprr": 1.504837749444314,
+      "mean": 2.88614383668551,
+      "components": {
+        "receptions": 0.5946626725067347,
+        "receiving_yards": 1.7793220704718344,
+        "rushing_yards": 0.0,
+        "total_tds": 0.5121590937069407
+      },
+      "sd": 3.167990995759357,
+      "p20": 0.0,
+      "p80": 5.452758875644956,
+      "simulation_mean": 2.9216419840312224,
+      "rank": 86,
+      "scenario_ranks": {
+        "prior_0.5": 85,
+        "prior_2.0": 86,
+        "td_0.85": 86,
+        "td_1.0": 86,
+        "role_0.0": 90,
+        "role_1.0": 83
+      },
+      "rank_sensitivity": [
+        83,
+        90
+      ]
+    },
+    {
+      "player": "Jacob Cowing",
+      "player_id": "jacob-cowing-17008",
+      "team": "SF",
+      "opponent": "ATL",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.3592119624497934,
+        "prior_2.0": 3.1757852767858976,
+        "td_0.85": 2.7620823994014585,
+        "td_1.0": 2.868089994411875,
+        "role_0.0": 3.053428615158726,
+        "role_1.0": 2.6263985412869655
+      },
+      "mean_at_75pct_workload": 2.0979079281267525,
+      "games": 4,
+      "sample_routes": 51,
+      "observed_route_participation": 0.3953488372093023,
+      "observed_tprr": 0.09803921568627451,
+      "observed_yprr": 0.17647058823529413,
+      "adot": 14.4,
+      "projected_routes": 13.581258354345067,
+      "projected_targets": 2.08894264860366,
+      "projected_receptions": 1.069312308533434,
+      "projected_receiving_yards": 16.311459279937484,
+      "projected_total_tds": 0.10047284333396257,
+      "shrunk_route_participation": 0.385538173574189,
+      "shrunk_yprr": 1.2010270958963787,
+      "mean": 2.7972105708356696,
+      "components": {
+        "receptions": 0.534656154266717,
+        "receiving_yards": 1.6311459279937486,
+        "rushing_yards": 0.02857142857142857,
+        "total_tds": 0.6028370600037755
+      },
+      "sd": 3.1458801653348685,
+      "p20": 0.02857142857142857,
+      "p80": 5.272363727280878,
+      "simulation_mean": 2.731622594115868,
+      "rank": 87,
+      "scenario_ranks": {
+        "prior_0.5": 89,
+        "prior_2.0": 84,
+        "td_0.85": 87,
+        "td_1.0": 87,
+        "role_0.0": 85,
+        "role_1.0": 85
+      },
+      "rank_sensitivity": [
+        84,
+        89
+      ]
+    },
+    {
+      "player": "Isaiah Williams",
+      "player_id": "isaiah-williams-17977",
+      "team": "NYJ",
+      "opponent": "MIA",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.522622402663185,
+        "prior_2.0": 2.9292746954020976,
+        "td_0.85": 2.6887040049643876,
+        "td_1.0": 2.759431739476641,
+        "role_0.0": 4.272608259416097,
+        "role_1.0": 1.671906828541279
+      },
+      "mean_at_75pct_workload": 2.034140550668404,
+      "games": 4,
+      "sample_routes": 88,
+      "observed_route_participation": 0.676923076923077,
+      "observed_tprr": 0.07954545454545454,
+      "observed_yprr": 1.25,
+      "adot": 14.285714285714286,
+      "projected_routes": 12.43924637646111,
+      "projected_targets": 1.7089970132151147,
+      "projected_receptions": 0.953975129210917,
+      "projected_receiving_yards": 17.259503361265455,
+      "projected_total_tds": 0.06820825002653359,
+      "shrunk_route_participation": 0.3564045995031323,
+      "shrunk_yprr": 1.387503940264883,
+      "mean": 2.7121874008912057,
+      "components": {
+        "receptions": 0.4769875646054585,
+        "receiving_yards": 1.7259503361265456,
+        "rushing_yards": 0.1,
+        "total_tds": 0.4092495001592016
+      },
+      "sd": 3.1100494609144738,
+      "p20": 0.1,
+      "p80": 5.191672429905922,
+      "simulation_mean": 2.7588205409347575,
+      "rank": 88,
+      "scenario_ranks": {
+        "prior_0.5": 88,
+        "prior_2.0": 87,
+        "td_0.85": 88,
+        "td_1.0": 88,
+        "role_0.0": 72,
+        "role_1.0": 92
+      },
+      "rank_sensitivity": [
+        72,
+        92
+      ]
+    },
+    {
+      "player": "Isaiah Bond",
+      "player_id": "isaiah-bond-18502",
+      "team": "CLE",
+      "opponent": "TEN",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.6043086161974713,
+        "prior_2.0": 2.715065892320202,
+        "td_0.85": 2.6366085703726507,
+        "td_1.0": 2.711143690363994,
+        "role_0.0": 3.61572805393865,
+        "role_1.0": 2.0250994198339383
+      },
+      "mean_at_75pct_workload": 1.9960131551068678,
+      "games": 4,
+      "sample_routes": 48,
+      "observed_route_participation": 0.3037974683544304,
+      "observed_tprr": 0.16666666666666666,
+      "observed_yprr": 1.5833333333333333,
+      "adot": 14.625,
+      "projected_routes": 10.165636994736094,
+      "projected_targets": 1.9049023099370035,
+      "projected_receptions": 1.027126189413128,
+      "projected_receiving_yards": 17.17324349616211,
+      "projected_total_tds": 0.07174390485884134,
+      "shrunk_route_participation": 0.2586393201523627,
+      "shrunk_yprr": 1.6893425867021077,
+      "mean": 2.6613508734758233,
+      "components": {
+        "receptions": 0.513563094706564,
+        "receiving_yards": 1.7173243496162112,
+        "rushing_yards": 0.0,
+        "total_tds": 0.430463429153048
+      },
+      "sd": 3.1321506727271173,
+      "p20": 0.0,
+      "p80": 5.088130383732812,
+      "simulation_mean": 2.6604261625876724,
+      "rank": 89,
+      "scenario_ranks": {
+        "prior_0.5": 87,
+        "prior_2.0": 90,
+        "td_0.85": 89,
+        "td_1.0": 89,
+        "role_0.0": 80,
+        "role_1.0": 90
+      },
+      "rank_sensitivity": [
+        80,
+        90
+      ]
+    },
+    {
+      "player": "Bo Melton",
+      "player_id": "bo-melton-15935",
+      "team": "GB",
+      "opponent": "DET",
+      "availability": "conditional",
+      "injury": {
+        "injury": "Back",
+        "practice": "Limited Participation in Practice",
+        "designation": "Questionable"
+      },
+      "confidence": "low",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.1972582151246973,
+        "prior_2.0": 2.729053791129796,
+        "td_0.85": 2.462517638275584,
+        "td_1.0": 2.5297167116502974,
+        "role_0.0": 2.7346392925852534,
+        "role_1.0": 2.3182968206011587
+      },
+      "mean_at_75pct_workload": 1.8636253570460974,
+      "games": 4,
+      "sample_routes": 50,
+      "observed_route_participation": 0.3067484662576687,
+      "observed_tprr": 0.12,
+      "observed_yprr": 0.4,
+      "adot": 10.833333333333334,
+      "projected_routes": 12.41766448215838,
+      "projected_targets": 2.106431312273799,
+      "projected_receptions": 1.3165255562828704,
+      "projected_receiving_yards": 14.370537546574676,
+      "projected_total_tds": 0.06491954609931562,
+      "shrunk_route_participation": 0.3131818181818182,
+      "shrunk_yprr": 1.157265729575974,
+      "mean": 2.4848338093947966,
+      "components": {
+        "receptions": 0.6582627781414352,
+        "receiving_yards": 1.4370537546574678,
+        "rushing_yards": 0.0,
+        "total_tds": 0.38951727659589375
+      },
+      "sd": 2.670622049883468,
+      "p20": 0.0,
+      "p80": 4.288390659933544,
+      "simulation_mean": 2.4955872777930717,
+      "rank": 90,
+      "scenario_ranks": {
+        "prior_0.5": 90,
+        "prior_2.0": 89,
+        "td_0.85": 90,
+        "td_1.0": 90,
+        "role_0.0": 89,
+        "role_1.0": 88
+      },
+      "rank_sensitivity": [
+        88,
+        90
+      ]
+    },
+    {
+      "player": "Jordan Whittington",
+      "player_id": "jordan-whittington-17688",
+      "team": "LAR",
+      "opponent": "LV",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 2.016782701060936,
+        "prior_2.0": 2.4560914193208427,
+        "td_0.85": 2.199978419808027,
+        "td_1.0": 2.3866384851759124,
+        "role_0.0": 2.583976985010568,
+        "role_1.0": 2.0466077887080543
+      },
+      "mean_at_75pct_workload": 1.6961666004217948,
+      "games": 4,
+      "sample_routes": 40,
+      "observed_route_participation": 0.19607843137254902,
+      "observed_tprr": 0.05,
+      "observed_yprr": 0.1,
+      "adot": 3.0,
+      "projected_routes": 8.270575678180924,
+      "projected_targets": 1.258385722433515,
+      "projected_receptions": 0.8673190386969857,
+      "projected_receiving_yards": 8.05985476284975,
+      "projected_total_tds": 0.17031841193259867,
+      "shrunk_route_participation": 0.184026024470771,
+      "shrunk_yprr": 0.9745216145126282,
+      "mean": 2.26155546722906,
+      "components": {
+        "receptions": 0.43365951934849284,
+        "receiving_yards": 0.805985476284975,
+        "rushing_yards": 0.0,
+        "total_tds": 1.021910471595592
+      },
+      "sd": 2.929472328426446,
+      "p20": 0.0,
+      "p80": 4.423271035169716,
+      "simulation_mean": 2.2690663783091143,
+      "rank": 91,
+      "scenario_ranks": {
+        "prior_0.5": 91,
+        "prior_2.0": 91,
+        "td_0.85": 91,
+        "td_1.0": 91,
+        "role_0.0": 91,
+        "role_1.0": 89
+      },
+      "rank_sensitivity": [
+        89,
+        91
+      ]
+    },
+    {
+      "player": "Malik Benson",
+      "player_id": "malik-benson-19432",
+      "team": "LV",
+      "opponent": "LAR",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 1.787934270589262,
+        "prior_2.0": 2.1493184286889315,
+        "td_0.85": 1.9860455284848073,
+        "td_1.0": 2.0387545058192043,
+        "role_0.0": 2.202141409906298,
+        "role_1.0": 1.8711787085704947
+      },
+      "mean_at_75pct_workload": 1.5026728418286122,
+      "games": 4,
+      "sample_routes": 27,
+      "observed_route_participation": 0.1588235294117647,
+      "observed_tprr": 0.18518518518518517,
+      "observed_yprr": 0.2222222222222222,
+      "adot": 12.0,
+      "projected_routes": 8.656555716908162,
+      "projected_targets": 1.6856153686783033,
+      "projected_receptions": 0.8465502345680906,
+      "projected_receiving_yards": 12.725289054954674,
+      "projected_total_tds": 0.05129329438755053,
+      "shrunk_route_participation": 0.2111574650699407,
+      "shrunk_yprr": 1.4700175764015913,
+      "mean": 2.003563789104816,
+      "components": {
+        "receptions": 0.4232751172840453,
+        "receiving_yards": 1.2725289054954674,
+        "rushing_yards": 0.0,
+        "total_tds": 0.30775976632530316
+      },
+      "sd": 2.5975692460366986,
+      "p20": 0.0,
+      "p80": 3.7103583656097556,
+      "simulation_mean": 1.993296613594044,
+      "rank": 92,
+      "scenario_ranks": {
+        "prior_0.5": 92,
+        "prior_2.0": 92,
+        "td_0.85": 92,
+        "td_1.0": 92,
+        "role_0.0": 92,
+        "role_1.0": 91
+      },
+      "rank_sensitivity": [
+        91,
+        92
+      ]
+    },
+    {
+      "player": "J. Michael Sturdivant",
+      "player_id": "j-michael-sturdivant-19327",
+      "team": "GB",
+      "opponent": "DET",
+      "availability": "not_listed_or_no_designation",
+      "injury": {},
+      "confidence": "moderate (uncalibrated)",
+      "td_source": "PropLine anytime TD; assumed discount for one-sided prices",
+      "scenarios": {
+        "prior_0.5": 1.419272783825296,
+        "prior_2.0": 1.5300242455076476,
+        "td_0.85": 1.472520778417329,
+        "td_1.0": 1.5132910372143018,
+        "role_0.0": 1.8929958149987878,
+        "role_1.0": 1.2148029670373983
+      },
+      "mean_at_75pct_workload": 1.1145600796664656,
+      "games": 4,
+      "sample_routes": 24,
+      "observed_route_participation": 0.147239263803681,
+      "observed_tprr": 0.16666666666666666,
+      "observed_yprr": 0.9166666666666666,
+      "adot": 17.75,
+      "projected_routes": 5.740303562962108,
+      "projected_targets": 1.1135381710968744,
+      "projected_receptions": 0.6349340546429116,
+      "projected_receiving_yards": 9.29113434467843,
+      "projected_total_tds": 0.03991660740544256,
+      "shrunk_route_participation": 0.14477430191056057,
+      "shrunk_yprr": 1.6185789205691457,
+      "mean": 1.4860801062219542,
+      "components": {
+        "receptions": 0.3174670273214558,
+        "receiving_yards": 0.929113434467843,
+        "rushing_yards": 0.0,
+        "total_tds": 0.23949964443265537
+      },
+      "sd": 2.1857377139672223,
+      "p20": 0.0,
+      "p80": 2.8865903655149814,
+      "simulation_mean": 1.4923148228320327,
+      "rank": 93,
+      "scenario_ranks": {
+        "prior_0.5": 93,
+        "prior_2.0": 93,
+        "td_0.85": 93,
+        "td_1.0": 93,
+        "role_0.0": 93,
+        "role_1.0": 93
+      },
+      "rank_sensitivity": [
+        93,
+        93
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "player": "A.J. Brown",
+      "team": "NE",
+      "reason": "locked"
+    },
+    {
+      "player": "Anthony Gould",
+      "team": "IND",
+      "reason": "out"
+    },
+    {
+      "player": "Antonio Williams",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Ashton Dulin",
+      "team": "IND",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Barion Brown",
+      "team": "NO",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Ben Skowronek",
+      "team": "PIT",
+      "reason": "out"
+    },
+    {
+      "player": "Brandon Johnson",
+      "team": "PIT",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Brandon Smith",
+      "team": "PIT",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Braxton Berrios",
+      "team": "NYG",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Brian Thomas",
+      "team": "JAX",
+      "reason": "bye"
+    },
+    {
+      "player": "Cedric Tillman",
+      "team": "NO",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Charlie Jones",
+      "team": "NYG",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Chimere Dike",
+      "team": "TEN",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Chris Blair",
+      "team": "ATL",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Chris Moore",
+      "team": "BAL",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Colbie Young",
+      "team": "CIN",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Cyrus Allen",
+      "team": "KC",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Dalen Cambre",
+      "team": "NYG",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Dareke Young",
+      "team": "LV",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Davante Adams",
+      "team": "LAR",
+      "reason": "out"
+    },
+    {
+      "player": "David Moore",
+      "team": "CAR",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Deebo Samuel",
+      "team": "SF",
+      "reason": "out"
+    },
+    {
+      "player": "DeMario Douglas",
+      "team": "NE",
+      "reason": "locked"
+    },
+    {
+      "player": "Derius Davis",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "Deven Thompkins",
+      "team": "LV",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "DJ Moore",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Dyami Brown",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Efton Chism",
+      "team": "NE",
+      "reason": "locked"
+    },
+    {
+      "player": "Elijah Moore",
+      "team": "PHI",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Elijah Sarratt",
+      "team": "BAL",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Emeka Egbuka",
+      "team": "TB",
+      "reason": "out"
+    },
+    {
+      "player": "Greg Dortch",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Jack Bech",
+      "team": "LV",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Jahdae Walker",
+      "team": "CHI",
+      "reason": "locked"
+    },
+    {
+      "player": "Jakobi Meyers",
+      "team": "JAX",
+      "reason": "bye"
+    },
+    {
+      "player": "Jalen McMillan",
+      "team": "TB",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Jalen Tolbert",
+      "team": "MIA",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Jared Wayne",
+      "team": "HOU",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Ja'seem Reed",
+      "team": "CAR",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Jaylin Lane",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Jeshaun Jones",
+      "team": "MIN",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Jordan Addison",
+      "team": "MIN",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Josh Cameron",
+      "team": "JAX",
+      "reason": "bye"
+    },
+    {
+      "player": "Joshua Palmer",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Justin Watson",
+      "team": "KC",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Kalif Raymond",
+      "team": "CHI",
+      "reason": "locked"
+    },
+    {
+      "player": "Kameron Johnson",
+      "team": "TB",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "KaVontae Turpin",
+      "team": "DAL",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "KeAndre Lambert-Smith",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "Keon Coleman",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Kevin Austin",
+      "team": "NO",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "KhaDarel Hodge",
+      "team": "SF",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Khalil Shakir",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Kyle Williams",
+      "team": "NE",
+      "reason": "locked"
+    },
+    {
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "LaJohntay Wester",
+      "team": "BAL",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Lewis Bond",
+      "team": "HOU",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Lil'Jordan Humphrey",
+      "team": "DEN",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Luke McCaffrey",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Luther Burden",
+      "team": "CHI",
+      "reason": "locked"
+    },
+    {
+      "player": "Mack Hollins",
+      "team": "NE",
+      "reason": "locked"
+    },
+    {
+      "player": "Malachi Corley",
+      "team": "CLE",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Malik McClain",
+      "team": "NYJ",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Malik Turner",
+      "team": "SF",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Marquez Valdes-Scantling",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "Marvin Harrison",
+      "team": "HOU",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Michael Pittman",
+      "team": "PIT",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Mike Evans",
+      "team": "SF",
+      "reason": "out"
+    },
+    {
+      "player": "Myles Price",
+      "team": "MIN",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Nick Westbrook-Ikhine",
+      "team": "IND",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Nikko Remigio",
+      "team": "KC",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Odell Beckham",
+      "team": "NYG",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Parker Washington",
+      "team": "JAX",
+      "reason": "bye"
+    },
+    {
+      "player": "Pat Bryant",
+      "team": "DEN",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Quentin Johnston",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "Rashee Rice",
+      "team": "KC",
+      "reason": "out"
+    },
+    {
+      "player": "Reggie Virgil",
+      "team": "ARI",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Roman Wilson",
+      "team": "PIT",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Rome Odunze",
+      "team": "CHI",
+      "reason": "locked"
+    },
+    {
+      "player": "Romeo Doubs",
+      "team": "NE",
+      "reason": "locked"
+    },
+    {
+      "player": "Ryan Miller",
+      "team": "MIA",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Simi Fehoko",
+      "team": "ARI",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Skyler Bell",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Skyy Moore",
+      "team": "GB",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Stefon Diggs",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Sterling Shepard",
+      "team": "NYJ",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Tay Martin",
+      "team": "DET",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Terry McLaurin",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Theo Wease",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "Tom Kennedy",
+      "team": "DET",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Travis Hunter",
+      "team": "JAX",
+      "reason": "bye"
+    },
+    {
+      "player": "Tre' Harris",
+      "team": "LAC",
+      "reason": "bye"
+    },
+    {
+      "player": "Trent Sherfield",
+      "team": "BUF",
+      "reason": "bye"
+    },
+    {
+      "player": "Treylon Burks",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Tutu Atwell",
+      "team": "LAR",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Tylan Wallace",
+      "team": "CLE",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Tyquan Thornton",
+      "team": "KC",
+      "reason": "absent from latest team report; role needs verification"
+    },
+    {
+      "player": "Van Jefferson",
+      "team": "WAS",
+      "reason": "bye"
+    },
+    {
+      "player": "Xavier Smith",
+      "team": "LAR",
+      "reason": "insufficient current-team routes/targets"
+    },
+    {
+      "player": "Zavion Thomas",
+      "team": "CHI",
+      "reason": "locked"
+    }
+  ],
+  "preliminary_evaluation": {
+    "scope": "receiving yards + receptions only; no TDs/rushing/injury prediction",
+    "selection": "only players appearing in held-out weekly report and meeting prior sample rule",
+    "limitation": "3 preliminary folds, selected active sample; no interval or full-score calibration",
+    "folds": [
+      {
+        "week": 4,
+        "n": 71,
+        "model_mae": 4.0680438926242575,
+        "trailing_mean_mae": 5.03943661971831
+      },
+      {
+        "week": 5,
+        "n": 91,
+        "model_mae": 3.625271229679388,
+        "trailing_mean_mae": 4.082417582417582
+      },
+      {
+        "week": 6,
+        "n": 88,
+        "model_mae": 3.1484145845237723,
+        "trailing_mean_mae": 3.2075757575757575
+      }
+    ],
+    "n": 250,
+    "model_mae": 3.5831651268609543,
+    "trailing_mean_mae": 4.046266666666667
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "retrieved_date_utc": "2026-10-24",
+  "statistics_season": 2026,
+  "statistics_weeks": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "sources": [
+    {
+      "url": "https://www.rotowire.com/football/article/nfl-box-score-breakdown-week-3-recap-usage-stats-137465",
+      "raw_html_sha256": "225662adc50020908a03c6fd078584e27f83269b374a3e24470cecf98bfbabcc"
+    },
+    {
+      "url": "https://www.rotowire.com/football/article/nfl-box-score-breakdown-week-4-recap-usage-stats-139055",
+      "raw_html_sha256": "03a4fa8afec3250ba2762c4206c2514410ba5a69f82e6b4e1e71caed05d668ae"
+    },
+    {
+      "url": "https://www.rotowire.com/football/article/nfl-box-score-breakdown-week-5-recap-usage-stats-140661",
+      "raw_html_sha256": "7cc073448aeafabb6b19951060340fb845240a67f61bf65a2c90955a30a80aaf"
+    },
+    {
+      "url": "https://www.rotowire.com/football/article/nfl-box-score-breakdown-week-6-recap-usage-stats-142315",
+      "raw_html_sha256": "5eb8fb30c94cfe778934143c48aae4f17db86a08852c4164fdec0a049d2ab70c"
+    }
+  ],
+  "input_sha256": {
+    "weekly-inputs.csv": "37ab8aacb1fa2eb2f706a19215abea12a5c75dd335de2bbefaa075e8b8832ad5",
+    "team-dropbacks.csv": "25d3cb5a05451ed93915f4e18ef06420d8b8aba769fa5c2401e8ca9dc50ed088",
+    "context.json": "8d9f1e2994b662eeb74cabc85e7b108e8aae6ea4675246ecf83e82e700f928e7"
+  }
+}

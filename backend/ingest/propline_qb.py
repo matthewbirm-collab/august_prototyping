@@ -48,10 +48,13 @@ class PropLineProvider:
     available. Calls by other clients are ultimately limited by the provider.
     """
 
-    def __init__(self, key: str, ledger: Path, budget: int = 1000):
+    def __init__(
+        self, key: str, ledger: Path, budget: int = 1000, markets: tuple[str, ...] = MARKETS
+    ):
         if not key or not 1 <= budget <= 1000:
             raise ValueError("A key and a budget between 1 and 1000 are required")
         self.key, self.ledger, self.budget = key, ledger, budget
+        self.markets = markets
 
     def fetch(self) -> dict[str, Any]:
         import fcntl  # POSIX local prototype (macOS/Linux)
@@ -74,7 +77,7 @@ class PropLineProvider:
 
             save(used + 1)
             url = "https://api.prop-line.com/v1/sports/football_nfl/odds?markets="
-            url += ",".join(MARKETS) + "&bookmakers=draftkings,fanduel,bovada"
+            url += ",".join(self.markets) + "&bookmakers=draftkings,fanduel,bovada"
             request = Request(url, headers={"X-API-Key": self.key})  # noqa: S310 - fixed HTTPS host
             with urlopen(request, timeout=45) as response:  # noqa: S310 - fixed HTTPS host
                 events = json.load(response)
@@ -93,6 +96,8 @@ def normalize(
     as_of: datetime,
     stale_minutes: int,
     td_probability_multiplier: float,
+    *,
+    quarterbacks_only: bool = True,
 ) -> tuple[dict[str, dict[str, list[Observation]]], dict[str, dict[str, Any]]]:
     """Keep pregame, fresh quotes known at as_of; pair prices within each book.
 
@@ -231,4 +236,8 @@ def normalize(
                 result.get(player, {}).get(stat, [])
             )
     # Passing-yard markets identify QBs; avoid ranking RBs/WRs by rushing alone.
-    return {p: stats for p, stats in result.items() if "player_pass_yds" in stats}, metadata
+    return {
+        p: stats
+        for p, stats in result.items()
+        if not quarterbacks_only or "player_pass_yds" in stats
+    }, metadata

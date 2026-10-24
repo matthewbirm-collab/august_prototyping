@@ -36,6 +36,10 @@ and the production engine remain pending.
 
 - [x] Isolated QB prototype — 4-point passing TD config, PropLine snapshot adapter,
   distribution fits, simulation ranges/SD, Purdy comparison, offline tests and report.
+- [x] Separate approved WR research prototype — frozen Week 7 usage rankings,
+  shrinkage, TD context, simulation, sensitivity checks and preliminary evaluation.
+  This does not complete production integration or historical calibration gates.
+
 - [ ] `/p3-odds-math` — odds conversion and de-vig
 - [ ] `/p3-consensus` — multi-book consensus
 - [ ] `/p3-distributions` — stat distribution fitting

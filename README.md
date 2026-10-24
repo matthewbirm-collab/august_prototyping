@@ -147,3 +147,16 @@ NFL data from [nflverse](https://github.com/nflverse) (CC-BY 4.0; FTN charting d
 
 The experimental QB model uses [PropLine](https://www.prop-line.com/docs) odds.
 Provider selection does not grant redistribution rights; review its terms for any public use.
+
+## Experimental wide receiver rankings
+
+[Week 7 half-PPR rankings](docs/research/2026-week-7/wr-model/RANKINGS.md) use
+Weeks 3–6 routes, target rates, YPRR and aDOT, with sample shrinkage, availability
+flags and a frozen PropLine touchdown snapshot. The report includes simulated
+ranges, sensitivity scenarios, explicit exclusions and a preliminary evaluation.
+It is not the production projection engine or a live rankings service.
+
+Run offline with Python 3.12: `python3 scripts/wr_model.py`. With uv:
+`cd backend && uv run python ../scripts/wr_model.py`. Outputs go to
+`reports/wr-model/`; no API calls are made. See the
+[methodology](docs/research/2026-week-7/wr-model/MODEL.md) for coverage and limitations.

@@ -1,0 +1,35 @@
+{
+  "name": "Experimental Week 7 WR half-PPR",
+  "weights": {
+    "reception": 0.5,
+    "receiving_yards": 0.1,
+    "rushing_yards": 0.1,
+    "total_tds": 6.0
+  },
+  "model": {
+    "draws": 10000,
+    "seed": 2016,
+    "cutoff_week": 6,
+    "recency_decay": 0.8,
+    "route_prior_exposure": 20,
+    "route_prior_mean": 0.65,
+    "target_prior_exposure": 50,
+    "catch_prior_exposure": 20,
+    "yards_prior_receptions": 10,
+    "team_prior_games": 2,
+    "rushing_prior_games": 3,
+    "dropback_shape": 25,
+    "catch_yard_shape": 2,
+    "min_routes": 20,
+    "role_latest_weight": 0.6
+  },
+  "td_probability_multiplier": 0.9,
+  "td_multiplier_scenarios": [
+    0.85,
+    1.0
+  ],
+  "fallback_points_per_td": 7.0,
+  "fallback_td_scoring_fraction": 0.75,
+  "fallback_receiving_td_fraction": 0.65,
+  "stale_minutes": 90
+}

@@ -1,0 +1,5896 @@
+{
+  "as_of": "2026-10-24T05:26:20.827863+00:00",
+  "season": 2026,
+  "week": 7,
+  "window": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "source_urls": [
+    "https://www.nfl.com/injuries/league/2026/REG7",
+    "https://www.nfl.com/schedules/2026/by-week/week-7",
+    "https://api.prop-line.com/v1/sports/football_nfl/odds"
+  ],
+  "teams": {
+    "NO": {
+      "opponent": "PIT",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "event_id": "32691",
+      "implied_points": 20.75
+    },
+    "PIT": {
+      "opponent": "NO",
+      "kickoff": "2026-10-25T13:30:00Z",
+      "event_id": "32691",
+      "implied_points": 23.75
+    },
+    "HOU": {
+      "opponent": "NYG",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53250",
+      "implied_points": 26.625
+    },
+    "NYG": {
+      "opponent": "HOU",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53250",
+      "implied_points": 16.125
+    },
+    "TEN": {
+      "opponent": "CLE",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53251",
+      "implied_points": 17.5
+    },
+    "CLE": {
+      "opponent": "TEN",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53251",
+      "implied_points": 19.75
+    },
+    "ATL": {
+      "opponent": "SF",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53252",
+      "implied_points": 23.375
+    },
+    "SF": {
+      "opponent": "ATL",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53252",
+      "implied_points": 26.125
+    },
+    "CAR": {
+      "opponent": "TB",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53253",
+      "implied_points": 23.75
+    },
+    "TB": {
+      "opponent": "CAR",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "53253",
+      "implied_points": 21.0
+    },
+    "MIN": {
+      "opponent": "IND",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "56767",
+      "implied_points": 23.875
+    },
+    "IND": {
+      "opponent": "MIN",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "56767",
+      "implied_points": 17.375
+    },
+    "NYJ": {
+      "opponent": "MIA",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "56768",
+      "implied_points": 22.0
+    },
+    "MIA": {
+      "opponent": "NYJ",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "56768",
+      "implied_points": 17.25
+    },
+    "BAL": {
+      "opponent": "CIN",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "56778",
+      "implied_points": 23.625
+    },
+    "CIN": {
+      "opponent": "BAL",
+      "kickoff": "2026-10-25T17:00:00Z",
+      "event_id": "56778",
+      "implied_points": 24.875
+    },
+    "ARI": {
+      "opponent": "DEN",
+      "kickoff": "2026-10-25T20:05:00Z",
+      "event_id": "56769",
+      "implied_points": 19.375
+    },
+    "DEN": {
+      "opponent": "ARI",
+      "kickoff": "2026-10-25T20:05:00Z",
+      "event_id": "56769",
+      "implied_points": 23.875
+    },
+    "DET": {
+      "opponent": "GB",
+      "kickoff": "2026-10-25T20:25:00Z",
+      "event_id": "56770",
+      "implied_points": 28.5
+    },
+    "GB": {
+      "opponent": "DET",
+      "kickoff": "2026-10-25T20:25:00Z",
+      "event_id": "56770",
+      "implied_points": 25.0
+    },
+    "LV": {
+      "opponent": "LAR",
+      "kickoff": "2026-10-25T20:25:00Z",
+      "event_id": "56771",
+      "implied_points": 22.5
+    },
+    "LAR": {
+      "opponent": "LV",
+      "kickoff": "2026-10-25T20:25:00Z",
+      "event_id": "56771",
+      "implied_points": 25.75
+    },
+    "SEA": {
+      "opponent": "KC",
+      "kickoff": "2026-10-26T00:20:00Z",
+      "event_id": "53168",
+      "implied_points": 22.5
+    },
+    "KC": {
+      "opponent": "SEA",
+      "kickoff": "2026-10-26T00:20:00Z",
+      "event_id": "53168",
+      "implied_points": 19.75
+    },
+    "PHI": {
+      "opponent": "DAL",
+      "kickoff": "2026-10-27T00:15:00Z",
+      "event_id": "56772",
+      "implied_points": 19.875
+    },
+    "DAL": {
+      "opponent": "PHI",
+      "kickoff": "2026-10-27T00:15:00Z",
+      "event_id": "56772",
+      "implied_points": 24.375
+    }
+  },
+  "players": {
+    "aj-brown-13432": {
+      "player": "A.J. Brown",
+      "team": "NE",
+      "status": "locked",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {}
+    },
+    "amon-ra-st-brown-15332": {
+      "player": "Amon-Ra St. Brown",
+      "team": "DET",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.4947789889968771,
+          "td_mean": 0.6827592998949208,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.5238836354084582,
+          "td_mean": 0.7420929911994228,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.5820929282316202,
+          "td_mean": 0.8724961875169113,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "andrew-armstrong-18453": {
+      "player": "Andrew Armstrong",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.085,
+          "td_mean": 0.08883121370661574,
+          "books": [
+            "draftkings"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.09000000000000001,
+          "td_mean": 0.09431067947124133,
+          "books": [
+            "draftkings"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1,
+          "td_mean": 0.10536051565782631,
+          "books": [
+            "draftkings"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "anthony-gould-17971": {
+      "player": "Anthony Gould",
+      "team": "IND",
+      "status": "out",
+      "injury": {
+        "injury": "Concussion",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Out"
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.01960498409331919,
+          "td_mean": 0.019799711075617465,
+          "books": [
+            "bovada",
+            "draftkings"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.020758218451749737,
+          "td_mean": 0.020976699069576006,
+          "books": [
+            "bovada",
+            "draftkings"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.023064687168610817,
+          "td_mean": 0.023334839129911137,
+          "books": [
+            "bovada",
+            "draftkings"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "antonio-williams-19237": {
+      "player": "Antonio Williams",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "ashton-dulin-13854": {
+      "player": "Ashton Dulin",
+      "team": "IND",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.0672008547008547,
+          "td_mean": 0.06956537966083008,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.07115384615384615,
+          "td_mean": 0.07381215792290034,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07905982905982906,
+          "td_mean": 0.08236020581389894,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "barion-brown-19336": {
+      "player": "Barion Brown",
+      "team": "NO",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.053125,
+          "td_mean": 0.054588190284403086,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.05625,
+          "td_mean": 0.05789397841890259,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.0625,
+          "td_mean": 0.06453852113757118,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "ben-skowronek-15467": {
+      "player": "Ben Skowronek",
+      "team": "PIT",
+      "status": "out",
+      "injury": {
+        "injury": "Calf",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Out"
+      },
+      "td_market": {}
+    },
+    "bo-melton-15935": {
+      "player": "Bo Melton",
+      "team": "GB",
+      "status": "conditional",
+      "injury": {
+        "injury": "Back",
+        "practice": "Limited Participation in Practice",
+        "designation": "Questionable"
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.05936507936507936,
+          "td_mean": 0.061200184246113495,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06285714285714285,
+          "td_mean": 0.06491954609931562,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.06984126984126984,
+          "td_mean": 0.07240002980856576,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "brandin-cooks-9260": {
+      "player": "Brandin Cooks",
+      "team": "SF",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.15028659611992945,
+          "td_mean": 0.16285615825880165,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.15912698412698412,
+          "td_mean": 0.1733146222371699,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.17680776014109348,
+          "td_mean": 0.19456552130592009,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "brandon-johnson-16473": {
+      "player": "Brandon Johnson",
+      "team": "PIT",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "brandon-smith-15307": {
+      "player": "Brandon Smith",
+      "team": "PIT",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "braxton-berrios-12771": {
+      "player": "Braxton Berrios",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "brian-thomas-17716": {
+      "player": "Brian Thomas",
+      "team": "JAX",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "bryce-lance-19319": {
+      "player": "Bryce Lance",
+      "team": "NO",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1146360153256705,
+          "td_mean": 0.12175643640962862,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.12137931034482759,
+          "td_mean": 0.12940199928251142,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.13486590038314175,
+          "td_mean": 0.14487075560713175,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "brycen-tremayne-17330": {
+      "player": "Brycen Tremayne",
+      "team": "CAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.06538461538461539,
+          "td_mean": 0.06762018767497928,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06923076923076923,
+          "td_mean": 0.07174390485884134,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07692307692307693,
+          "td_mean": 0.08004270767353643,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "calvin-ridley-12616": {
+      "player": "Calvin Ridley",
+      "team": "TEN",
+      "status": "conditional",
+      "injury": {
+        "injury": "Hip",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Questionable"
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.07984848484848485,
+          "td_mean": 0.08321693211694157,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.08454545454545455,
+          "td_mean": 0.08833456606789962,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.09393939393939395,
+          "td_mean": 0.0986490810698395,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "carnell-tate-19268": {
+      "player": "Carnell Tate",
+      "team": "TEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.20238095238095236,
+          "td_mean": 0.22612417945234753,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.21428571428571427,
+          "td_mean": 0.24116205681688804,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.23809523809523808,
+          "td_mean": 0.27193371548364176,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "cedric-tillman-16706": {
+      "player": "Cedric Tillman",
+      "team": "NO",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "ceedee-lamb-14411": {
+      "player": "CeeDee Lamb",
+      "team": "DAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.38636363636363635,
+          "td_mean": 0.48835276791393206,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.40909090909090906,
+          "td_mean": 0.5260930958967791,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.45454545454545453,
+          "td_mean": 0.6061358035703155,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "charlie-jones-16719": {
+      "player": "Charlie Jones",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.04871345029239765,
+          "td_mean": 0.049939947724297794,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.05157894736842105,
+          "td_mean": 0.0529567269862486,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.05730994152046783,
+          "td_mean": 0.05901772643013192,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "chimere-dike-18641": {
+      "player": "Chimere Dike",
+      "team": "TEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.085,
+          "td_mean": 0.08883121370661574,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.09000000000000001,
+          "td_mean": 0.09431067947124133,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1,
+          "td_mean": 0.10536051565782631,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "chris-bell-19309": {
+      "player": "Chris Bell",
+      "team": "MIA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.11873015873015871,
+          "td_mean": 0.1263914101929836,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1257142857142857,
+          "td_mean": 0.13434805253107857,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.13968253968253969,
+          "td_mean": 0.15045381794593216,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "chris-blair-15376": {
+      "player": "Chris Blair",
+      "team": "ATL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.03191391941391941,
+          "td_mean": 0.032434269433972554,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.03379120879120879,
+          "td_mean": 0.034375328156803886,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.037545787545787544,
+          "td_mean": 0.03826878542789922,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "chris-godwin-11718": {
+      "player": "Chris Godwin",
+      "team": "TB",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.2524875621890547,
+          "td_mean": 0.2910043346437588,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.26733977172958734,
+          "td_mean": 0.31107322034529233,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2970441908106526,
+          "td_mean": 0.35246124947536295,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "chris-moore-10994": {
+      "player": "Chris Moore",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "chris-olave-15895": {
+      "player": "Chris Olave",
+      "team": "NO",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.30008210180623973,
+          "td_mean": 0.35679223911217045,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.31773399014778325,
+          "td_mean": 0.3823356534143941,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3530377668308703,
+          "td_mean": 0.4354673584119632,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "christian-watson-15946": {
+      "player": "Christian Watson",
+      "team": "GB",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.36170212765957444,
+          "td_mean": 0.44895022004790314,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3829787234042553,
+          "td_mean": 0.48285177172358457,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.425531914893617,
+          "td_mean": 0.5543107357057295,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "cody-white-14495": {
+      "player": "Cody White",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.08133971291866028,
+          "td_mean": 0.08483887993702945,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.0861244019138756,
+          "td_mean": 0.09006082391818114,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.09569377990430622,
+          "td_mean": 0.10058723690516863,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "colbie-young-19447": {
+      "player": "Colbie Young",
+      "team": "CIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.0672008547008547,
+          "td_mean": 0.06956537966083008,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.07115384615384615,
+          "td_mean": 0.07381215792290034,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07905982905982906,
+          "td_mean": 0.08236020581389894,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "cooper-kupp-11863": {
+      "player": "Cooper Kupp",
+      "team": "SEA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.164010989010989,
+          "td_mean": 0.17913981073381527,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.17365869424692956,
+          "td_mean": 0.1907473877151628,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1929541047188106,
+          "td_mean": 0.2143747408532382,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "courtland-sutton-12586": {
+      "player": "Courtland Sutton",
+      "team": "DEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.24758454106280195,
+          "td_mean": 0.28446663559780655,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.26214833759590794,
+          "td_mean": 0.30401247403721154,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.29127593066211993,
+          "td_mean": 0.3442890110816034,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "cyrus-allen-19631": {
+      "player": "Cyrus Allen",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.07555555555555556,
+          "td_mean": 0.07856232250310216,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.08,
+          "td_mean": 0.08338160893905106,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.08888888888888889,
+          "td_mean": 0.09309042306601195,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "dalen-cambre-18878": {
+      "player": "Dalen Cambre",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "dareke-young-15922": {
+      "player": "Dareke Young",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.04324561403508772,
+          "td_mean": 0.044208570453843916,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.04578947368421053,
+          "td_mean": 0.04687095439968078,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.05087719298245614,
+          "td_mean": 0.05221708198211431,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "darius-cooper-18958": {
+      "player": "Darius Cooper",
+      "team": "PHI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.15046583850931675,
+          "td_mean": 0.16306712503457335,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.15931677018633542,
+          "td_mean": 0.17354034892415282,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.17701863354037267,
+          "td_mean": 0.19482171955818608,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "darnell-mooney-14510": {
+      "player": "Darnell Mooney",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.09444444444444444,
+          "td_mean": 0.09920665008344803,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.09999999999999999,
+          "td_mean": 0.1053605156578263,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1111111111111111,
+          "td_mean": 0.11778303565638344,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "davante-adams-9455": {
+      "player": "Davante Adams",
+      "team": "LAR",
+      "status": "out",
+      "injury": {
+        "injury": "Hamstring; team reports out 6\u201310 weeks",
+        "source": "https://www.therams.com/news/rams-injury-updates-cardinals-week-6-2026-blake-grupe-torn-acl-out-for-season-poona-ford-davante-adams-kobie-turner-trent-mcduffie-raiders"
+      },
+      "td_market": {}
+    },
+    "david-moore-12216": {
+      "player": "David Moore",
+      "team": "CAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.041150793650793646,
+          "td_mean": 0.04202145697406064,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.04357142857142857,
+          "td_mean": 0.04454916991217748,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.048412698412698414,
+          "td_mean": 0.04962384491800944,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "deebo-samuel-13429": {
+      "player": "Deebo Samuel",
+      "team": "SF",
+      "status": "out",
+      "injury": {
+        "injury": "Hamstring",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Out"
+      },
+      "td_market": {}
+    },
+    "deion-burks-19315": {
+      "player": "Deion Burks",
+      "team": "IND",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.06901709401709402,
+          "td_mean": 0.07151436279425032,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.07307692307692308,
+          "td_mean": 0.07588469752487274,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.0811965811965812,
+          "td_mean": 0.08468308723003863,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "demario-douglas-16751": {
+      "player": "DeMario Douglas",
+      "team": "NE",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "denzel-boston-19298": {
+      "player": "Denzel Boston",
+      "team": "CLE",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.26843584656084657,
+          "td_mean": 0.31257036115196407,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.28422619047619047,
+          "td_mean": 0.33439107041738836,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3158068783068783,
+          "td_mean": 0.3795150595538806,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "derius-davis-16939": {
+      "player": "Derius Davis",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "devaughn-vele-17975": {
+      "player": "Devaughn Vele",
+      "team": "NO",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.21610948826138698,
+          "td_mean": 0.24348592177879877,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.22882181110029212,
+          "td_mean": 0.25983581811413237,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.25424645677810237,
+          "td_mean": 0.29336010437912585,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "deven-thompkins-16333": {
+      "player": "Deven Thompkins",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "devonta-smith-15406": {
+      "player": "DeVonta Smith",
+      "team": "PHI",
+      "status": "conditional",
+      "injury": {
+        "injury": "",
+        "practice": "Did Not Participate In Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.3110670194003527,
+          "td_mean": 0.3726112832370861,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.32936507936507936,
+          "td_mean": 0.39953037258834984,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.36596119929453264,
+          "td_mean": 0.4556451265666507,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "devontez-walker-17728": {
+      "player": "Devontez Walker",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.06247863247863248,
+          "td_mean": 0.06451572937451336,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06615384615384616,
+          "td_mean": 0.06844357183018454,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.0735042735042735,
+          "td_mean": 0.07634584579221029,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "dj-moore-12477": {
+      "player": "DJ Moore",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "dk-metcalf-13424": {
+      "player": "DK Metcalf",
+      "team": "PIT",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.32914046121593293,
+          "td_mean": 0.39919549509456903,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.34850166481687017,
+          "td_mean": 0.42848043778024153,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3872240720187446,
+          "td_mean": 0.4897559433422367,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "dohnte-meyers-19247": {
+      "player": "Dohnte Meyers",
+      "team": "CIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1712018140589569,
+          "td_mean": 0.1877785962570128,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.18127250900360145,
+          "td_mean": 0.2000039843233806,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2014138988928905,
+          "td_mean": 0.22491248857771004,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "dontayvion-wicks-16658": {
+      "player": "Dontayvion Wicks",
+      "team": "PHI",
+      "status": "conditional",
+      "injury": {
+        "injury": "",
+        "practice": "Did Not Participate In Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.23835978835978835,
+          "td_mean": 0.2722809980014575,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.2523809523809524,
+          "td_mean": 0.2908617253691606,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2804232804232804,
+          "td_mean": 0.32909212932359033,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "drake-london-15868": {
+      "player": "Drake London",
+      "team": "ATL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.35667848699763594,
+          "td_mean": 0.44111065949156647,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3776595744680851,
+          "td_mean": 0.4742680280321931,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.41962174940898345,
+          "td_mean": 0.5440752318117027,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "dyami-brown-15274": {
+      "player": "Dyami Brown",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "efton-chism-18889": {
+      "player": "Efton Chism",
+      "team": "NE",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "elic-ayomanor-18552": {
+      "player": "Elic Ayomanor",
+      "team": "TEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.11019157088122605,
+          "td_mean": 0.11674908760631895,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1166734279918864,
+          "td_mean": 0.12406030302971083,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.12963714221320713,
+          "td_mean": 0.13884507637047117,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "elijah-moore-15280": {
+      "player": "Elijah Moore",
+      "team": "PHI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.0784992784992785,
+          "td_mean": 0.08175171890922159,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.08311688311688312,
+          "td_mean": 0.08677527735448745,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.09235209235209235,
+          "td_mean": 0.0968987424894627,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "elijah-sarratt-19310": {
+      "player": "Elijah Sarratt",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.05430555555555555,
+          "td_mean": 0.05583575952118003,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.0575,
+          "td_mean": 0.05921935965997123,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.06388888888888888,
+          "td_mean": 0.06602110109779395,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "emeka-egbuka-18549": {
+      "player": "Emeka Egbuka",
+      "team": "TB",
+      "status": "out",
+      "injury": {
+        "injury": "Concussion, Foot",
+        "practice": "Limited Participation in Practice",
+        "designation": "Out"
+      },
+      "td_market": {}
+    },
+    "garrett-wilson-15829": {
+      "player": "Garrett Wilson",
+      "team": "NYJ",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.3187747495923597,
+          "td_mean": 0.38386226334148016,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.33752620545073375,
+          "td_mean": 0.4117742773014291,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.37502911716748194,
+          "td_mean": 0.47005021779893646,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "george-pickens-15853": {
+      "player": "George Pickens",
+      "team": "DAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.3109988776655443,
+          "td_mean": 0.37251237903735857,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3292929292929293,
+          "td_mean": 0.3994227936522018,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3658810325476992,
+          "td_mean": 0.45551869632436837,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "germie-bernard-19263": {
+      "player": "Germie Bernard",
+      "team": "PIT",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.26865428478331704,
+          "td_mean": 0.31286899639774934,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.2844574780058651,
+          "td_mean": 0.33471425199031496,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.31606386445096124,
+          "td_mean": 0.3798907347991032,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "greg-dortch-13469": {
+      "player": "Greg Dortch",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "isaac-teslaa-18642": {
+      "player": "Isaac TeSlaa",
+      "team": "DET",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1712018140589569,
+          "td_mean": 0.1877785962570128,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.18127250900360145,
+          "td_mean": 0.2000039843233806,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2014138988928905,
+          "td_mean": 0.22491248857771004,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "isaiah-bond-18502": {
+      "player": "Isaiah Bond",
+      "team": "CLE",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.06538461538461539,
+          "td_mean": 0.06762018767497928,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06923076923076923,
+          "td_mean": 0.07174390485884134,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07692307692307693,
+          "td_mean": 0.08004270767353643,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "isaiah-williams-17977": {
+      "player": "Isaiah Williams",
+      "team": "NYJ",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.062271062271062265,
+          "td_mean": 0.06429435070539725,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06593406593406594,
+          "td_mean": 0.06820825002653359,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07326007326007326,
+          "td_mean": 0.0760823064574395,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "j-michael-sturdivant-19327": {
+      "player": "J. Michael Sturdivant",
+      "team": "GB",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.03695652173913043,
+          "td_mean": 0.03765671943800504,
+          "books": [
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.0391304347826087,
+          "td_mean": 0.03991660740544256,
+          "books": [
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.043478260869565216,
+          "td_mean": 0.04445176257083384,
+          "books": [
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jack-bech-18457": {
+      "player": "Jack Bech",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "jacob-cowing-17008": {
+      "player": "Jacob Cowing",
+      "team": "SF",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.09027975343764817,
+          "td_mean": 0.09461814809492738,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.09559032716927454,
+          "td_mean": 0.10047284333396257,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.10621147463252727,
+          "td_mean": 0.11228608059666347,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jahan-dotson-15850": {
+      "player": "Jahan Dotson",
+      "team": "ATL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1688888888888889,
+          "td_mean": 0.18499178534983352,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.17882352941176471,
+          "td_mean": 0.19701724672198967,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.19869281045751636,
+          "td_mean": 0.22151089789032447,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jahdae-walker-18938": {
+      "player": "Jahdae Walker",
+      "team": "CHI",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "jakobi-lane-19230": {
+      "player": "Ja'Kobi Lane",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.17115646258503403,
+          "td_mean": 0.18772387819182995,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.18122448979591838,
+          "td_mean": 0.19994533501689185,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2013605442176871,
+          "td_mean": 0.22484567938474026,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jakobi-meyers-13517": {
+      "player": "Jakobi Meyers",
+      "team": "JAX",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "jalen-brooks-17185": {
+      "player": "Jalen Brooks",
+      "team": "ARI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.10309343434343433,
+          "td_mean": 0.10880358549633974,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.10915775401069519,
+          "td_mean": 0.11558791994874126,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.12128639334521688,
+          "td_mean": 0.12929625161697914,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jalen-coker-17976": {
+      "player": "Jalen Coker",
+      "team": "CAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.3090909090909091,
+          "td_mean": 0.3697470255060851,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.32727272727272727,
+          "td_mean": 0.3964152725882465,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.36363636363636365,
+          "td_mean": 0.45198512374305727,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jalen-mcmillan-17763": {
+      "player": "Jalen McMillan",
+      "team": "TB",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "jalen-nailor-16025": {
+      "player": "Jalen Nailor",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.13803418803418804,
+          "td_mean": 0.14853967039753535,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.14615384615384616,
+          "td_mean": 0.1580042491432483,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1623931623931624,
+          "td_mean": 0.17720645612718422,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jalen-royals-18550": {
+      "player": "Jalen Royals",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.15997058497058497,
+          "td_mean": 0.17431836986572907,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.16938061938061938,
+          "td_mean": 0.1855836147812972,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1882006882006882,
+          "td_mean": 0.20850212232429696,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jalen-tolbert-16010": {
+      "player": "Jalen Tolbert",
+      "team": "MIA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.03411371237458194,
+          "td_mean": 0.034709166372015265,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.036120401337792644,
+          "td_mean": 0.036788889825264716,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.04013377926421405,
+          "td_mean": 0.04096135763106532,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jamarr-chase-15183": {
+      "player": "Ja'Marr Chase",
+      "team": "CIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.41134339914827717,
+          "td_mean": 0.5299122859784211,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.4355400696864111,
+          "td_mean": 0.571885880527237,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.48393341076267904,
+          "td_mean": 0.6615194729171318,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jameson-williams-15849": {
+      "player": "Jameson Williams",
+      "team": "DET",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.2931034482758621,
+          "td_mean": 0.3468709438421116,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3103448275862069,
+          "td_mean": 0.37156355643248307,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3448275862068966,
+          "td_mean": 0.4228568508200336,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jared-wayne-16847": {
+      "player": "Jared Wayne",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "jaseem-reed-19049": {
+      "player": "Ja'seem Reed",
+      "team": "CAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "jauan-jennings-14376": {
+      "player": "Jauan Jennings",
+      "team": "MIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.11873015873015871,
+          "td_mean": 0.1263914101929836,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1257142857142857,
+          "td_mean": 0.13434805253107857,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.13968253968253969,
+          "td_mean": 0.15045381794593216,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jaxon-smith-njigba-16654": {
+      "player": "Jaxon Smith-Njigba",
+      "team": "SEA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.3835016835016835,
+          "td_mean": 0.4836996871222346,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.406060606060606,
+          "td_mean": 0.5209779952300087,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.4511784511784512,
+          "td_mean": 0.5999819379959372,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jaylen-waddle-15404": {
+      "player": "Jaylen Waddle",
+      "team": "DEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.2931034482758621,
+          "td_mean": 0.3468709438421116,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3103448275862069,
+          "td_mean": 0.37156355643248307,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3448275862068966,
+          "td_mean": 0.4228568508200336,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jaylin-lane-18643": {
+      "player": "Jaylin Lane",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "jaylin-noel-18555": {
+      "player": "Jaylin Noel",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.16294261294261295,
+          "td_mean": 0.17786264805040544,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.17252747252747255,
+          "td_mean": 0.18937937171100216,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1916971916971917,
+          "td_mean": 0.21281852791606123,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jerry-jeudy-14458": {
+      "player": "Jerry Jeudy",
+      "team": "CLE",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.12454212454212453,
+          "td_mean": 0.13300824325344904,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.13186813186813187,
+          "td_mean": 0.14141165404982856,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.14652014652014653,
+          "td_mean": 0.15843334161925918,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jeshaun-jones-17691": {
+      "player": "Jeshaun Jones",
+      "team": "MIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "john-metchie-16069": {
+      "player": "John Metchie",
+      "team": "CAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "jonathan-mingo-16937": {
+      "player": "Jonathan Mingo",
+      "team": "DAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.07727272727272727,
+          "td_mean": 0.0804215673105742,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.08181818181818182,
+          "td_mean": 0.08535984895115678,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.09090909090909091,
+          "td_mean": 0.09531017980432487,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jordan-addison-16895": {
+      "player": "Jordan Addison",
+      "team": "MIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.23848133848133846,
+          "td_mean": 0.27244060068499903,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.2525096525096525,
+          "td_mean": 0.2910338868570611,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2805662805662806,
+          "td_mean": 0.3292908772125483,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jordan-watkins-18647": {
+      "player": "Jordan Watkins",
+      "team": "SF",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1481060606060606,
+          "td_mean": 0.16029324418104615,
+          "books": [
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1568181818181818,
+          "td_mean": 0.1705726643048717,
+          "books": [
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.17424242424242425,
+          "td_mean": 0.19145404035722716,
+          "books": [
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "jordan-whittington-17688": {
+      "player": "Jordan Whittington",
+      "team": "LAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1479035639412998,
+          "td_mean": 0.1600555706957599,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.15660377358490565,
+          "td_mean": 0.17031841193259867,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1740041928721174,
+          "td_mean": 0.19116558159040742,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "josh-cameron-19321": {
+      "player": "Josh Cameron",
+      "team": "JAX",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "josh-downs-16689": {
+      "player": "Josh Downs",
+      "team": "IND",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.18085106382978722,
+          "td_mean": 0.19948936041632004,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.19148936170212766,
+          "td_mean": 0.21256144198367283,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2127659574468085,
+          "td_mean": 0.23922968906583414,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "joshua-palmer-15447": {
+      "player": "Joshua Palmer",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "justin-jefferson-14509": {
+      "player": "Justin Jefferson",
+      "team": "MIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.3248669569424287,
+          "td_mean": 0.3928455067053915,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.34397677793904213,
+          "td_mean": 0.4215590911814274,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.382196419932269,
+          "td_mean": 0.48158470364922895,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "justin-watson-12746": {
+      "player": "Justin Watson",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "kalif-raymond-11429": {
+      "player": "Kalif Raymond",
+      "team": "CHI",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "kameron-johnson-18307": {
+      "player": "Kameron Johnson",
+      "team": "TB",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.05957264957264957,
+          "td_mean": 0.06142087891593481,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06307692307692307,
+          "td_mean": 0.06515409517978576,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07008547008547009,
+          "td_mean": 0.07266260037591386,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "kavontae-turpin-13894": {
+      "player": "KaVontae Turpin",
+      "team": "DAL",
+      "status": "conditional",
+      "injury": {
+        "injury": "",
+        "practice": "Did Not Participate In Practice",
+        "designation": ""
+      },
+      "td_market": {}
+    },
+    "kayshon-boutte-16795": {
+      "player": "Kayshon Boutte",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.11227490421455938,
+          "td_mean": 0.11909316073695969,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.11887931034482759,
+          "td_mean": 0.12656067076537975,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.13208812260536398,
+          "td_mean": 0.1416650932145691,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "kc-concepcion-19242": {
+      "player": "KC Concepcion",
+      "team": "CLE",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.21077235772357722,
+          "td_mean": 0.23670047975468647,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.22317073170731708,
+          "td_mean": 0.25253468468613544,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.24796747967479674,
+          "td_mean": 0.28497571085403794,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "keandre-lambert-smith-18650": {
+      "player": "KeAndre Lambert-Smith",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "keenan-allen-8627": {
+      "player": "Keenan Allen",
+      "team": "IND",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.18752012882447663,
+          "td_mean": 0.20766413902294095,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.19855072463768114,
+          "td_mean": 0.22133359606897024,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.22061191626409016,
+          "td_mean": 0.24924617521684703,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "kendrick-bourne-11847": {
+      "player": "Kendrick Bourne",
+      "team": "ARI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.18752012882447663,
+          "td_mean": 0.20766413902294095,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.19855072463768114,
+          "td_mean": 0.22133359606897024,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.22061191626409016,
+          "td_mean": 0.24924617521684703,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "keon-coleman-17732": {
+      "player": "Keon Coleman",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "kevin-austin-16026": {
+      "player": "Kevin Austin",
+      "team": "NO",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "kevin-coleman-19322": {
+      "player": "Kevin Coleman",
+      "team": "MIA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "khadarel-hodge-13418": {
+      "player": "KhaDarel Hodge",
+      "team": "SF",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "khalil-shakir-15892": {
+      "player": "Khalil Shakir",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "konata-mumpfield-17081": {
+      "player": "Konata Mumpfield",
+      "team": "LAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.2688034188034188,
+          "td_mean": 0.31307293445955364,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.2846153846153846,
+          "td_mean": 0.3349349573023265,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3162393162393162,
+          "td_mean": 0.3801473001238745,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "kyle-williams-19126": {
+      "player": "Kyle Williams",
+      "team": "NE",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "ladd-mcconkey-17724": {
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "lajohntay-wester-18567": {
+      "player": "LaJohntay Wester",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.056666666666666664,
+          "td_mean": 0.05833557701296343,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06,
+          "td_mean": 0.06187540371808747,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.06666666666666667,
+          "td_mean": 0.06899287148695145,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "laquon-treadwell-10739": {
+      "player": "Laquon Treadwell",
+      "team": "IND",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.10101010101010101,
+          "td_mean": 0.10648348040245009,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.10695187165775401,
+          "td_mean": 0.11311480443783152,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.11883541295306001,
+          "td_mean": 0.1265108520528739,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "lewis-bond-19326": {
+      "player": "Lewis Bond",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "liljordan-humphrey-13565": {
+      "player": "Lil'Jordan Humphrey",
+      "team": "DEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.053125,
+          "td_mean": 0.054588190284403086,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.05625,
+          "td_mean": 0.05789397841890259,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.0625,
+          "td_mean": 0.06453852113757118,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "luke-mccaffrey-17820": {
+      "player": "Luke McCaffrey",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "luther-burden-18548": {
+      "player": "Luther Burden",
+      "team": "CHI",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "mack-hollins-11861": {
+      "player": "Mack Hollins",
+      "team": "NE",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "makai-lemon-19231": {
+      "player": "Makai Lemon",
+      "team": "PHI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.23620352250489235,
+          "td_mean": 0.26945391601713514,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.2500978473581213,
+          "td_mean": 0.2878125441069989,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.27788649706457924,
+          "td_mean": 0.3255729461631772,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malachi-corley-17777": {
+      "player": "Malachi Corley",
+      "team": "CLE",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.07331002331002331,
+          "td_mean": 0.0761362065805245,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.07762237762237763,
+          "td_mean": 0.08080057053663837,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.08624708624708625,
+          "td_mean": 0.09019507913755444,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malachi-fields-19313": {
+      "player": "Malachi Fields",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.10416666666666666,
+          "td_mean": 0.1100008952143285,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.11029411764705882,
+          "td_mean": 0.11686434013931092,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.12254901960784313,
+          "td_mean": 0.1307341880034614,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malik-benson-19432": {
+      "player": "Malik Benson",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.04722222222222222,
+          "td_mean": 0.048373584284215766,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.049999999999999996,
+          "td_mean": 0.05129329438755053,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.05555555555555555,
+          "td_mean": 0.05715841383994861,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malik-mcclain-19668": {
+      "player": "Malik McClain",
+      "team": "NYJ",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.041304347826086954,
+          "td_mean": 0.04218161403629469,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.043734015345268544,
+          "td_mean": 0.04471917800229774,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.04859335038363171,
+          "td_mean": 0.049813705712219214,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malik-nabers-17704": {
+      "player": "Malik Nabers",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.2476190476190476,
+          "td_mean": 0.28451249769050185,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.26218487394957984,
+          "td_mean": 0.30406199247045845,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2913165266106443,
+          "td_mean": 0.3443462930521189,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malik-turner-13378": {
+      "player": "Malik Turner",
+      "team": "SF",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.029028947507812913,
+          "td_mean": 0.029458623192680188,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.03073653265533132,
+          "td_mean": 0.03121880792389417,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.03415170295036813,
+          "td_mean": 0.03474849949375205,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "malik-washington-17863": {
+      "player": "Malik Washington",
+      "team": "MIA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.17592994644666377,
+          "td_mean": 0.19349973623813518,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1862787668258793,
+          "td_mean": 0.2061374370223177,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.20697640758431032,
+          "td_mean": 0.23190230695037917,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "marquez-valdes-scantling-12934": {
+      "player": "Marquez Valdes-Scantling",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "marvin-harrison-17674": {
+      "player": "Marvin Harrison",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "marvin-mims-16849": {
+      "player": "Marvin Mims",
+      "team": "DEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1325128205128205,
+          "td_mean": 0.14215454595945898,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.14030769230769233,
+          "td_mean": 0.15118073550687608,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1558974358974359,
+          "td_mean": 0.16948127032077737,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "matthew-golden-18500": {
+      "player": "Matthew Golden",
+      "team": "GB",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.3377777777777778,
+          "td_mean": 0.412154096258961,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.35764705882352943,
+          "td_mean": 0.44261737373945714,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3973856209150327,
+          "td_mean": 0.5064777908298874,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "michael-pittman-14378": {
+      "player": "Michael Pittman",
+      "team": "PIT",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "michael-wilson-16957": {
+      "player": "Michael Wilson",
+      "team": "ARI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.2524875621890547,
+          "td_mean": 0.2910043346437588,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.26733977172958734,
+          "td_mean": 0.31107322034529233,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2970441908106526,
+          "td_mean": 0.35246124947536295,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "mike-evans-9253": {
+      "player": "Mike Evans",
+      "team": "SF",
+      "status": "out",
+      "injury": {
+        "injury": "Ribs, Achilles",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Out"
+      },
+      "td_market": {}
+    },
+    "mitchell-tinsley-16834": {
+      "player": "Mitchell Tinsley",
+      "team": "CIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.0672008547008547,
+          "td_mean": 0.06956537966083008,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.07115384615384615,
+          "td_mean": 0.07381215792290034,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07905982905982906,
+          "td_mean": 0.08236020581389894,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "myles-price-19095": {
+      "player": "Myles Price",
+      "team": "MIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.09837962962962962,
+          "td_mean": 0.10356172293330734,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.10416666666666666,
+          "td_mean": 0.1100008952143285,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.11574074074074074,
+          "td_mean": 0.12300497963753514,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "nick-westbrook-ikhine-14750": {
+      "player": "Nick Westbrook-Ikhine",
+      "team": "IND",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "nico-collins-15200": {
+      "player": "Nico Collins",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.37504025764895327,
+          "td_mean": 0.4700680435586181,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3971014492753623,
+          "td_mean": 0.5060063373300417,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.4412238325281803,
+          "td_mean": 0.5820063019866195,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "nikko-remigio-16744": {
+      "player": "Nikko Remigio",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.03788156288156288,
+          "td_mean": 0.03861772038679181,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.04010989010989011,
+          "td_mean": 0.04093646993678447,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.04456654456654457,
+          "td_mean": 0.04559016143876114,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "odell-beckham-9255": {
+      "player": "Odell Beckham",
+      "team": "NYG",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "olamide-zaccheaus-13833": {
+      "player": "Olamide Zaccheaus",
+      "team": "ATL",
+      "status": "conditional",
+      "injury": {
+        "injury": "Shoulder",
+        "practice": "Limited Participation in Practice",
+        "designation": "Questionable"
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.0672008547008547,
+          "td_mean": 0.06956537966083008,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.07115384615384615,
+          "td_mean": 0.07381215792290034,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07905982905982906,
+          "td_mean": 0.08236020581389894,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "omar-cooper-19314": {
+      "player": "Omar Cooper",
+      "team": "NYJ",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "parker-washington-16690": {
+      "player": "Parker Washington",
+      "team": "JAX",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "pat-bryant-18562": {
+      "player": "Pat Bryant",
+      "team": "DEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "puka-nacua-16790": {
+      "player": "Puka Nacua",
+      "team": "LAR",
+      "status": "conditional",
+      "injury": {
+        "injury": "Calf",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Questionable"
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.41808943089430894,
+          "td_mean": 0.5414385043882387,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.4426829268292683,
+          "td_mean": 0.5846209493640941,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.491869918699187,
+          "td_mean": 0.6770177986300617,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "quentin-johnston-16899": {
+      "player": "Quentin Johnston",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "rashee-rice-16963": {
+      "player": "Rashee Rice",
+      "team": "KC",
+      "status": "out",
+      "injury": {
+        "injury": "Hamstring, Knee",
+        "practice": "Did Not Participate In Practice",
+        "designation": "Out"
+      },
+      "td_market": {}
+    },
+    "rashid-shaheed-16560": {
+      "player": "Rashid Shaheed",
+      "team": "SEA",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.16426797526088305,
+          "td_mean": 0.17944726185326168,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.17393079733505265,
+          "td_mean": 0.19107672850450827,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.19325644148339183,
+          "td_mean": 0.2147494325670884,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "rashod-bateman-15210": {
+      "player": "Rashod Bateman",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Full Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.14789319928413516,
+          "td_mean": 0.1600434070559532,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1565927992420255,
+          "td_mean": 0.17030539993285582,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.17399199915780608,
+          "td_mean": 0.19115081925844096,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "reggie-virgil-19445": {
+      "player": "Reggie Virgil",
+      "team": "ARI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.041150793650793646,
+          "td_mean": 0.04202145697406064,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.04357142857142857,
+          "td_mean": 0.04454916991217748,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.048412698412698414,
+          "td_mean": 0.04962384491800944,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "roman-wilson-17043": {
+      "player": "Roman Wilson",
+      "team": "PIT",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "rome-odunze-17020": {
+      "player": "Rome Odunze",
+      "team": "CHI",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "romeo-doubs-16027": {
+      "player": "Romeo Doubs",
+      "team": "NE",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "ryan-flournoy-17974": {
+      "player": "Ryan Flournoy",
+      "team": "DAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.17833924349881797,
+          "td_mean": 0.19642767409849524,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.18882978723404256,
+          "td_mean": 0.2092773667824829,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.20981087470449172,
+          "td_mean": 0.23548296306422542,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "ryan-miller-17271": {
+      "player": "Ryan Miller",
+      "team": "MIA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "savion-williams-18554": {
+      "player": "Savion Williams",
+      "team": "GB",
+      "status": "not_listed_or_no_designation",
+      "injury": {
+        "injury": "",
+        "practice": "Limited Participation in Practice",
+        "designation": ""
+      },
+      "td_market": {
+        "0.85": {
+          "p": 0.18347209374036386,
+          "td_mean": 0.20269418925041913,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.1942645698427382,
+          "td_mean": 0.21599984078670548,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2158495220474869,
+          "td_mean": 0.24315434088519833,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "simi-fehoko-15559": {
+      "player": "Simi Fehoko",
+      "team": "ARI",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.02311427280939476,
+          "td_mean": 0.02338559673746974,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.024473935915829748,
+          "td_mean": 0.024778400583781675,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.027193262128699717,
+          "td_mean": 0.027569841528492872,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "skyler-bell-19251": {
+      "player": "Skyler Bell",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "skyy-moore-16005": {
+      "player": "Skyy Moore",
+      "team": "GB",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "stefon-diggs-10133": {
+      "player": "Stefon Diggs",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "sterling-shepard-10988": {
+      "player": "Sterling Shepard",
+      "team": "NYJ",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "tai-felton-18553": {
+      "player": "Tai Felton",
+      "team": "MIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.09837962962962962,
+          "td_mean": 0.10356172293330734,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.10416666666666666,
+          "td_mean": 0.1100008952143285,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.11574074074074074,
+          "td_mean": 0.12300497963753514,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "tay-martin-15918": {
+      "player": "Tay Martin",
+      "team": "DET",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.032692307692307694,
+          "td_mean": 0.033238641475733834,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.03461538461538462,
+          "td_mean": 0.03522869188374385,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.038461538461538464,
+          "td_mean": 0.0392207131532813,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "ted-hurst-19320": {
+      "player": "Ted Hurst",
+      "team": "TB",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.21629183824305773,
+          "td_mean": 0.24371857058818644,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.22901488755147292,
+          "td_mean": 0.2600862150105192,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.2544609861683032,
+          "td_mean": 0.29364781370975446,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "tee-higgins-14506": {
+      "player": "Tee Higgins",
+      "team": "CIN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.3469387755102041,
+          "td_mean": 0.42608439531090003,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3673469387755102,
+          "td_mean": 0.4578330936254804,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.40816326530612246,
+          "td_mean": 0.5245244681241525,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "terry-mclaurin-13536": {
+      "player": "Terry McLaurin",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "tetairoa-mcmillan-18547": {
+      "player": "Tetairoa McMillan",
+      "team": "CAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.36443236714975846,
+          "td_mean": 0.4532367693886685,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.3858695652173913,
+          "td_mean": 0.48754793889664505,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.428743961352657,
+          "td_mean": 0.5599177658933268,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "tez-johnson-18484": {
+      "player": "Tez Johnson",
+      "team": "TB",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.14415204678362573,
+          "td_mean": 0.15566254336476498,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.15263157894736842,
+          "td_mean": 0.16561970717602315,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1695906432748538,
+          "td_mean": 0.1858364989013991,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "theo-wease-18645": {
+      "player": "Theo Wease",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "tim-patrick-12061": {
+      "player": "Tim Patrick",
+      "team": "NYJ",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.06538461538461539,
+          "td_mean": 0.06762018767497928,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.06923076923076923,
+          "td_mean": 0.07174390485884134,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.07692307692307693,
+          "td_mean": 0.08004270767353643,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "tom-kennedy-14246": {
+      "player": "Tom Kennedy",
+      "team": "DET",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "tory-horton-17772": {
+      "player": "Tory Horton",
+      "team": "SEA",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.09444444444444444,
+          "td_mean": 0.09920665008344803,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.09999999999999999,
+          "td_mean": 0.1053605156578263,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.1111111111111111,
+          "td_mean": 0.11778303565638344,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "travis-hunter-18578": {
+      "player": "Travis Hunter",
+      "team": "JAX",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "tre-harris-18478": {
+      "player": "Tre' Harris",
+      "team": "LAC",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "tre-tucker-16694": {
+      "player": "Tre Tucker",
+      "team": "LV",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.19467935165609584,
+          "td_mean": 0.21651475994818892,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.20613107822410148,
+          "td_mean": 0.23083691728774353,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.22903453136011276,
+          "td_mean": 0.26011169417811614,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "trent-sherfield-13061": {
+      "player": "Trent Sherfield",
+      "team": "BUF",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "treylon-burks-15896": {
+      "player": "Treylon Burks",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "troy-franklin-17719": {
+      "player": "Troy Franklin",
+      "team": "DEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.12142857142857141,
+          "td_mean": 0.1294580672368868,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.12857142857142856,
+          "td_mean": 0.13762137787604772,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.14285714285714285,
+          "td_mean": 0.1541506798272583,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "tutu-atwell-15229": {
+      "player": "Tutu Atwell",
+      "team": "LAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "tylan-wallace-15310": {
+      "player": "Tylan Wallace",
+      "team": "CLE",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.02645079899074853,
+          "td_mean": 0.02680691511906009,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.0280067283431455,
+          "td_mean": 0.0284063967093862,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.031118587047939444,
+          "td_mean": 0.03161305543494528,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "tyquan-thornton-15831": {
+      "player": "Tyquan Thornton",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "van-jefferson-14430": {
+      "player": "Van Jefferson",
+      "team": "WAS",
+      "status": "bye",
+      "injury": {},
+      "td_market": {}
+    },
+    "wandale-robinson-15838": {
+      "player": "Wan'Dale Robinson",
+      "team": "TEN",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "xavier-hutchinson-16932": {
+      "player": "Xavier Hutchinson",
+      "team": "HOU",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.1086111111111111,
+          "td_mean": 0.11497448333434448,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.115,
+          "td_mean": 0.12216763397420755,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.12777777777777777,
+          "td_mean": 0.1367110455419023,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "xavier-smith-17467": {
+      "player": "Xavier Smith",
+      "team": "LAR",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {}
+    },
+    "xavier-worthy-17687": {
+      "player": "Xavier Worthy",
+      "team": "KC",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.26843584656084657,
+          "td_mean": 0.31257036115196407,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.28422619047619047,
+          "td_mean": 0.33439107041738836,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.3158068783068783,
+          "td_mean": 0.3795150595538806,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "zachariah-branch-19262": {
+      "player": "Zachariah Branch",
+      "team": "ATL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.08365079365079366,
+          "td_mean": 0.08735775731869048,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.08857142857142858,
+          "td_mean": 0.0927420516986148,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.09841269841269841,
+          "td_mean": 0.10359840066442702,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    },
+    "zavion-thomas-19259": {
+      "player": "Zavion Thomas",
+      "team": "CHI",
+      "status": "locked",
+      "injury": {},
+      "td_market": {}
+    },
+    "zay-flowers-16919": {
+      "player": "Zay Flowers",
+      "team": "BAL",
+      "status": "not_listed_or_no_designation",
+      "injury": {},
+      "td_market": {
+        "0.85": {
+          "p": 0.3090909090909091,
+          "td_mean": 0.3697470255060851,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "0.9": {
+          "p": 0.32727272727272727,
+          "td_mean": 0.3964152725882465,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        },
+        "1.0": {
+          "p": 0.36363636363636365,
+          "td_mean": 0.45198512374305727,
+          "books": [
+            "bovada",
+            "draftkings",
+            "fanduel"
+          ],
+          "methods": [
+            "one_sided_td_assumed_discount"
+          ]
+        }
+      }
+    }
+  },
+  "raw_snapshot_sha256": "12c0fee5ac08e49d7abae31298528d31fbf87733ae43b2717ee313e6c5ec5756"
+}
