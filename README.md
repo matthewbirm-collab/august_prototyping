@@ -7,6 +7,7 @@ Projections only — not betting advice.
 - **Why and how:** [`docs/PLAN.md`](docs/PLAN.md)
 - **Build order and progress:** [`docs/ROADMAP.md`](docs/ROADMAP.md)
 - **Rules for working on the code:** [`CLAUDE.md`](CLAUDE.md)
+- **Database schema:** [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md)
 
 ## Layout
 
@@ -64,11 +65,11 @@ Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000
 
 | Command | What it does |
 | --- | --- |
-| `make test` | Backend tests (tests marked `live` are skipped) |
+| `make test` | Backend tests (tests marked `live` are skipped). Database tests use `propline_test` and are skipped locally if Postgres isn't running |
 | `make lint` | ruff, ruff format check, mypy strict, frontend ESLint and TypeScript |
 | `make format` | Auto-format backend code |
 | `make migrate` | Apply database migrations |
-| `make seed` | Load seed data (from Phase 1) |
+| `make seed` | Load reference data: 32 teams, US books, prop markets, PPR / half-PPR / standard scoring. Safe to rerun |
 
 CI on GitHub Actions runs the same lint, typecheck and test steps, with TimescaleDB and Redis as service containers.
 
