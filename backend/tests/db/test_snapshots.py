@@ -124,3 +124,47 @@ def test_an_earlier_snapshot_stored_after_a_later_one_is_not_dropped(db: Session
 
     again = insert_prop_snapshots(db, [_quote(minutes=45, over_price=-125, under_price=105)])
     assert again == 0  # unchanged since the 30-minute row
+
+
+def test_an_unchanged_quote_is_stored_again_once_the_last_row_is_old(db: Session) -> None:
+    """The keep-alive row: a book that keeps quoting always has a recent row, and one that has
+    pulled the market doesn't, which is what staleness detection relies on."""
+    assert insert_prop_snapshots(db, [_quote(minutes=0)]) == 1
+    assert insert_prop_snapshots(db, [_quote(minutes=44)]) == 0
+    assert insert_prop_snapshots(db, [_quote(minutes=46)]) == 1  # 46 minutes since the last row
+    assert insert_prop_snapshots(db, [_quote(minutes=50)]) == 0  # measured from the newest row
+    assert insert_prop_snapshots(db, [_quote(minutes=91)]) == 1
+    times = [
+        r.captured_at for r in db.scalars(select(PropSnapshot).order_by(PropSnapshot.captured_at))
+    ]
+    assert times == [T0 + timedelta(minutes=m) for m in (0, 46, 91)]
+
+
+def test_the_keep_alive_applies_within_one_batch_too(db: Session) -> None:
+    stored = insert_prop_snapshots(db, [_quote(minutes=m) for m in (0, 20, 40, 60, 80, 100)])
+    # Measured from each stored row: 0 is new, 20 and 40 are within 45 minutes of it, 60 is not,
+    # and 80 and 100 are within 45 minutes of the 60.
+    assert stored == 2
+    times = [
+        r.captured_at for r in db.scalars(select(PropSnapshot).order_by(PropSnapshot.captured_at))
+    ]
+    assert times == [T0, T0 + timedelta(minutes=60)]
+
+
+def test_the_keep_alive_can_be_turned_off_or_changed(db: Session) -> None:
+    assert insert_prop_snapshots(db, [_quote(minutes=0)], keepalive=None) == 1
+    assert insert_prop_snapshots(db, [_quote(minutes=600)], keepalive=None) == 0
+    assert insert_prop_snapshots(db, [_quote(minutes=601)], keepalive=timedelta(minutes=30)) == 1
+
+
+def test_a_changed_quote_is_always_stored_whatever_the_keep_alive(db: Session) -> None:
+    insert_prop_snapshots(db, [_quote(minutes=0)])
+    assert insert_prop_snapshots(db, [_quote(minutes=1, over_price=-125, under_price=105)]) == 1
+
+
+def test_the_keep_alive_is_measured_against_the_row_before_in_time(db: Session) -> None:
+    insert_prop_snapshots(db, [_quote(minutes=300)])
+    # An older snapshot added afterwards: nothing precedes it, so it is stored.
+    assert insert_prop_snapshots(db, [_quote(minutes=0)]) == 1
+    # And one shortly after the old row is a duplicate of it, not of the (later) 300-minute row.
+    assert insert_prop_snapshots(db, [_quote(minutes=10)]) == 0

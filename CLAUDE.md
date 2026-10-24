@@ -78,6 +78,10 @@ docs/
 | Polling tiers | >72h: 12h · 72–24h: 3h · 24–3h: 1h · <3h: 15m | scheduler |
 | POLL_HORIZON_DAYS | 7 | scheduler (games kicking off within this many days are polled) |
 | STALE_QUOTE_MINUTES | 90 | consensus |
+| QUOTE_KEEPALIVE_MINUTES | 45 (half of the stale limit) | snapshot store: an unchanged quote is stored again once its last row is this old |
+| CONSENSUS_HALF_LIFE_MINUTES | 45 | consensus recency weight |
+| DEVIG_METHOD | multiplicative | consensus (`multiplicative`, `additive`, `power`, `shin`) |
+| ONE_SIDED_OVERROUND | 0.10 (a placeholder to calibrate; `none` drops one-sided quotes) | consensus, for markets where a book posts only one side |
 | FUZZY_MATCH_THRESHOLD | 90 | player resolver |
 | STEAM_MIN_BOOKS / STEAM_WINDOW_MIN | 3 / 10 | steam detection |
 | STALE_LINE_PROB_PTS / STALE_LINE_MIN | 5 / 30 | stale-line detection |

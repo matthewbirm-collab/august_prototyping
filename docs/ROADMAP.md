@@ -41,7 +41,7 @@ and the production engine remain pending.
   This does not complete production integration or historical calibration gates.
 
 - [x] `/p3-odds-math` — odds conversion and de-vig (2026-10-24; `engine/odds.py`. Open for `/p3-consensus`: one-sided markets, a Yes price with no No price, need an assumed hold. Open for calibration: which de-vig method, especially for anytime TD)
-- [ ] `/p3-consensus` — multi-book consensus
+- [x] `/p3-consensus` — multi-book consensus (2026-10-24; `engine/consensus.py`, `ingest/consensus_job.py`. Placeholders to calibrate once backfill data exists: `ONE_SIDED_OVERROUND` and the stand-in line spreads, which `/p3-distributions` replaces. All books still weigh 1.0 until the sharp-books decision below)
 - [ ] `/p3-distributions` — stat distribution fitting
 - [ ] `/p3-projection` — fantasy projection assembly
 - [ ] `/p3-gapfill` — fill stats with no market

@@ -257,6 +257,16 @@ Backfill runs are recorded in `ingestion_runs` as `odds_historical`, with `detai
 
 Historical rows in `prop_snapshots` have `source = 'historical'` and `captured_at` equal to the provider's snapshot time. Each is compared with the row before it in time, so adding earlier snapshots after later ones still leaves "the latest quote at or before T" correct.
 
+### Keep-alive rows and `consensus_snapshots`
+
+Storing only changes would make a quiet book look stale, so an unchanged quote is stored again once the series' last row is `QUOTE_KEEPALIVE_MINUTES` (45) old. A book that keeps quoting therefore always has a row under 45 minutes old; one that pulled the market stops getting rows and drops out of the consensus after `STALE_QUOTE_MINUTES` (90). Snapshots hours apart (the backfill) store every row for the same reason: "the latest row per series at or before T" then means "still listed at T".
+
+`consensus_snapshots` has one row per `(game, player, main market)` each time the consensus changes, with `captured_at` the moment it was computed as of:
+
+- `fair_line` is the weighted median of the lines the books posted (NULL for markets without a line), and `fair_p_over` is the probability of the over at that line.
+- `books_count` is the number of books used. `dispersion` is the weighted spread of how far each book's line would have to move to match, in the market's own units (yards, receptions), or in probability points when there is no line. NULL with a single book.
+- Alternate-line markets get no consensus row; `/p3-distributions` uses their thresholds directly.
+
 ### How `available_at` is set by the nflverse loaders
 
 | Data | `available_at` |

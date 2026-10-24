@@ -19,6 +19,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from db.models import BackfillProgress, Game, IngestionRun
+from db.snapshots import DEFAULT_KEEPALIVE
 from ingest import backfill_plan as plan
 from ingest.nflverse.odds_match import match_odds_events
 from ingest.odds.provider import (
@@ -55,6 +56,7 @@ class BackfillConfig:
     scan_step: timedelta = plan.SCAN_STEP
     max_rps: float = 2.0
     reserve: int = 1000
+    keepalive: timedelta | None = DEFAULT_KEEPALIVE
 
     @property
     def per_call(self) -> int:
@@ -151,6 +153,7 @@ class Backfill:
                 fuzzy_threshold=config.fuzzy_threshold,
             ),
             "historical",
+            config.keepalive,
         )
 
     # Selecting and estimating -----------------------------------------------------------------

@@ -30,6 +30,7 @@ class Settings(BaseSettings):
         env_file=(".env", "../.env"),
         env_file_encoding="utf-8",
         extra="ignore",
+        env_parse_none_str="none",
     )
 
     env: Literal["development", "test", "production"] = "development"
@@ -50,6 +51,14 @@ class Settings(BaseSettings):
     daily_credit_budget: int = 15
     poll_tiers: list[PollTier] = Field(default_factory=lambda: list(DEFAULT_POLL_TIERS))
     stale_quote_minutes: int = 90
+    # An unchanged quote is stored again once its last row is this old (half of the stale limit),
+    # so a book that keeps quoting always has a recent row.
+    quote_keepalive_minutes: int = 45
+    consensus_half_life_minutes: int = 45
+    devig_method: Literal["multiplicative", "additive", "power", "shin"] = "multiplicative"
+    # Margin assumed for markets where a book posts only one side (mostly anytime TD). A
+    # placeholder to calibrate against results; "none" drops one-sided quotes instead.
+    one_sided_overround: float | None = 0.10
     fuzzy_match_threshold: int = 90
     steam_min_books: int = 3
     steam_window_min: int = 10

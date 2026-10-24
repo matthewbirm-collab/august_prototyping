@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 
 from app.settings import PollTier, Settings
 from db.models import Game, IngestionRun
+from db.snapshots import DEFAULT_KEEPALIVE
 from ingest import tiers as tier_logic
 from ingest.nflverse.odds_match import match_odds_events
 from ingest.odds.provider import (
@@ -26,19 +27,14 @@ from ingest.odds.provider import (
     OddsProviderError,
 )
 from ingest.quote_store import GameResult, QuoteStore
+from ingest.recompute import RecomputeHook, RecomputeRequest, log_recompute
 from ingest.resolver import PlayerResolver
 from ingest.rosters import DbRosterLookup, RosterLookup
 
 logger = logging.getLogger(__name__)
 
 RunStatus = Literal["ok", "partial", "failed", "idle", "budget_exhausted"]
-RecomputeHook = Callable[[Sequence[int]], None]
 RUN_KIND = "odds_live"
-
-
-def log_recompute(player_ids: Sequence[int]) -> None:
-    """Placeholder for Phase 3, which recomputes consensus and projections for these players."""
-    logger.info("recompute requested", extra={"players": len(player_ids)})
 
 
 @dataclass(frozen=True)
@@ -50,6 +46,7 @@ class CaptureConfig:
     fuzzy_threshold: float
     horizon_days: int
     bookmakers: tuple[str, ...] | None = None
+    keepalive: timedelta = DEFAULT_KEEPALIVE
 
     @classmethod
     def from_settings(
@@ -66,6 +63,7 @@ class CaptureConfig:
             fuzzy_threshold=settings.fuzzy_match_threshold,
             horizon_days=settings.poll_horizon_days,
             bookmakers=tuple(bookmakers) if bookmakers else None,
+            keepalive=timedelta(minutes=settings.quote_keepalive_minutes),
         )
 
     @property
@@ -131,6 +129,7 @@ class OddsCapture:
                 fuzzy_threshold=config.fuzzy_threshold,
             ),
             "live",
+            config.keepalive,
         )
 
     # Selecting games --------------------------------------------------------------------------
@@ -259,7 +258,7 @@ class OddsCapture:
             totals.one_sided += result.one_sided
             totals.unknown_market += result.unknown_market
             totals.new_books.extend(result.new_books)
-            self._notify(result.player_ids)
+            self._notify(game.id, result.player_ids, response.snapshot_at)
 
         after = self._provider.credit_usage()
         summary.credits_used = after.used_today - before.used_today
@@ -287,11 +286,11 @@ class OddsCapture:
             return True
         return usage.remaining is not None and cost > usage.remaining
 
-    def _notify(self, player_ids: set[int]) -> None:
+    def _notify(self, game_id: str, player_ids: set[int], as_of: datetime) -> None:
         if not player_ids:
             return
         try:
-            self._on_new_snapshots(sorted(player_ids))
+            self._on_new_snapshots(RecomputeRequest(game_id, tuple(sorted(player_ids)), as_of))
         except Exception:
             logger.exception("recompute hook failed")
 
