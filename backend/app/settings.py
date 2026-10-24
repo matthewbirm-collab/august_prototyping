@@ -36,6 +36,7 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
 
     database_url: str = "postgresql+psycopg://localhost:5432/propline"
+    test_database_url: str = "postgresql+psycopg://localhost:5432/propline_test"
     redis_url: str = "redis://localhost:6379/0"
     cors_origins: list[str] = Field(default_factory=lambda: ["http://localhost:3000"])
 

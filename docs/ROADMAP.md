@@ -11,9 +11,11 @@ Do not start a new phase until the previous phase gate is met.
 > Met 2026-10-23: `make up` starts Postgres 18 + TimescaleDB 2.31 and Redis, `/health/ready` returns ok for all three, and CI passed on PR #2.
 
 ## Phase 1 — Data model
-- [ ] `/p1-data-model` — schema, migrations, seed data
+- [x] `/p1-data-model` — schema, migrations, seed data
 
 **Gate:** migrations run up and down; seed data loads.
+
+> Met 2026-10-23: `tests/db/test_migrations.py` runs base → head → base → head and checks the hypertables and `consensus_hourly`; `alembic check` finds no model drift; `make seed` loads 32 teams, 12 books, 14 markets and 3 scoring configs, and reruns change nothing.
 
 ## Phase 2 — Ingestion
 - [ ] `/p2-odds-adapter` — OddsProvider interface + The Odds API implementation
@@ -59,7 +61,7 @@ Do not start a new phase until the previous phase gate is met.
 
 ## Open decisions (resolve before Phase 2)
 - [x] Personal tool, private beta, or public product? — **Personal tool** (2026-10-23). Revisit `/p6-alerts` (no multi-user auth needed) and `/p6-deploy` (full AWS is likely more than a personal tool needs) before Phase 6.
-- [ ] Odds provider and plan (after a one-week coverage trial) — no account yet (2026-10-23). Build against recorded fixtures until `/p2-scheduler`; historical props for `/p2-backfill` need a paid plan.
+- [ ] Odds provider and plan (after a one-week coverage trial) — start on **The Odds API free Starter plan** (500 credits/month) for building and testing (2026-10-23). It needs `DAILY_CREDIT_BUDGET` of about 15 and a reduced market list. Fallback free option: SportsGameOdds Amateur. No free plan includes historical props, so `/p2-backfill` and the Phase 3 backtest gate need a paid plan.
 - [x] Local services — **Homebrew, not Docker** (2026-10-23). See `/p0-scaffold`.
 - [x] Repo — **reuse `august_prototyping`** (2026-10-23); the Express starter is removed in `/p0-scaffold`.
 - [ ] Which books count as sharp for consensus weighting

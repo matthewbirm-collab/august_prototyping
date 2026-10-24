@@ -37,5 +37,5 @@ format: ## Auto-format backend code
 migrate: ## Apply database migrations
 	cd backend && uv run alembic upgrade head
 
-seed: ## Load seed data
-	@echo "No seed data yet; added in /p1-data-model."
+seed: ## Load reference data (teams, books, markets, scoring configs); safe to rerun
+	cd backend && uv run python -m db.seed
