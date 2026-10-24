@@ -228,6 +228,23 @@ erDiagram
 - Dedupe helper: an unchanged quote is skipped; a price change, a line change and a new alternate threshold are each stored.
 - These tests need Postgres, so they're marked `db` and use `TEST_DATABASE_URL`. CI already runs TimescaleDB.
 
+## Added in migration 0002 (`/p2-nflverse`)
+
+- **`snap_counts`**: per-game offense, defense and special-teams snaps and percentages, keyed by `(game_id, player_id)`. Players are matched by their Pro Football Reference id. Offensive linemen and long snappers often aren't in nflverse's fantasy id list, so their rows are skipped.
+- **`ff_rankings`**: FantasyPros weekly positional expert consensus rankings (`ecr`, `sd`, `best`, `worst`), unique on `(scrape_date, page_type, fantasypros_id)`. Each is assigned to the week in progress on its scrape date. `player_id` is null for players not on a loaded roster.
+- **`ingestion_runs.details`**: JSONB with per-run parameters and row counts.
+
+### How `available_at` is set by the nflverse loaders
+
+| Data | `available_at` |
+| --- | --- |
+| Injuries through 2024 | `date_modified` from nflverse |
+| Injuries from 2025 (no `date_modified`) | 1 day before that team's kickoff, after the final report |
+| Depth charts from 2025 | the snapshot's `dt`; only rank changes are stored |
+| Depth charts through 2024, weekly rosters | 3 days before that team's kickoff |
+
+Weekly rosters keep only players on the team (`ACT`, `RES`, `INA`, `DEV`). Rows for traded, cut or retired players are dropped.
+
 ## Not in this step
 
 Compression and retention policies, the `movement` and `market_events` tables (Phase 4), and users, watchlists and alerts (Phase 6).

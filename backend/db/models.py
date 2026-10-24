@@ -159,6 +159,7 @@ class IngestionRun(Base):
     credits_used: Mapped[int] = mapped_column(Integer, server_default=text("0"))
     credits_remaining: Mapped[int | None] = mapped_column(Integer)
     errors: Mapped[list[Any]] = mapped_column(JSONB, server_default=text("'[]'::jsonb"))
+    details: Mapped[dict[str, Any]] = mapped_column(JSONB, server_default=text("'{}'::jsonb"))
 
 
 class PropSnapshot(Base):
@@ -295,3 +296,47 @@ class ActualStats(Base):
     rec_tds: Mapped[int] = mapped_column(Integer, server_default=text("0"))
     fumbles_lost: Mapped[int] = mapped_column(Integer, server_default=text("0"))
     two_pt_conversions: Mapped[int] = mapped_column(Integer, server_default=text("0"))
+
+
+class SnapCount(Base):
+    """Per-game snap counts from Pro Football Reference via nflverse."""
+
+    __tablename__ = "snap_counts"
+
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), primary_key=True)
+    player_id: Mapped[int] = mapped_column(ForeignKey("players.id"), primary_key=True)
+    season: Mapped[int] = mapped_column(Integer)
+    week: Mapped[int] = mapped_column(Integer)
+    team_abbr: Mapped[str] = mapped_column(ForeignKey("teams.abbr"))
+    position: Mapped[str] = mapped_column(Text)
+    offense_snaps: Mapped[int] = mapped_column(Integer)
+    offense_pct: Mapped[float] = mapped_column(Float)
+    defense_snaps: Mapped[int] = mapped_column(Integer)
+    defense_pct: Mapped[float] = mapped_column(Float)
+    st_snaps: Mapped[int] = mapped_column(Integer)
+    st_pct: Mapped[float] = mapped_column(Float)
+
+
+class FfRanking(Base):
+    """FantasyPros weekly expert consensus rankings (ECR) via nflverse: the backtest baseline."""
+
+    __tablename__ = "ff_rankings"
+    __table_args__ = (
+        UniqueConstraint("scrape_date", "page_type", "fantasypros_id"),
+        Index("ix_ff_rankings_season_week", "season", "week"),
+    )
+
+    id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
+    season: Mapped[int] = mapped_column(Integer)
+    week: Mapped[int] = mapped_column(Integer)
+    scrape_date: Mapped[date] = mapped_column(Date)
+    page_type: Mapped[str] = mapped_column(Text)
+    fantasypros_id: Mapped[int] = mapped_column(Integer)
+    player_id: Mapped[int | None] = mapped_column(ForeignKey("players.id"))
+    player_name: Mapped[str] = mapped_column(Text)
+    position: Mapped[str] = mapped_column(Text)
+    team_abbr: Mapped[str | None] = mapped_column(Text)
+    ecr: Mapped[float] = mapped_column(Float)
+    sd: Mapped[float | None] = mapped_column(Float)
+    best: Mapped[int | None] = mapped_column(Integer)
+    worst: Mapped[int | None] = mapped_column(Integer)
