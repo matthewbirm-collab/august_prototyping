@@ -48,7 +48,7 @@ def test_ready_reports_redis_down() -> None:
 
 def test_settings_defaults_match_claude_md() -> None:
     settings = Settings(_env_file=None)
-    assert settings.daily_credit_budget == 5000
+    assert settings.daily_credit_budget == 15
     assert [(t.min_hours_to_kickoff, t.interval_minutes) for t in settings.poll_tiers] == [
         (72, 720),
         (24, 180),

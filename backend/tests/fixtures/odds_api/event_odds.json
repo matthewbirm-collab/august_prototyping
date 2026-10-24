@@ -1,0 +1,59 @@
+{
+  "id": "e912304de2b2ce35b473ce2ecd3d1502",
+  "sport_key": "americanfootball_nfl",
+  "sport_title": "NFL",
+  "commence_time": "2026-10-25T20:25:00Z",
+  "home_team": "Las Vegas Raiders",
+  "away_team": "Kansas City Chiefs",
+  "bookmakers": [
+    {
+      "key": "draftkings",
+      "title": "DraftKings",
+      "markets": [
+        {
+          "key": "player_rush_yds",
+          "last_update": "2026-10-24T15:02:11Z",
+          "outcomes": [
+            {"name": "Over", "description": "Isiah Pacheco", "price": -115, "point": 64.5},
+            {"name": "Under", "description": "Isiah Pacheco", "price": -105, "point": 64.5},
+            {"name": "Over", "description": "Zamir White", "price": -110, "point": 48.5},
+            {"name": "Under", "description": "Zamir White", "price": -110, "point": 48.5}
+          ]
+        },
+        {
+          "key": "player_anytime_td",
+          "last_update": "2026-10-24T15:01:40Z",
+          "outcomes": [
+            {"name": "Yes", "description": "Isiah Pacheco", "price": 105},
+            {"name": "No", "description": "Isiah Pacheco", "price": -140},
+            {"name": "Yes", "description": "Travis Kelce", "price": 120}
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fanduel",
+      "title": "FanDuel",
+      "markets": [
+        {
+          "key": "player_rush_yds",
+          "last_update": "2026-10-24T15:03:02Z",
+          "outcomes": [
+            {"name": "Over", "description": "Isiah Pacheco", "price": -112, "point": 65.5},
+            {"name": "Under", "description": "Isiah Pacheco", "price": -108, "point": 65.5}
+          ]
+        },
+        {
+          "key": "player_rush_yds_alternate",
+          "last_update": "2026-10-24T15:03:02Z",
+          "outcomes": [
+            {"name": "Over", "description": "Isiah Pacheco", "price": -250, "point": 49.5},
+            {"name": "Over", "description": "Isiah Pacheco", "price": 150, "point": 74.5},
+            {"name": "Over", "description": "Isiah Pacheco", "price": 450, "point": 99.5},
+            {"name": "Over", "price": 300, "point": 99.5}
+          ]
+        }
+      ]
+    }
+  ]
+}

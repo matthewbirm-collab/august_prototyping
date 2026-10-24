@@ -18,7 +18,7 @@ Do not start a new phase until the previous phase gate is met.
 > Met 2026-10-23: `tests/db/test_migrations.py` runs base → head → base → head and checks the hypertables and `consensus_hourly`; `alembic check` finds no model drift; `make seed` loads 32 teams, 12 books, 14 markets and 3 scoring configs, and reruns change nothing.
 
 ## Phase 2 — Ingestion
-- [ ] `/p2-odds-adapter` — OddsProvider interface + The Odds API implementation
+- [x] `/p2-odds-adapter` — OddsProvider interface + The Odds API implementation (2026-10-23; tested on synthetic fixtures; record real responses and run `pytest -m live` once `ODDS_API_KEY` is set)
 - [ ] `/p2-player-resolver` — map sportsbook names to canonical players
 - [ ] `/p2-nflverse` — nflreadpy loaders
 - [ ] `/p2-scheduler` — tiered snapshot capture job

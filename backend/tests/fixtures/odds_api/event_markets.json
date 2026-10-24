@@ -1,0 +1,27 @@
+{
+  "id": "e912304de2b2ce35b473ce2ecd3d1502",
+  "sport_key": "americanfootball_nfl",
+  "sport_title": "NFL",
+  "commence_time": "2026-10-25T20:25:00Z",
+  "home_team": "Las Vegas Raiders",
+  "away_team": "Kansas City Chiefs",
+  "bookmakers": [
+    {
+      "key": "draftkings",
+      "title": "DraftKings",
+      "markets": [
+        {"key": "player_pass_yds", "last_update": "2026-10-24T15:02:11Z"},
+        {"key": "player_rush_yds", "last_update": "2026-10-24T15:02:11Z"},
+        {"key": "player_anytime_td", "last_update": "2026-10-24T15:01:40Z"}
+      ]
+    },
+    {
+      "key": "fanduel",
+      "title": "FanDuel",
+      "markets": [
+        {"key": "player_rush_yds", "last_update": "2026-10-24T15:03:02Z"},
+        {"key": "player_rush_yds_alternate", "last_update": "2026-10-24T15:03:02Z"}
+      ]
+    }
+  ]
+}
