@@ -294,3 +294,28 @@ def test_game_day_inactives_count_only_once_announced(db: Session) -> None:
     db.commit()
     assert job(db).compute(GAME_A, [HUNT], KICKOFF_A - timedelta(hours=24))[0]
     assert job(db).compute(GAME_A, [HUNT], KICKOFF_A - timedelta(minutes=89))[0] == []
+
+
+def test_usage_carries_the_longer_window_and_what_the_opponent_allowed(db: Session) -> None:
+    from ingest.usage import LEAGUE_ALLOWED, load_usage
+
+    # A rematch at Denver, in the same roster week, after GAME_A.
+    rematch = Game(
+        id="2025_08_KC_DEN_rematch",
+        season=2025,
+        week=8,
+        season_type="REG",
+        kickoff_utc=KICKOFF_A + timedelta(days=7),
+        home_abbr="DEN",
+        away_abbr="KC",
+    )
+    db.add(rematch)
+    db.commit()
+    usage = load_usage(db, rematch, rematch.kickoff_utc - timedelta(hours=2), window=2)
+    kc = usage["KC"]
+    assert kc.history.games == 2 and kc.long_history is not None
+    assert kc.long_history.games == 5  # GAME_A (no box score yet) and the four at Denver
+    assert (kc.players[PACHECO].games, kc.long_players[PACHECO].games) == (1, 4)
+    # Denver gave up Pacheco's 70 and Hunt's 22 rushing yards in each game.
+    assert kc.opponent["RB"]["rush_yds"] == pytest.approx(92 / LEAGUE_ALLOWED["RB"]["rush_yds"])
+    assert kc.opponent["TE"]["rec_yds"] == pytest.approx(60 / LEAGUE_ALLOWED["TE"]["rec_yds"])

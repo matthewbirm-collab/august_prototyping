@@ -15,6 +15,17 @@ from engine.gapfill import PlayerHistory, TeamHistory
 from engine.scoring import Position
 
 WINDOW_GAMES = 4
+LONG_WINDOW_GAMES = 12
+"""The longer window recent shares are blended with, and efficiency is judged on."""
+OPPONENT_GAMES = 8
+# Yards a team gives up to each position per game, 2021-2022 regular seasons (before any season
+# the backtest grades), for the opponent adjustment.
+LEAGUE_ALLOWED: dict[str, dict[str, float]] = {
+    "QB": {"pass_yds": 238.4, "rush_yds": 17.8},
+    "RB": {"rush_yds": 94.0, "rec_yds": 35.0},
+    "WR": {"rec_yds": 153.0},
+    "TE": {"rec_yds": 49.9},
+}
 OUT_REPORT_STATUSES = frozenset({"Out", "Doubtful"})
 OUT_ROSTER_STATUSES = frozenset({"RES", "DEV"})
 """Reserve (IR and the like) and practice squad."""
@@ -30,6 +41,12 @@ class TeamUsage:
     team: str
     history: TeamHistory
     players: dict[int, PlayerHistory] = field(default_factory=dict)
+    long_history: TeamHistory | None = None
+    long_players: dict[int, PlayerHistory] = field(default_factory=dict)
+    """The same over `LONG_WINDOW_GAMES`."""
+    opponent: dict[str, dict[str, float]] = field(default_factory=dict)
+    """position -> stat -> yards this week's opponent allowed per game over the league
+    average (1.0 is average). Empty when the opponent has no finished games."""
 
 
 def skill_position(raw: str | None) -> Position | None:
@@ -39,7 +56,11 @@ def skill_position(raw: str | None) -> Position | None:
 
 
 def load_usage(
-    session: Session, game: Game, as_of: datetime, window: int = WINDOW_GAMES
+    session: Session,
+    game: Game,
+    as_of: datetime,
+    window: int = WINDOW_GAMES,
+    long_window: int = LONG_WINDOW_GAMES,
 ) -> dict[str, TeamUsage]:
     """Usage for both teams of `game`, keyed by team. A team with no finished games in the
     window is left out."""
@@ -49,36 +70,95 @@ def load_usage(
     depth = _depth(session, game, as_of)
     result: dict[str, TeamUsage] = {}
     for team in (game.home_abbr, game.away_abbr):
-        games = _recent_games(session, team, game, as_of, window)
+        long_games = _recent_games(session, team, game, as_of, max(window, long_window))
+        games = long_games[:window]
         if not games:
             continue
-        totals = _player_totals(session, team, games)
-        history = TeamHistory(
-            games=len(games),
-            pass_attempts=sum(t["pass_attempts"] for t in totals.values()),
-            rush_attempts=sum(t["carries"] for t in totals.values()),
-            targets=sum(t["targets"] for t in totals.values()),
-            pass_tds=sum(t["pass_tds"] for t in totals.values()),
-            rush_tds=sum(t["rush_tds"] for t in totals.values()),
-            rec_tds=sum(t["rec_tds"] for t in totals.values()),
-        )
-        usage = TeamUsage(team, history)
+        long_totals = _player_totals(session, team, long_games)
+        totals = _player_totals(session, team, games) if len(long_games) > window else long_totals
+        usage = TeamUsage(team, _team_history(len(games), totals))
+        usage.long_history = _team_history(len(long_games), long_totals)
         for player_id, (player_team, position, status) in roster.items():
             if player_team != team:
                 continue
-            own = totals.get(player_id, {})
-            usage.players[player_id] = PlayerHistory(
-                player_id=player_id,
-                position=position,
-                games=int(own.get("games", 0)),
-                **{k: v for k, v in own.items() if k != "games"},
-                available=status not in OUT_ROSTER_STATUSES
+            available = (
+                status not in OUT_ROSTER_STATUSES
                 and not (inactives_known and status == INACTIVE_STATUS)
-                and player_id not in out,
-                depth_rank=depth.get((player_id, position)),
+                and player_id not in out
             )
+            rank = depth.get((player_id, position))
+            usage.players[player_id] = _player(player_id, position, totals, available, rank)
+            usage.long_players[player_id] = _player(
+                player_id, position, long_totals, available, rank
+            )
+        opponent = game.away_abbr if team == game.home_abbr else game.home_abbr
+        usage.opponent = _allowed(session, opponent, game, as_of)
         result[team] = usage
     return result
+
+
+def _team_history(games: int, totals: dict[int, dict[str, float]]) -> TeamHistory:
+    return TeamHistory(
+        games=games,
+        pass_attempts=sum(t["pass_attempts"] for t in totals.values()),
+        rush_attempts=sum(t["carries"] for t in totals.values()),
+        targets=sum(t["targets"] for t in totals.values()),
+        pass_tds=sum(t["pass_tds"] for t in totals.values()),
+        rush_tds=sum(t["rush_tds"] for t in totals.values()),
+        rec_tds=sum(t["rec_tds"] for t in totals.values()),
+    )
+
+
+def _player(
+    player_id: int,
+    position: Position,
+    totals: dict[int, dict[str, float]],
+    available: bool,
+    rank: int | None,
+) -> PlayerHistory:
+    own = totals.get(player_id, {})
+    return PlayerHistory(
+        player_id=player_id,
+        position=position,
+        games=int(own.get("games", 0)),
+        **{k: v for k, v in own.items() if k != "games"},
+        available=available,
+        depth_rank=rank,
+    )
+
+
+def _allowed(
+    session: Session, defense: str, game: Game, as_of: datetime
+) -> dict[str, dict[str, float]]:
+    """What `defense` gave up to each position per game over its last games before `as_of`,
+    as a ratio to the league average."""
+    games = _recent_games(session, defense, game, as_of, OPPONENT_GAMES)
+    if not games:
+        return {}
+    stmt = (
+        select(Roster.position, ActualStats.pass_yds, ActualStats.rush_yds, ActualStats.rec_yds)
+        .join(
+            Roster,
+            (Roster.player_id == ActualStats.player_id)
+            & (Roster.season == ActualStats.season)
+            & (Roster.week == ActualStats.week),
+        )
+        .where(ActualStats.game_id.in_(games), Roster.team_abbr != defense)
+    )
+    sums: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    for raw, pass_yds, rush_yds, rec_yds in session.execute(stmt):
+        position = skill_position(raw)
+        if position is None:
+            continue
+        sums[position]["pass_yds"] += pass_yds
+        sums[position]["rush_yds"] += rush_yds
+        sums[position]["rec_yds"] += rec_yds
+    return {
+        position: {
+            stat: sums[position][stat] / len(games) / average for stat, average in stats.items()
+        }
+        for position, stats in LEAGUE_ALLOWED.items()
+    }
 
 
 def _roster(

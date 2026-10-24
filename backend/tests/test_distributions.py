@@ -480,3 +480,19 @@ def test_the_consensus_view_delegates_to_the_fit() -> None:
     view = FittedLineModel(GAMMA)
     assert view.shift(0.5, 64.5, 65.5) == shift_probability(GAMMA, 0.5, 64.5, 65.5)
     assert view.slope(0.5, 64.5) == line_slope(GAMMA, 0.5, 64.5)
+
+
+def test_vectorized_quantiles_match_the_scalar_ones() -> None:
+    import numpy as np
+
+    probabilities = np.array([0.01, 0.2, 0.5, 0.8, 0.99])
+    for model, line in (
+        (StatModel("gamma", 3.0, ZeroInflation((10.0, 40.0), (0.15, 0.02))), 12.5),
+        (StatModel("lognormal", 0.6), 50.5),
+        (StatModel("negbin", 16.0), 14.5),
+        (StatModel("poisson"), 4.5),
+    ):
+        fitted = fit_line(model, line, 0.5)
+        assert list(fitted.quantiles(probabilities)) == pytest.approx(
+            [fitted.quantile(q) for q in probabilities]
+        )
