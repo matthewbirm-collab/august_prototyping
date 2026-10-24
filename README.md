@@ -68,6 +68,7 @@ Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000
 | Command | What it does |
 | --- | --- |
 | `make test` | Backend tests (tests marked `live` are skipped). Database tests use `propline_test` and are skipped locally if Postgres isn't running |
+| `cd backend && uv run python -m ingest.resolver_cli list` | Review sportsbook names the player resolver couldn't match; `confirm`, `ignore` and `rate --season --week` too |
 | `cd backend && uv run pytest -m live` | Live checks against The Odds API; needs `ODDS_API_KEY` and only makes free calls |
 | `make lint` | ruff, ruff format check, mypy strict, frontend ESLint and TypeScript |
 | `make format` | Auto-format backend code |
