@@ -40,9 +40,14 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     cors_origins: list[str] = Field(default_factory=lambda: ["http://localhost:3000"])
 
+    odds_provider: Literal["the_odds_api"] = "the_odds_api"
     odds_api_key: SecretStr | None = None
+    odds_api_base_url: str = "https://api.the-odds-api.com"
+    odds_api_regions: str = "us"
+    odds_api_timeout_seconds: float = 10.0
 
-    daily_credit_budget: int = 5000
+    # Sized for The Odds API free plan (500 credits/month); raise it on a paid plan.
+    daily_credit_budget: int = 15
     poll_tiers: list[PollTier] = Field(default_factory=lambda: list(DEFAULT_POLL_TIERS))
     stale_quote_minutes: int = 90
     fuzzy_match_threshold: int = 90

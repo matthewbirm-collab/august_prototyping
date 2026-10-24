@@ -48,6 +48,8 @@ It then installs backend and frontend dependencies. It's safe to rerun.
 
 Settings live in `.env`. The defaults match the parameter table in `CLAUDE.md`. `ODDS_API_KEY` can stay empty until the live ingestion steps.
 
+Odds come from [The Odds API](https://the-odds-api.com) through the `OddsProvider` interface in `backend/ingest/odds/`. `DAILY_CREDIT_BUDGET` defaults to 15, which fits the free plan; the adapter refuses any call that could go over it. Tests use sample responses in `backend/tests/fixtures/odds_api/`, which are synthetic until real ones are recorded.
+
 ## Running
 
 ```bash
@@ -66,6 +68,7 @@ Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000
 | Command | What it does |
 | --- | --- |
 | `make test` | Backend tests (tests marked `live` are skipped). Database tests use `propline_test` and are skipped locally if Postgres isn't running |
+| `cd backend && uv run pytest -m live` | Live checks against The Odds API; needs `ODDS_API_KEY` and only makes free calls |
 | `make lint` | ruff, ruff format check, mypy strict, frontend ESLint and TypeScript |
 | `make format` | Auto-format backend code |
 | `make migrate` | Apply database migrations |

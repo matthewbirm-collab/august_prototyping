@@ -73,7 +73,7 @@ docs/
 ## Default parameters (change here, not in code)
 | Name | Default | Used by |
 | --- | --- | --- |
-| DAILY_CREDIT_BUDGET | 5000 | odds adapter |
+| DAILY_CREDIT_BUDGET | 15 (The Odds API free plan, 500/month; ~5000 on a paid plan) | odds adapter |
 | Polling tiers | >72h: 12h · 72–24h: 3h · 24–3h: 1h · <3h: 15m | scheduler |
 | STALE_QUOTE_MINUTES | 90 | consensus |
 | FUZZY_MATCH_THRESHOLD | 90 | player resolver |

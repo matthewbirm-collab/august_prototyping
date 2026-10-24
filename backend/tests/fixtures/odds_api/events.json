@@ -1,0 +1,18 @@
+[
+  {
+    "id": "e912304de2b2ce35b473ce2ecd3d1502",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2026-10-25T20:25:00Z",
+    "home_team": "Las Vegas Raiders",
+    "away_team": "Kansas City Chiefs"
+  },
+  {
+    "id": "a512a48a58c4329048174217b2cc7ce0",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2026-10-26T00:20:00Z",
+    "home_team": "Green Bay Packers",
+    "away_team": "Chicago Bears"
+  }
+]
