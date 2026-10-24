@@ -161,6 +161,8 @@ def test_historical_props_use_the_snapshot_timestamp() -> None:
     )
 
     assert response.snapshot_at == datetime(2025, 10, 19, 16, 55, tzinfo=UTC)
+    assert response.previous_snapshot_at == datetime(2025, 10, 19, 16, 50, tzinfo=UTC)
+    assert response.next_snapshot_at == datetime(2025, 10, 19, 17, 0, tzinfo=UTC)
     assert {(q.side, q.line, q.price) for q in response.quotes} == {
         ("over", 52.5, -118),
         ("under", 52.5, -110),
@@ -291,3 +293,46 @@ def test_logs_never_contain_the_api_key(caplog: pytest.LogCaptureFixture) -> Non
 def test_missing_api_key_is_rejected() -> None:
     with pytest.raises(ValueError, match="ODDS_API_KEY"):
         TheOddsApiProvider(api_key="", daily_credit_budget=15)
+
+
+def test_historical_events_are_listed_at_a_snapshot_for_one_credit() -> None:
+    recorder = Recorder(ok(fixture("historical_events.json"), last=1))
+    at = datetime(2025, 10, 18, 17, 2, tzinfo=UTC)
+    events = provider(recorder).list_historical_events(
+        at, datetime(2025, 10, 19, 15, 0, tzinfo=UTC), datetime(2025, 10, 19, 19, 0, tzinfo=UTC)
+    )
+
+    assert [(e.event_id, e.home_team) for e in events] == [
+        ("3fa5d4c2b8a8a1e5f8e2d0c4b6a71234", "Kansas City Chiefs")
+    ]
+    assert events[0].commence_time == datetime(2025, 10, 19, 17, 0, tzinfo=UTC)
+    request = recorder.requests[0]
+    assert request.url.path == "/v4/historical/sports/americanfootball_nfl/events"
+    assert request.url.params["date"] == "2025-10-18T17:02:00Z"
+    assert request.url.params["commenceTimeFrom"] == "2025-10-19T15:00:00Z"
+
+
+def test_an_empty_historical_events_answer_is_an_empty_list() -> None:
+    body = {"timestamp": "2025-10-18T17:00:00Z", "data": []}
+    assert provider(Recorder(ok(body, last=0))).list_historical_events(NOW, NOW, NOW) == []
+
+
+def test_historical_events_count_against_the_budget_at_one_credit() -> None:
+    recorder = Recorder()
+    with pytest.raises(CreditBudgetExceeded, match="up to 1 credits"):
+        provider(recorder, budget=15, used_today=15).list_historical_events(NOW, NOW, NOW)
+    assert recorder.requests == []
+
+
+def test_historical_props_before_any_were_posted_come_back_empty() -> None:
+    body = {
+        "timestamp": "2025-10-10T16:55:00Z",
+        "previous_timestamp": "2025-10-10T16:50:00Z",
+        "next_timestamp": None,
+        "data": {"id": "x", "bookmakers": []},
+    }
+    response = provider(Recorder(ok(body, last=0)), budget=50).get_historical_event_props(
+        "x", datetime(2025, 10, 10, 17, 0, tzinfo=UTC), ["player_rush_yds"]
+    )
+    assert response.quotes == ()
+    assert response.next_snapshot_at is None

@@ -1,7 +1,8 @@
-from collections.abc import Iterator
+from collections.abc import Iterator, Sequence
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
+import polars as pl
 import pytest
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
@@ -220,3 +221,35 @@ def test_kickoffs_stored_in_utc(db: Session, loader: NflverseLoader) -> None:
     game = db.get(Game, "2026_06_HOU_JAX")
     assert game is not None
     assert game.kickoff_utc == datetime(2026, 10, 18, 13, 30, tzinfo=UTC)
+
+
+class OlderSeasonSource(ParquetSource):
+    """The 2026 rosters relabelled as 2024, with everyone on Arizona."""
+
+    def rosters_weekly(self, seasons: Sequence[int]) -> pl.DataFrame:
+        frame = super().rosters_weekly([2026])
+        return frame.with_columns(
+            pl.lit(seasons[0], dtype=pl.Int32).alias("season"), pl.lit("ARI").alias("team")
+        )
+
+
+def test_loading_an_older_season_does_not_move_players_back_to_old_teams(db: Session) -> None:
+    NflverseLoader(db, ParquetSource(FIXTURES)).run(2026, datasets=["schedules", "players"])
+    NflverseLoader(db, OlderSeasonSource(FIXTURES)).run(
+        2024, datasets=["schedules", "players", "rosters"]
+    )
+
+    harrison = db.scalars(select(Player).where(Player.gsis_id == HARRISON)).one()
+    assert harrison.team_abbr == "HOU"  # still the 2026 team
+    assert count(db, Roster) > 0
+    assert {season for (season,) in db.execute(select(Roster.season).distinct())} == {2024}
+
+
+def test_loading_a_newer_season_does_update_teams(db: Session) -> None:
+    NflverseLoader(db, OlderSeasonSource(FIXTURES)).run(2024, datasets=["schedules", "players"])
+    before = db.scalars(select(Player).where(Player.gsis_id == HARRISON)).one()
+    assert before.team_abbr == "ARI"
+
+    NflverseLoader(db, ParquetSource(FIXTURES)).run(2026, datasets=["schedules", "players"])
+    db.expire_all()
+    assert db.scalars(select(Player).where(Player.gsis_id == HARRISON)).one().team_abbr == "HOU"

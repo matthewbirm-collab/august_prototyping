@@ -73,6 +73,8 @@ Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000
 | `cd backend && uv run ingest-nflverse --season 2026 [--week 8] [--datasets injuries,depth_charts] [--match-odds]` | Load nflverse schedules, players, rosters, injuries, depth charts, snap counts, box scores and FantasyPros rankings. Safe to rerun; cached for 6 hours in season |
 | `cd backend && uv run run-ingest --dry-run` | Show this week's projected credit spend and which games are due. Makes no API calls and needs no key |
 | `cd backend && uv run run-ingest [--tier auto\|15m\|1h\|3h\|12h] [--include-alternates] [--markets ...] [--bookmakers ...]` | Capture live prop snapshots for every game that is due, then exit (needs `ODDS_API_KEY`). `--serve` repeats it every 5 minutes with APScheduler |
+| `cd backend && uv run backfill-props --seasons 2023,2024,2025` | Estimate the credit cost of backfilling historical props (paid Odds API plans). Loads the free nflverse data first and spends nothing |
+| `cd backend && uv run backfill-props --seasons 2025 --weeks 8 --confirm` | Buy those snapshots (a pilot week). Resumable; `--probe --confirm` checks history works for 1 credit; `--report` shows status and unmatched rates; `--snapshots`, `--markets`, `--max-credits` and `--reserve` control the spend |
 | `cd backend && uv run pytest -m live` | Live checks against The Odds API; needs `ODDS_API_KEY` and only makes free calls |
 | `make lint` | ruff, ruff format check, mypy strict, frontend ESLint and TypeScript |
 | `make format` | Auto-format backend code |

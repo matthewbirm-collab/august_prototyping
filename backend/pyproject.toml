@@ -20,6 +20,7 @@ dependencies = [
 [project.scripts]
 ingest-nflverse = "ingest.nflverse.cli:main"
 run-ingest = "ingest.run_ingest:main"
+backfill-props = "ingest.backfill_cli:main"
 
 [build-system]
 requires = ["hatchling"]

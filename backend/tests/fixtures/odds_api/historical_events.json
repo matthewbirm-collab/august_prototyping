@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-10-18T17:00:00Z",
+  "previous_timestamp": "2025-10-18T16:55:00Z",
+  "next_timestamp": "2025-10-18T17:05:00Z",
+  "data": [
+    {
+      "id": "3fa5d4c2b8a8a1e5f8e2d0c4b6a71234",
+      "sport_key": "americanfootball_nfl",
+      "sport_title": "NFL",
+      "commence_time": "2025-10-19T17:00:00Z",
+      "home_team": "Kansas City Chiefs",
+      "away_team": "Las Vegas Raiders"
+    }
+  ]
+}

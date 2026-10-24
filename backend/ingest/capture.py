@@ -13,12 +13,10 @@ from datetime import UTC, datetime, timedelta
 from typing import Any, Literal
 
 from sqlalchemy import func, select
-from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
 from app.settings import PollTier, Settings
-from db.models import Book, Game, IngestionRun, Market
-from db.snapshots import SnapshotQuote, store_prop_snapshots
+from db.models import Game, IngestionRun
 from ingest import tiers as tier_logic
 from ingest.nflverse.odds_match import match_odds_events
 from ingest.odds.provider import (
@@ -26,9 +24,9 @@ from ingest.odds.provider import (
     CreditUsage,
     OddsProvider,
     OddsProviderError,
-    PropQuote,
 )
-from ingest.resolver import GameContext, PlayerResolver, position_hint_for_market
+from ingest.quote_store import GameResult, QuoteStore
+from ingest.resolver import PlayerResolver
 from ingest.rosters import DbRosterLookup, RosterLookup
 
 logger = logging.getLogger(__name__)
@@ -90,17 +88,6 @@ class RunSummary:
     unlinked_games: int = 0
 
 
-@dataclass
-class _GameResult:
-    quotes: int = 0
-    new_snapshots: int = 0
-    unmatched: set[str] = field(default_factory=set)
-    one_sided: int = 0
-    unknown_market: int = 0
-    new_books: list[str] = field(default_factory=list)
-    player_ids: set[int] = field(default_factory=set)
-
-
 def credits_used_today(session: Session, now: datetime) -> int:
     """Credits spent by live odds runs since 00:00 UTC, so the budget survives restarts."""
     midnight = now.astimezone(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
@@ -135,11 +122,15 @@ class OddsCapture:
         self._cfg = config
         self._clock = clock
         self._on_new_snapshots = on_new_snapshots
-        self._resolver = PlayerResolver(
+        self._quotes = QuoteStore(
             session,
-            rosters or DbRosterLookup(session),
-            source=config.source,
-            fuzzy_threshold=config.fuzzy_threshold,
+            PlayerResolver(
+                session,
+                rosters or DbRosterLookup(session),
+                source=config.source,
+                fuzzy_threshold=config.fuzzy_threshold,
+            ),
+            "live",
         )
 
     # Selecting games --------------------------------------------------------------------------
@@ -229,7 +220,7 @@ class OddsCapture:
         summary.run_id = run.id
 
         games_detail: dict[str, dict[str, Any]] = {}
-        totals = _GameResult()
+        totals = GameResult()
         for index, game in enumerate(due):
             polled_at = self._clock()
             try:
@@ -247,7 +238,7 @@ class OddsCapture:
 
             try:
                 with self._session.begin_nested():
-                    result = self._store(game, response.quotes, run.id)
+                    result = self._quotes.store(game, response.quotes, run.id)
                 self._session.commit()
             except Exception as exc:
                 logger.exception("storing odds failed", extra={"game": game.id})
@@ -296,67 +287,6 @@ class OddsCapture:
             return True
         return usage.remaining is not None and cost > usage.remaining
 
-    def _store(self, game: Game, quotes: Sequence[PropQuote], run_id: int) -> _GameResult:
-        result = _GameResult(quotes=len(quotes))
-        known_markets = set(self._session.scalars(select(Market.key)))
-        result.new_books = self._ensure_books({q.book for q in quotes})
-        resolver = self._resolver.for_game(GameContext.from_game(game))
-
-        prices: dict[tuple[str, str, int, float | None], dict[str, int]] = {}
-        captured: dict[tuple[str, str, int, float | None], datetime] = {}
-        for quote in quotes:
-            if quote.market not in known_markets:
-                result.unknown_market += 1
-                continue
-            resolution = resolver.resolve(
-                quote.player_name_raw, position_hint=position_hint_for_market(quote.market)
-            )
-            if resolution.player_id is None:
-                result.unmatched.add(quote.player_name_raw)
-                continue
-            key = (quote.book, quote.market, resolution.player_id, quote.line)
-            prices.setdefault(key, {})[quote.side] = quote.price
-            captured[key] = quote.captured_at
-
-        snapshots: list[SnapshotQuote] = []
-        for key, sides in prices.items():
-            book, market, player_id, line = key
-            over = sides.get("over", sides.get("yes"))
-            if over is None:
-                result.one_sided += 1  # only an under/no price: nothing to anchor the row on
-                continue
-            snapshots.append(
-                SnapshotQuote(
-                    captured_at=captured[key],
-                    game_id=game.id,
-                    book_key=book,
-                    market_key=market,
-                    player_id=player_id,
-                    line=line,
-                    over_price=over,
-                    under_price=sides.get("under", sides.get("no")),
-                    source="live",
-                    ingestion_run_id=run_id,
-                )
-            )
-        stored = store_prop_snapshots(self._session, snapshots)
-        result.new_snapshots = len(stored)
-        result.player_ids = {q.player_id for q in stored}
-        return result
-
-    def _ensure_books(self, keys: set[str]) -> list[str]:
-        """Register a book the provider returns that we haven't seeded (default weight)."""
-        known = set(self._session.scalars(select(Book.key).where(Book.key.in_(keys))))
-        new = sorted(keys - known)
-        if new:
-            logger.warning("new sportsbook from provider", extra={"books": new})
-            self._session.execute(
-                insert(Book)
-                .values([{"key": key, "display_name": key} for key in new])
-                .on_conflict_do_nothing()
-            )
-        return new
-
     def _notify(self, player_ids: set[int]) -> None:
         if not player_ids:
             return
@@ -370,7 +300,7 @@ class OddsCapture:
         run: IngestionRun,
         summary: RunSummary,
         games: dict[str, dict[str, Any]],
-        totals: _GameResult,
+        totals: GameResult,
     ) -> None:
         run.finished_at = datetime.now(UTC)
         run.status = summary.status

@@ -106,3 +106,21 @@ def test_books_are_separate_series(db: Session) -> None:
 
 def test_empty_batch() -> None:
     assert insert_prop_snapshots(None, []) == 0  # type: ignore[arg-type]
+
+
+def test_an_earlier_snapshot_stored_after_a_later_one_is_not_dropped(db: Session) -> None:
+    """A backfill can add history out of order. Each quote is compared with the row before it in
+    time, so "the latest quote at or before T" stays right."""
+    insert_prop_snapshots(db, [_quote(minutes=60, over_price=-125, under_price=105)])
+    stored = insert_prop_snapshots(
+        db,
+        [
+            _quote(minutes=0),  # before the move: differs from the row that follows
+            _quote(minutes=30, over_price=-125, under_price=105),  # equals the later row
+        ],
+    )
+    # Both are stored: nothing precedes the first, and the second follows a different price.
+    assert stored == 2
+
+    again = insert_prop_snapshots(db, [_quote(minutes=45, over_price=-125, under_price=105)])
+    assert again == 0  # unchanged since the 30-minute row

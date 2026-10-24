@@ -50,10 +50,16 @@ class PropQuote:
 
 @dataclass(frozen=True)
 class PropsResponse:
-    """Quotes from one call, plus when the provider says the snapshot was taken."""
+    """Quotes from one call, plus when the provider says the snapshot was taken.
+
+    Historical responses also say when the snapshots on either side of this one were taken, so a
+    caller can tell that a later request would land on the same snapshot.
+    """
 
     quotes: tuple[PropQuote, ...]
     snapshot_at: datetime
+    previous_snapshot_at: datetime | None = None
+    next_snapshot_at: datetime | None = None
 
 
 @dataclass(frozen=True)
@@ -107,6 +113,13 @@ class OddsProvider(Protocol):
         bookmakers: Sequence[str] | None = None,
     ) -> PropsResponse:
         """Player-prop quotes from the provider's closest snapshot at or before `at`."""
+        ...
+
+    def list_historical_events(
+        self, at: datetime, commence_from: datetime, commence_to: datetime
+    ) -> list[OddsEvent]:
+        """Events the provider listed as of the snapshot at or before `at`, kicking off within
+        [commence_from, commence_to]."""
         ...
 
     def credit_usage(self) -> CreditUsage: ...
