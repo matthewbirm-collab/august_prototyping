@@ -6,6 +6,7 @@ In CI (`CI` set) they fail instead, so a missing database can't pass silently.
 
 import os
 from collections.abc import Iterator
+from datetime import timedelta
 from pathlib import Path
 
 import pytest
@@ -17,6 +18,9 @@ from sqlalchemy.orm import Session
 
 from app.settings import get_settings
 from db.base import Base
+from db.models import Game, Player, Roster
+from db.seed import seed
+from tests.db.support import GAMES, NOW, PLAYERS
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 
@@ -60,3 +64,37 @@ def session(engine: Engine) -> Iterator[Session]:
     tables = ", ".join(table.name for table in Base.metadata.sorted_tables)
     with engine.begin() as conn:
         conn.execute(text(f"TRUNCATE {tables} RESTART IDENTITY CASCADE"))
+
+
+@pytest.fixture
+def capture_db(session: Session) -> Iterator[Session]:
+    """Seeded reference data, six games around NOW (see tests/db/support.py) and five players."""
+    seed(session)
+    for game_id, week, home, away, offset, event in GAMES:
+        session.add(
+            Game(
+                id=game_id,
+                season=2026,
+                week=week,
+                season_type="REG",
+                kickoff_utc=NOW + offset,
+                home_abbr=home,
+                away_abbr=away,
+                odds_event_id=event,
+            )
+        )
+    for player_id, name, team, position in PLAYERS:
+        session.add(Player(id=player_id, full_name=name, position=position))
+        session.flush()
+        session.add(
+            Roster(
+                season=2026,
+                week=8,
+                player_id=player_id,
+                team_abbr=team,
+                position=position,
+                available_at=NOW - timedelta(days=5),
+            )
+        )
+    session.commit()
+    yield session

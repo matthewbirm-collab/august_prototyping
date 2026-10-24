@@ -14,7 +14,7 @@ class PollTier(BaseModel):
     """Poll every `interval_minutes` while kickoff is at least `min_hours_to_kickoff` away."""
 
     min_hours_to_kickoff: float
-    interval_minutes: int
+    interval_minutes: int = Field(gt=0)
 
 
 DEFAULT_POLL_TIERS = [
@@ -55,6 +55,7 @@ class Settings(BaseSettings):
     steam_window_min: int = 10
     stale_line_prob_pts: float = 5.0
     stale_line_min: int = 30
+    poll_horizon_days: int = 7
     context_lookback_hours: int = 24
     alert_threshold_pts: float = 2.0
     alert_digest_min: int = 15
