@@ -1,22 +1,23 @@
 SHELL := /bin/bash
+FRONTEND_PORT ?= 3000
 .PHONY: setup up down test lint format migrate seed
 
 # The Postgres formula the Homebrew TimescaleDB build targets (e.g. postgresql@17).
-pg_formula = $$(brew deps timescale/tap/timescaledb | grep -E '^postgresql@[0-9]+$$' | head -1)
+pg_formula = $$(./scripts/pg-formula.sh)
 
 setup: ## Install local services and dependencies (first run)
 	./scripts/setup-local.sh
 	cd backend && uv sync
 	cd frontend && npm ci
 
-up: ## Start Postgres and Redis, apply migrations, run backend and frontend (Ctrl-C stops the servers)
+up: ## Start Postgres and Redis, apply migrations, run backend and frontend (Ctrl-C stops the servers; FRONTEND_PORT=3001 to change the port)
 	brew services start $(pg_formula) >/dev/null
 	brew services start redis >/dev/null
 	$(MAKE) migrate
-	@echo "Backend http://localhost:8000  Frontend http://localhost:3000"
+	@echo "Backend http://localhost:8000  Frontend http://localhost:$(FRONTEND_PORT)"
 	@trap 'kill 0' EXIT; \
 	  (cd backend && uv run uvicorn app.main:app --reload --port 8000) & \
-	  (cd frontend && npm run dev) & \
+	  (cd frontend && npm run dev -- --port $(FRONTEND_PORT)) & \
 	  wait
 
 down: ## Stop Postgres and Redis

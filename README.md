@@ -38,7 +38,7 @@ make setup
 
 This runs `scripts/setup-local.sh`, which:
 
-1. Installs TimescaleDB (from the `timescale/tap` Homebrew tap) with the Postgres version it is built for, plus Redis.
+1. Installs TimescaleDB (from the `timescale/tap` Homebrew tap), the Postgres version it is built for (currently `postgresql@18`), and Redis. TimescaleDB compiles from source, so it needs up-to-date Xcode Command Line Tools.
 2. Configures Postgres to preload TimescaleDB and starts both services.
 3. Creates the `propline` and `propline_test` databases with the TimescaleDB extension.
 4. Copies `.env.example` to `.env` and `frontend/.env.example` to `frontend/.env.local` if they don't exist.
@@ -58,7 +58,7 @@ Starts Postgres and Redis, applies migrations, then runs:
 - the backend at http://localhost:8000 (`/health` for liveness, `/health/ready` checks Postgres, TimescaleDB and Redis, `/docs` for the API docs)
 - the frontend at http://localhost:3000
 
-Ctrl-C stops the two servers; `make down` stops Postgres and Redis.
+Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000 is taken, use `make up FRONTEND_PORT=3001`.
 
 ## Other commands
 

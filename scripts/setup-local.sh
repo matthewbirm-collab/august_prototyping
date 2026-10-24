@@ -15,12 +15,14 @@ brew tap timescale/tap >/dev/null
 brew list timescaledb >/dev/null 2>&1 || brew install timescale/tap/timescaledb
 brew list redis >/dev/null 2>&1 || brew install redis
 
-# Use whichever Postgres version the TimescaleDB formula is built against.
-PG_FORMULA=$(brew deps timescale/tap/timescaledb | grep -E '^postgresql@[0-9]+$' | head -1)
+# Use whichever Postgres version the TimescaleDB formula is built against. The tap lists it
+# only as a build dependency, so install it explicitly to keep `brew autoremove` from removing it.
+PG_FORMULA=$("$(dirname "$0")/pg-formula.sh")
 if [[ -z "$PG_FORMULA" ]]; then
-  echo "Could not find the Postgres version TimescaleDB depends on." >&2
+  echo "Could not find the Postgres version TimescaleDB is built for." >&2
   exit 1
 fi
+brew list "$PG_FORMULA" >/dev/null 2>&1 || brew install "$PG_FORMULA"
 PG_PREFIX=$(brew --prefix "$PG_FORMULA")
 export PATH="$PG_PREFIX/bin:$PATH"
 echo "==> Using $PG_FORMULA"
@@ -43,7 +45,7 @@ pg_isready -q -h localhost || { echo "Postgres did not start." >&2; exit 1; }
 if [[ "$(psql -h localhost -d postgres -Atc 'SHOW shared_preload_libraries')" != *timescaledb* ]]; then
   echo "==> Configuring Postgres for TimescaleDB"
   CONF=$(psql -h localhost -d postgres -Atc 'SHOW config_file')
-  "$(brew --prefix timescaledb)/bin/timescaledb-tune" --quiet --yes --conf-path="$CONF" \
+  "$(brew --prefix timescaledb-tools)/bin/timescaledb-tune" --quiet --yes --conf-path="$CONF" \
     --pg-config="$PG_PREFIX/bin/pg_config"
   brew services restart "$PG_FORMULA" >/dev/null
   for _ in $(seq 1 30); do
@@ -57,7 +59,7 @@ for db in "${DATABASES[@]}"; do
     echo "==> Creating database $db"
     createdb -h localhost "$db"
   fi
-  psql -h localhost -d "$db" -qc "CREATE EXTENSION IF NOT EXISTS timescaledb" >/dev/null
+  PGOPTIONS="-c client_min_messages=warning" psql -h localhost -d "$db" -qc "CREATE EXTENSION IF NOT EXISTS timescaledb"
 done
 
 echo "==> Starting Redis"
