@@ -66,7 +66,7 @@ Keep `engine/` a pure library so the same code runs live and in backtests.
 
 ## 4. Projection methodology
 
-1. **De-vig each book.** Over/under prices → implied probabilities → remove hold (multiplicative first; also power and Shin) → fair P(over) at that book's line.
+1. **De-vig each book.** Over/under prices → implied probabilities → remove hold (multiplicative first; also power and Shin) → fair P(over) at that book's line. `engine/odds.py` implements this. For a two-way market Shin's method equals the additive one exactly, so the real choice is among multiplicative, additive/Shin and power. They agree on even markets and differ on lopsided ones: an anytime-TD line of Yes +1200 / No -3000 gives a touchdown probability of 7.4%, 5.5% or 4.0%. Multiplicative is the default until `/p3-distributions` calibration says otherwise.
 2. **Consensus.** Combine books into one fair line and P(over), weighting sharper / fresher books more and dropping stale quotes.
 3. **Fit a distribution per stat.**
    - Yardage: skewed continuous (log-normal or gamma) with a point mass at zero for low-volume players, solved so P(X > line) = fair P(over). Alternate lines pin down shape.
