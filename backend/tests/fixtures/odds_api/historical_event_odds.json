@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-10-19T16:55:00Z",
+  "previous_timestamp": "2025-10-19T16:50:00Z",
+  "next_timestamp": "2025-10-19T17:00:00Z",
+  "data": {
+    "id": "3fa5d4c2b8a8a1e5f8e2d0c4b6a71234",
+    "sport_key": "americanfootball_nfl",
+    "sport_title": "NFL",
+    "commence_time": "2025-10-19T17:00:00Z",
+    "home_team": "Kansas City Chiefs",
+    "away_team": "Las Vegas Raiders",
+    "bookmakers": [
+      {
+        "key": "draftkings",
+        "title": "DraftKings",
+        "markets": [
+          {
+            "key": "player_reception_yds",
+            "last_update": "2025-10-19T16:54:12Z",
+            "outcomes": [
+              {"name": "Over", "description": "Travis Kelce", "price": -118, "point": 52.5},
+              {"name": "Under", "description": "Travis Kelce", "price": -110, "point": 52.5}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
