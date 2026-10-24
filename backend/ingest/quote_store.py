@@ -8,7 +8,7 @@ the rows that changed since the latest one in their series. The caller commits.
 import logging
 from collections.abc import Sequence
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Literal
 
 from sqlalchemy import select
@@ -16,7 +16,7 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
 from db.models import Book, Game, Market
-from db.snapshots import SnapshotQuote, store_prop_snapshots
+from db.snapshots import DEFAULT_KEEPALIVE, SnapshotQuote, store_prop_snapshots
 from ingest.odds.provider import PropQuote
 from ingest.resolver import GameContext, PlayerResolver, position_hint_for_market
 
@@ -38,10 +38,17 @@ class GameResult:
 
 
 class QuoteStore:
-    def __init__(self, session: Session, resolver: PlayerResolver, source: Source) -> None:
+    def __init__(
+        self,
+        session: Session,
+        resolver: PlayerResolver,
+        source: Source,
+        keepalive: timedelta | None = DEFAULT_KEEPALIVE,
+    ) -> None:
         self._session = session
         self._resolver = resolver
         self._source = source
+        self._keepalive = keepalive
 
     def store(self, game: Game, quotes: Sequence[PropQuote], run_id: int | None) -> GameResult:
         result = GameResult(quotes=len(quotes))
@@ -86,7 +93,7 @@ class QuoteStore:
                     ingestion_run_id=run_id,
                 )
             )
-        stored = store_prop_snapshots(self._session, snapshots)
+        stored = store_prop_snapshots(self._session, snapshots, self._keepalive)
         result.new_snapshots = len(stored)
         result.player_ids = {q.player_id for q in stored}
         return result

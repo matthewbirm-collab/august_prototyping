@@ -2,14 +2,18 @@
 
 A series is (game, book, market, player) for main markets. Alternate markets carry many
 thresholds per player, so each threshold is its own series: the line joins the key.
+
+An unchanged quote is skipped only while the series' last row is recent. After `keepalive` it is
+stored again, so a book that keeps quoting always has a recent row and one that pulled the market
+stops getting rows. That is what lets the consensus job tell a quiet book from a gone one.
 """
 
 import hashlib
 import json
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import datetime
-from typing import Literal
+from datetime import datetime, timedelta
+from typing import Literal, NamedTuple
 
 from sqlalchemy import Row, case, insert, select, tuple_
 from sqlalchemy.dialects.postgresql import distinct_on
@@ -18,6 +22,14 @@ from sqlalchemy.orm import Session
 from db.models import Market, PropSnapshot
 
 SeriesKey = tuple[str, str, str, int, float | None]
+
+# Half of STALE_QUOTE_MINUTES (90): a live quote is never more than this old.
+DEFAULT_KEEPALIVE = timedelta(minutes=45)
+
+
+class _Latest(NamedTuple):
+    payload_hash: bytes
+    captured_at: datetime
 
 
 @dataclass(frozen=True)
@@ -51,8 +63,13 @@ class SnapshotQuote:
         return (self.game_id, self.book_key, self.market_key, self.player_id, line)
 
 
-def insert_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> int:
-    """Insert quotes whose payload differs from the latest stored row in their series.
+def insert_prop_snapshots(
+    session: Session,
+    quotes: Sequence[SnapshotQuote],
+    keepalive: timedelta | None = DEFAULT_KEEPALIVE,
+) -> int:
+    """Insert quotes whose payload differs from the latest stored row in their series, or whose
+    latest row is `keepalive` old or more (None: skip every unchanged quote).
 
     Quotes are processed in `captured_at` order, so a batch holding several captures of one
     series is deduplicated against itself too. Each quote is compared with the latest row at or
@@ -60,25 +77,34 @@ def insert_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> 
     (an out-of-order backfill) isn't dropped for matching a row that comes after it. Returns the
     number of rows inserted; the caller commits.
     """
-    return len(store_prop_snapshots(session, quotes))
+    return len(store_prop_snapshots(session, quotes, keepalive))
 
 
-def store_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> list[SnapshotQuote]:
+def store_prop_snapshots(
+    session: Session,
+    quotes: Sequence[SnapshotQuote],
+    keepalive: timedelta | None = DEFAULT_KEEPALIVE,
+) -> list[SnapshotQuote]:
     """Like `insert_prop_snapshots`, but returns the quotes that were stored."""
     if not quotes:
         return []
 
     alternates = _alternate_markets(session, {q.market_key for q in quotes})
-    latest = _latest_hashes(session, quotes, alternates)
+    latest = _latest_rows(session, quotes, alternates)
 
     stored: list[SnapshotQuote] = []
     rows = []
     for quote in sorted(quotes, key=lambda q: q.captured_at):
         key = quote.series_key(quote.market_key in alternates)
         digest = quote.payload_hash()
-        if latest.get(key) == digest:
+        previous = latest.get(key)
+        if (
+            previous is not None
+            and previous.payload_hash == digest
+            and (keepalive is None or quote.captured_at - previous.captured_at < keepalive)
+        ):
             continue
-        latest[key] = digest
+        latest[key] = _Latest(digest, quote.captured_at)
         stored.append(quote)
         rows.append(
             {
@@ -106,10 +132,10 @@ def _alternate_markets(session: Session, market_keys: set[str]) -> set[str]:
     return set(session.scalars(stmt))
 
 
-def _latest_hashes(
+def _latest_rows(
     session: Session, quotes: Sequence[SnapshotQuote], alternates: set[str]
-) -> dict[SeriesKey, bytes]:
-    """Latest stored payload hash for every series the batch touches."""
+) -> dict[SeriesKey, _Latest]:
+    """Latest stored payload hash and time for every series the batch touches."""
     series_line = case((PropSnapshot.market_key.in_(alternates), PropSnapshot.line), else_=None)
     group_columns = (
         PropSnapshot.game_id,
@@ -119,7 +145,12 @@ def _latest_hashes(
     )
     groups = [(q.game_id, q.book_key, q.market_key, q.player_id) for q in quotes]
     stmt = (
-        select(*group_columns, series_line.label("series_line"), PropSnapshot.payload_hash)
+        select(
+            *group_columns,
+            series_line.label("series_line"),
+            PropSnapshot.payload_hash,
+            PropSnapshot.captured_at,
+        )
         .where(
             tuple_(*group_columns).in_(set(groups)),
             PropSnapshot.captured_at <= max(q.captured_at for q in quotes),
@@ -127,8 +158,8 @@ def _latest_hashes(
         .ext(distinct_on(*group_columns, series_line))
         .order_by(*group_columns, series_line, PropSnapshot.captured_at.desc())
     )
-    return {_key(row): row.payload_hash for row in session.execute(stmt)}
+    return {_key(row): _Latest(row.payload_hash, row.captured_at) for row in session.execute(stmt)}
 
 
-def _key(row: Row[tuple[str, str, str, int, float | None, bytes]]) -> SeriesKey:
+def _key(row: Row[tuple[str, str, str, int, float | None, bytes, datetime]]) -> SeriesKey:
     return (row.game_id, row.book_key, row.market_key, row.player_id, row.series_line)

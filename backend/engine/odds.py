@@ -185,3 +185,35 @@ def devig_two_way(
     else:
         over = _shin_probability(a, total, shin_insider_share(a, b))
     return FairProbabilities(over, 1 - over)
+
+
+# The missing side of a one-sided market can't imply more than this, or less than the margin
+# allows: a quote this extreme is already as lopsided as books post.
+_MAX_RAW_PROBABILITY: Final = 1 - 1e-4
+
+
+def devig_one_way(
+    p_raw: float, assumed_overround: float, method: Method = "multiplicative"
+) -> float:
+    """Fair probability of the one side a book prices, when it posts no price for the other.
+
+    Anytime-TD markets are often like this: a Yes price and no No price, so there is nothing to
+    pair it with. The missing side is rebuilt so the pair carries `assumed_overround`, and the
+    pair goes through `devig_two_way` with the same `method`. With the default, that is
+    `p_raw / (1 + assumed_overround)`.
+
+    Nothing in the data says what the margin is; it is an assumption, to be calibrated against
+    results. If the margin is larger than the quoted probability allows (the missing side would
+    need a probability above `0.9999`), it is capped there, which shrinks the effective margin.
+    The additive and power methods cut a rebuilt longshot hard (a +4900 price assumed to carry a
+    10% margin becomes 1% or 0.02%), so prefer the default for one-sided markets.
+    """
+    _check_probability(p_raw, "p_raw")
+    if not math.isfinite(assumed_overround) or assumed_overround < 0:
+        raise InvalidOddsError(
+            f"assumed_overround must be finite and not negative, got {assumed_overround!r}"
+        )
+    missing = min(1 + assumed_overround - p_raw, _MAX_RAW_PROBABILITY)
+    if p_raw + missing < 1:  # only for absurdly small p_raw: nothing to remove
+        return p_raw
+    return devig_two_way(p_raw, missing, method).over

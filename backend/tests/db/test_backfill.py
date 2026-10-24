@@ -90,10 +90,12 @@ def test_quotes_are_stored_as_historical_at_the_snapshot_time(db: Session) -> No
     assert {r.source for r in rows} == {"historical"}
     assert {r.game_id for r in rows} == {GAME_A}
     assert rows[0].captured_at == POSTED_A
-    # Unchanged quotes are stored once: one rush row and one anytime-TD row.
-    assert len(rows) == 2
+    # The snapshots are hours apart, so each is stored in full even though nothing changed (one
+    # rush row and one anytime-TD row each). That is how a book that kept quoting is told apart
+    # from one that pulled the market.
+    assert len(rows) == 12
     assert summary.quotes == 6 * 4  # six snapshots of four quotes
-    assert summary.new_snapshots == 2
+    assert summary.new_snapshots == 12
 
 
 def test_a_moved_line_is_stored_from_the_snapshot_where_it_moved(db: Session) -> None:
@@ -108,10 +110,9 @@ def test_a_moved_line_is_stored_from_the_snapshot_where_it_moved(db: Session) ->
             .order_by(PropSnapshot.captured_at)
         )
     )
-    assert [(r.captured_at, r.over_price) for r in rush] == [
-        (POSTED_A, -110),
-        (KICKOFF_A - timedelta(hours=24), -125),
-    ]
+    assert rush[0].captured_at == POSTED_A
+    # open, 72 hours out, then 24 hours out and later: after the line moved 30 hours out.
+    assert [r.over_price for r in rush] == [-110, -110, -125, -125, -125, -125]
 
 
 def test_the_run_is_recorded(db: Session) -> None:

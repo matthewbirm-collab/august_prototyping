@@ -1,5 +1,4 @@
 import json
-from collections.abc import Sequence
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
@@ -26,6 +25,7 @@ from ingest.odds.provider import (
     OddsProviderError,
 )
 from ingest.odds.the_odds_api import TheOddsApiProvider
+from ingest.recompute import RecomputeRequest
 from tests.db.support import (
     DAY,
     FAR,
@@ -334,16 +334,17 @@ def test_runs_link_new_games_to_provider_events_first(db: Session) -> None:
 
 
 def test_the_recompute_hook_hears_about_new_snapshots_only(db: Session) -> None:
-    heard: list[list[int]] = []
+    heard: list[RecomputeRequest] = []
     capture = make_capture(db, FakeOdds(standard_responses()), hook=heard.append)
     capture.run("15m")
-    assert heard == [[1, 2]]
+    # The game, the players with new rows, and the moment the provider says it was taken.
+    assert heard == [RecomputeRequest(SOON, (1, 2), NOW)]
     capture.run("15m")  # nothing changed, so nothing to recompute
-    assert heard == [[1, 2]]
+    assert len(heard) == 1
 
 
 def test_a_failing_hook_does_not_fail_the_run(db: Session) -> None:
-    def boom(player_ids: Sequence[int]) -> None:
+    def boom(request: RecomputeRequest) -> None:
         raise RuntimeError("queue is down")
 
     summary = make_capture(db, FakeOdds(standard_responses()), hook=boom).run()

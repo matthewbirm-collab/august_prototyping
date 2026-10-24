@@ -130,6 +130,7 @@ def build_config(settings: Settings, args: argparse.Namespace) -> BackfillConfig
         regions=settings.odds_api_regions,
         fuzzy_threshold=settings.fuzzy_match_threshold,
         stale_after=timedelta(minutes=settings.stale_quote_minutes),
+        keepalive=timedelta(minutes=settings.quote_keepalive_minutes),
         labels=tuple(args.snapshots),
         bookmakers=tuple(args.bookmakers) if args.bookmakers else None,
         max_rps=args.max_rps,

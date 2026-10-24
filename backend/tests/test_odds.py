@@ -12,6 +12,7 @@ from engine.odds import (
     american_to_decimal,
     american_to_implied_prob,
     decimal_to_american,
+    devig_one_way,
     devig_two_way,
     hold,
     overround,
@@ -421,3 +422,68 @@ def test_the_module_exports_what_the_spec_asks_for() -> None:
         "hold",
     ):
         assert callable(getattr(odds, name))
+
+
+# One-sided markets ----------------------------------------------------------------------------
+
+
+def test_one_sided_multiplicative_divides_by_one_plus_the_margin() -> None:
+    assert devig_one_way(0.488, 0.10) == pytest.approx(0.488 / 1.10)
+    assert devig_one_way(0.488, 0.10, "additive") == pytest.approx(0.488 - 0.05)
+    assert devig_one_way(0.488, 0.10, "shin") == pytest.approx(0.488 - 0.05)
+    assert devig_one_way(0.488, 0.10, "power") == pytest.approx(0.43463, abs=1e-5)
+
+
+@pytest.mark.parametrize("method", METHODS)
+def test_no_assumed_margin_leaves_the_probability_alone(method: Method) -> None:
+    assert devig_one_way(0.37, 0.0, method) == pytest.approx(0.37)
+
+
+@pytest.mark.parametrize("method", METHODS)
+@given(st.floats(LOW, HIGH), st.floats(0.0, 0.5))
+@PROPERTY
+def test_a_one_sided_fair_probability_is_below_the_raw_one_and_inside_zero_and_one(
+    method: Method, p: float, margin: float
+) -> None:
+    fair = devig_one_way(p, margin, method)
+    assert 0 < fair <= p + 1e-12
+
+
+@pytest.mark.parametrize("method", METHODS)
+@given(st.floats(LOW, HIGH), st.floats(0.0, 0.3), st.floats(0.0, 0.3))
+@PROPERTY
+def test_assuming_more_margin_never_raises_the_fair_probability(
+    method: Method, p: float, low: float, extra: float
+) -> None:
+    assert devig_one_way(p, low + extra, method) <= devig_one_way(p, low, method) + 1e-12
+
+
+@pytest.mark.parametrize("method", METHODS)
+@given(st.floats(LOW, HIGH), st.floats(0.0, HIGH), st.floats(0.0, 0.3))
+@PROPERTY
+def test_a_shorter_price_never_lowers_the_one_sided_fair_probability(
+    method: Method, p: float, bump: float, margin: float
+) -> None:
+    higher = min(p + bump, HIGH)
+    assume(higher >= p)
+    assert devig_one_way(higher, margin, method) >= devig_one_way(p, margin, method) - 1e-12
+
+
+def test_a_margin_too_big_for_a_longshot_is_capped() -> None:
+    """At +4900 (2%) a 10% margin would need a missing side above 100%; it is capped instead."""
+    p = 0.02
+    capped = devig_one_way(p, 0.10)
+    assert capped == pytest.approx(p / (1 + p - 1e-4))
+    assert 0.0195 < capped < p
+
+
+@pytest.mark.parametrize("bad", [0.0, 1.0, -0.2, 1.4, math.nan])
+def test_one_sided_probabilities_must_be_between_zero_and_one(bad: float) -> None:
+    with pytest.raises(InvalidOddsError):
+        devig_one_way(bad, 0.1)
+
+
+@pytest.mark.parametrize("bad", [-0.01, math.nan, math.inf])
+def test_the_assumed_margin_must_be_a_finite_non_negative_number(bad: float) -> None:
+    with pytest.raises(InvalidOddsError):
+        devig_one_way(0.4, bad)

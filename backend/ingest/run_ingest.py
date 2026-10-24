@@ -5,6 +5,8 @@
     uv run run-ingest --dry-run         # show what is due and the projected credit spend
     uv run run-ingest --serve           # local: repeat `--tier auto` on a timer (APScheduler)
 
+Each game's new quotes also update `consensus_snapshots` (see `ingest/consensus_job.py`).
+
 Production runs `--tier auto` (or one `--tier` per schedule) from a scheduled job; each run
 exits when it is done. Needs ODDS_API_KEY, except for --dry-run.
 """
@@ -32,10 +34,12 @@ from ingest.capture import (
     credits_used_today,
     has_previous_runs,
 )
+from ingest.consensus_job import ConsensusJob, JobConfig
 from ingest.odds.factory import get_odds_provider
 from ingest.odds.markets import ALTERNATE_MARKETS, MAIN_MARKETS
 from ingest.odds.offline import OfflineProvider
 from ingest.odds.provider import OddsProvider
+from ingest.recompute import RecomputeHook, log_recompute
 
 logger = logging.getLogger(__name__)
 
@@ -165,8 +169,11 @@ def run_once(
     config: CaptureConfig,
     tier: str,
     clock: Callable[[], datetime] = lambda: datetime.now(UTC),
+    on_new_snapshots: RecomputeHook = log_recompute,
 ) -> RunSummary:
-    return OddsCapture(session, provider, config, clock=clock).run(tier)
+    return OddsCapture(
+        session, provider, config, clock=clock, on_new_snapshots=on_new_snapshots
+    ).run(tier)
 
 
 def build_scheduler(job: Callable[[], object], interval_minutes: int) -> BlockingScheduler:
@@ -241,7 +248,8 @@ def _run_job(
                     settings, used_today=credits_used_today(db, clock())
                 )
                 try:
-                    summary = run_once(db, live, config, tier, clock)
+                    consensus_job = ConsensusJob(db, JobConfig.from_settings(settings))
+                    summary = run_once(db, live, config, tier, clock, consensus_job)
                 finally:
                     if owns_provider:
                         close = getattr(live, "close", None)
