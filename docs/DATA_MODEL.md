@@ -234,6 +234,17 @@ erDiagram
 - **`ff_rankings`**: FantasyPros weekly positional expert consensus rankings (`ecr`, `sd`, `best`, `worst`), unique on `(scrape_date, page_type, fantasypros_id)`. Each is assigned to the week in progress on its scrape date. `player_id` is null for players not on a loaded roster.
 - **`ingestion_runs.details`**: JSONB with per-run parameters and row counts.
 
+### `ingestion_runs` for live odds (`kind = 'odds_live'`)
+
+One row per `run-ingest` run that polled anything: `events` is games polled, `credits_used` and `credits_remaining` come from the provider, and `errors` lists failed games. `details` holds:
+
+- `tier`: `auto` or the forced interval.
+- `games`: for each game polled successfully, `event_id`, `polled_at`, `quotes`, `new_snapshots` and `unmatched_names`. The next run reads `polled_at` to decide which games are due, so a failed poll is retried at once.
+- `deferred`: games left unpolled because the daily credit budget ran out.
+- `unmatched_names`, `one_sided_quotes`, `unknown_market_quotes` and `new_books`: counts and names worth reviewing.
+
+Status is `ok`, `partial` (some games failed or were deferred) or `failed` (none succeeded). Runs with nothing due, or with the budget already spent, create no row.
+
 ### How `available_at` is set by the nflverse loaders
 
 | Data | `available_at` |

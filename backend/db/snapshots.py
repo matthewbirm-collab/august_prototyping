@@ -58,12 +58,18 @@ def insert_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> 
     series is deduplicated against itself too. Returns the number of rows inserted; the caller
     commits.
     """
+    return len(store_prop_snapshots(session, quotes))
+
+
+def store_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> list[SnapshotQuote]:
+    """Like `insert_prop_snapshots`, but returns the quotes that were stored."""
     if not quotes:
-        return 0
+        return []
 
     alternates = _alternate_markets(session, {q.market_key for q in quotes})
     latest = _latest_hashes(session, quotes, alternates)
 
+    stored: list[SnapshotQuote] = []
     rows = []
     for quote in sorted(quotes, key=lambda q: q.captured_at):
         key = quote.series_key(quote.market_key in alternates)
@@ -71,6 +77,7 @@ def insert_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> 
         if latest.get(key) == digest:
             continue
         latest[key] = digest
+        stored.append(quote)
         rows.append(
             {
                 "captured_at": quote.captured_at,
@@ -89,7 +96,7 @@ def insert_prop_snapshots(session: Session, quotes: Sequence[SnapshotQuote]) -> 
 
     if rows:
         session.execute(insert(PropSnapshot), rows)
-    return len(rows)
+    return stored
 
 
 def _alternate_markets(session: Session, market_keys: set[str]) -> set[str]:
