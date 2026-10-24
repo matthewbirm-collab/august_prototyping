@@ -40,7 +40,7 @@ and the production engine remain pending.
   shrinkage, TD context, simulation, sensitivity checks and preliminary evaluation.
   This does not complete production integration or historical calibration gates.
 
-- [ ] `/p3-odds-math` — odds conversion and de-vig
+- [x] `/p3-odds-math` — odds conversion and de-vig (2026-10-24; `engine/odds.py`. Open for `/p3-consensus`: one-sided markets, a Yes price with no No price, need an assumed hold. Open for calibration: which de-vig method, especially for anytime TD)
 - [ ] `/p3-consensus` — multi-book consensus
 - [ ] `/p3-distributions` — stat distribution fitting
 - [ ] `/p3-projection` — fantasy projection assembly
