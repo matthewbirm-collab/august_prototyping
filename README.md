@@ -76,6 +76,71 @@ Ctrl-C stops the two servers; `make down` stops Postgres and Redis. If port 3000
 
 CI on GitHub Actions runs the same lint, typecheck and test steps, with TimescaleDB and Redis as service containers.
 
+## Experimental quarterback model
+
+An isolated research prototype compares quarterbacks using **four-point passing
+TDs** and the scoring weights in `scoring_configs/qb_half_ppr.json`. This is not the
+completed Phase 3 engine and does not change the web app.
+
+With Python 3.12 available, add `PROPLINE_API_KEY` to the root `.env` (Git-ignored),
+then run from the repository root:
+
+```bash
+python3 scripts/qb_model.py --fetch
+```
+
+This makes one bulk PropLine request and saves the snapshot plus Markdown and JSON
+comparisons in `reports/qb-model/` (also Git-ignored). With the backend's uv setup,
+the equivalent command is `cd backend && uv run python ../scripts/qb_model.py --fetch`.
+To rerun offline without spending API quota:
+
+```bash
+python3 scripts/qb_model.py
+```
+
+Use `--reference "Brock Purdy"`, `--config PATH`, `--snapshot PATH`, `--output PATH`,
+or `--as-of TIMESTAMP` to customize a run. The snapshot must have been captured at
+or before `as_of`; replay cannot recover information from before that snapshot.
+The default replay time is the snapshot's capture time, not today's date.
+
+The report contains expected points, standard deviation, p10/p20/median/p80/p90,
+probability of outscoring the reference, per-stat fits and contributions, exclusions,
+and TD-margin sensitivity. It compares all sufficiently covered QBs; it does not
+know which players are available in your fantasy league.
+
+Method: combine fresh pregame quotes from DraftKings, FanDuel and Bovada; remove
+the proportional margin from paired over/under prices; fit lognormal yardage
+distributions from alternate thresholds and Poisson count distributions; then
+simulate 20,000 independent outcomes per QB. Each book has equal total fit weight.
+One-sided yardage ladders borrow the paired margin for that same player/stat/book.
+Without paired TD odds, the configured 0.90 probability multiplier is an explicit
+assumption, with 0.85 and 1.00 sensitivity runs. TD scorer prices are never
+normalized across players. Provider player IDs merge book aliases; ambiguous
+name-only mappings are excluded.
+
+**Limitations:** not backtested or calibrated; conditional on normal workload;
+independent stats/players; Poisson variance assumption; positive-only yardage;
+no fumble losses, receiving points or bonuses. Missing/unfit markets exclude a QB
+instead of silently contributing zero. Do not treat these intervals as validated
+coverage guarantees or the small mean differences as decisive start/sit advice.
+Historical fallback distributions, injury adjustments and correlations remain work
+for the production engine.
+
+The adapter reserves requests in a locked local daily quota ledger and reads server
+usage headers. Other clients sharing the key can spend quota independently; the
+provider enforces the shared limit. The script makes no automatic retries. Keys
+are sent only in the authentication header and are not included in snapshots.
+
+Run numerical and snapshot-boundary tests with `make test` after normal setup,
+or without any third-party dependencies:
+
+```bash
+PYTHONPATH=backend python3 -m unittest discover -s backend/tests -p test_qb_model.py -v
+```
+
 ## Data attribution
 
 NFL data from [nflverse](https://github.com/nflverse) (CC-BY 4.0; FTN charting data CC-BY-SA 4.0). Odds data from [The Odds API](https://the-odds-api.com), subject to its terms.
+
+The experimental QB model uses [PropLine](https://www.prop-line.com/docs) odds.
+Provider selection does not grant redistribution rights; review its terms for any public use.

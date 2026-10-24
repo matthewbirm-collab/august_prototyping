@@ -27,6 +27,15 @@ Do not start a new phase until the previous phase gate is met.
 **Gate:** one full week of snapshots captured with under 2% unmatched players.
 
 ## Phase 3 — Projection engine
+
+**Separate approved research prototype:** Patrick approved an isolated QB model
+and writing it to `main`. `scripts/qb_model.py` now provides market-fitted
+distributions and comparisons using PropLine. This does not complete the phase
+gates below: database integration, historical calibration/backtesting, gap filling,
+and the production engine remain pending.
+
+- [x] Isolated QB prototype — 4-point passing TD config, PropLine snapshot adapter,
+  distribution fits, simulation ranges/SD, Purdy comparison, offline tests and report.
 - [ ] `/p3-odds-math` — odds conversion and de-vig
 - [ ] `/p3-consensus` — multi-book consensus
 - [ ] `/p3-distributions` — stat distribution fitting
@@ -61,7 +70,7 @@ Do not start a new phase until the previous phase gate is met.
 
 ## Open decisions (resolve before Phase 2)
 - [x] Personal tool, private beta, or public product? — **Personal tool** (2026-10-23). Revisit `/p6-alerts` (no multi-user auth needed) and `/p6-deploy` (full AWS is likely more than a personal tool needs) before Phase 6.
-- [ ] Odds provider and plan (after a one-week coverage trial) — start on **The Odds API free Starter plan** (500 credits/month) for building and testing (2026-10-23). It needs `DAILY_CREDIT_BUDGET` of about 15 and a reduced market list. Fallback free option: SportsGameOdds Amateur. No free plan includes historical props, so `/p2-backfill` and the Phase 3 backtest gate need a paid plan.
+- [ ] Odds provider access and coverage trial — **PropLine selected for the QB prototype** (Patrick, 2026-10-23), replacing the earlier ScoresAndOdds preference. Free key obtained locally; allowance is 1,000 requests/day and a live NFL smoke test passed. Matt's production ingestion adapter currently uses **The Odds API free Starter plan** (500 credits/month, approximately 15/day). Moving production ingestion to PropLine remains a separate integration step. SportsGameOdds Amateur remains an alternative. PropLine NFL history starts in 2026, so the 2023–2025 backfill source remains unresolved.
 - [x] Local services — **Homebrew, not Docker** (2026-10-23). See `/p0-scaffold`.
 - [x] Repo — **reuse `august_prototyping`** (2026-10-23); the Express starter is removed in `/p0-scaffold`.
 - [ ] Which books count as sharp for consensus weighting

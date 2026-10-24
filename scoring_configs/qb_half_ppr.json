@@ -1,0 +1,15 @@
+{
+  "name": "Half PPR, four-point passing touchdowns",
+  "weights": {
+    "player_pass_yds": 0.04,
+    "player_pass_tds": 4.0,
+    "player_pass_interceptions": -2.0,
+    "player_rush_yds": 0.1,
+    "player_anytime_td": 6.0
+  },
+  "simulation_draws": 20000,
+  "seed": 2016,
+  "stale_minutes": 90,
+  "td_probability_multiplier": 0.9,
+  "daily_request_budget": 1000
+}

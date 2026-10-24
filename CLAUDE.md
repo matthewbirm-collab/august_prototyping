@@ -37,6 +37,7 @@ docs/
 ```
 
 ## Data sources
+- **Selected source: PropLine** (Patrick, 2026-10-23), replacing ScoresAndOdds. Use `PROPLINE_API_KEY` from the local environment; never commit the key. Free allowance: 1,000 requests/day. Validate NFL coverage before implementation; 2023–2025 historical props remain unresolved. The existing production adapter still uses The Odds API; PropLine currently powers only the isolated QB prototype.
 - **The Odds API** — sport key `americanfootball_nfl`, region `us`. Player props come only from the per-event endpoint (`/v4/sports/{sport}/events/{eventId}/odds`), one game per call. Cost = markets × regions credits per call. Milestone lines use `_alternate` market keys. Historical props (paid plans) go back to May 2023.
 - **nflverse via nflreadpy** — schedules, weekly rosters, injuries, depth charts, snap counts, player stats (ground truth), `load_ff_playerids()` for ID mapping, `load_ff_rankings()` for a baseline. Returns Polars DataFrames. Most data CC-BY 4.0; FTN charting CC-BY-SA 4.0 — attribute nflverse in README and app footer.
 - All provider access goes through an `OddsProvider` interface so the provider can be swapped by config.

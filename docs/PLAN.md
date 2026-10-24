@@ -14,6 +14,17 @@ The app turns US sportsbook player-prop lines into market-implied fantasy projec
 
 ## 2. Data sources
 
+**Source preference (2026-10-23):** Patrick selected PropLine
+(https://www.prop-line.com/docs), replacing the earlier ScoresAndOdds preference.
+A free API key has been obtained and stored only in the Git-ignored local `.env`
+as `PROPLINE_API_KEY`. The advertised free allowance is 1,000 requests/day.
+Validate NFL market coverage and freshness against live responses before building
+production ingestion. PropLine's NFL archive starts in 2026, so it does not satisfy
+the planned 2023–2025 backtest; that source remains unresolved. The Odds API
+information below describes the existing production adapter; PropLine currently
+powers the isolated QB prototype, with production integration still pending. Keep provider access behind
+`OddsProvider`; the app still computes its own fantasy projections.
+
 | Need | Source | Notes |
 | --- | --- | --- |
 | Current player-prop lines, US books | The Odds API event-odds endpoint | One game per call; cost = markets × regions credits |
